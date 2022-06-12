@@ -1,5 +1,6 @@
 package mashup.spring.jsmr;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,4 +12,10 @@ public class TestController {
     public String test() {
         return "pong";
     }
+
+    @GetMapping("/success")
+    public ApiResponse<Void> success() {
+        return ApiResponse.success(HttpStatus.OK);
+    }
+
 }
