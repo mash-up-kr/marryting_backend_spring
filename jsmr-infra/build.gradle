@@ -1,0 +1,15 @@
+dependencies {
+    implementation project(":jsmr-domain")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
