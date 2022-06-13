@@ -10,6 +10,7 @@ public class TestController {
     // 테스트 용 삭제 예정
     @GetMapping("/ping")
     public String test() {
+        // asda
         return "pong";
     }
 
