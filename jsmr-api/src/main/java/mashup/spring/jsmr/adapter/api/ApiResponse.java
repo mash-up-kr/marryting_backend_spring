@@ -1,4 +1,4 @@
-package mashup.spring.jsmr;
+package mashup.spring.jsmr.adapter.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;

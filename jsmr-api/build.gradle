@@ -1,5 +1,6 @@
 dependencies {
     implementation project(":jsmr-domain")
+    implementation "io.springfox:springfox-boot-starter:$swaggerVersion"
 }
 
 test {
