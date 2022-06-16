@@ -1,6 +1,33 @@
-dependencies {
-    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+plugins {
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
+
+dependencies {
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation "mysql:mysql-connector-java:$mysqlVersion"
+//    runtimeOnly "com.h2database:h2:$h2Version"
+    implementation "com.querydsl:querydsl-jpa:$querydslVersion"
+}
+
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+
 
 test {
     useJUnitPlatform()
