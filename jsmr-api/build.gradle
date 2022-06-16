@@ -1,6 +1,10 @@
 dependencies {
     implementation project(":jsmr-domain")
     implementation "io.springfox:springfox-boot-starter:$swaggerVersion"
+
+    // JWT
+    implementation 'javax.xml.bind:jaxb-api'
+    implementation "io.jsonwebtoken:jjwt:$jwtVersion"
 }
 
 test {
