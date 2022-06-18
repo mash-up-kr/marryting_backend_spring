@@ -3,9 +3,10 @@ plugins {
 }
 
 dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //    implementation "mysql:mysql-connector-java:$mysqlVersion"
 //    runtimeOnly "com.h2database:h2:$h2Version"
+    implementation "com.querydsl:querydsl-apt:$querydslVersion"
     implementation "com.querydsl:querydsl-jpa:$querydslVersion"
 }
 
@@ -15,23 +16,24 @@ querydsl {
     jpa = true
     querydslSourcesDir = querydslDir
 }
-
 sourceSets {
     main.java.srcDir querydslDir
 }
-
-configurations {
-    querydsl.extendsFrom compileClasspath
-}
-
-compileQuerydsl {
+compileQuerydsl{
     options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
 }
 
 
 test {
     useJUnitPlatform()
 }
+
 
 bootJar {
     enabled = false
