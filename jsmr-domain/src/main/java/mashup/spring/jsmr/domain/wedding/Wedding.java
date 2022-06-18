@@ -18,11 +18,11 @@ import java.time.LocalDate;
 public class Wedding extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "groom_id")
     private User groom;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "bride_id")
     private User bride;
 
     private String weddingHallAddress;
