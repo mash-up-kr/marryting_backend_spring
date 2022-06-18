@@ -19,7 +19,7 @@ public class Likes extends BaseEntity {
     private User sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiver")
+    @JoinColumn(name = "receiver_id")
     private User receiver;
 
     private LocalDateTime sendDateTime;
