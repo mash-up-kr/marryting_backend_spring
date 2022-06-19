@@ -4,7 +4,12 @@ import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.user.User;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
