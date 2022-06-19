@@ -4,8 +4,9 @@ plugins {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    implementation "mysql:mysql-connector-java:$mysqlVersion"
+    implementation "mysql:mysql-connector-java:$mysqlVersion"
 //    runtimeOnly "com.h2database:h2:$h2Version"
+    implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:$jasyptVersion"
     implementation "com.querydsl:querydsl-apt:$querydslVersion"
     implementation "com.querydsl:querydsl-jpa:$querydslVersion"
 }

@@ -2,7 +2,3 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
-jwt:
-  access_token_secretKey: asdsaldksjaldjsaldjasdjawldjawldkjawldjalwkdjlawdjawldkjawldjawljdaw
-  access_token_valid_time: 1800000000
