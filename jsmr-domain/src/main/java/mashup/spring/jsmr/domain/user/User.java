@@ -4,6 +4,8 @@ import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -17,6 +19,9 @@ public class User extends BaseEntity {
     private String appleId;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     private Integer age;
 
