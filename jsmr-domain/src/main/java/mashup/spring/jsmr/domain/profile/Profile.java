@@ -2,12 +2,12 @@ package mashup.spring.jsmr.domain.profile;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
+import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -16,24 +16,29 @@ import javax.persistence.OneToOne;
 @Entity
 public class Profile extends BaseEntity {
 
-    private String picture1;
+    private String name;
 
-    private String picture2;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-    private String picture3;
+    private Integer age;
 
-    private String keyword1;
+    private String birth;
 
-    private String keyword2;
+    private String address;
 
-    private String keyword3;
-
-    private String answer1;
-
-    private String answer2;
+    private String career;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "profile")
+    private List<Answer> answers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "profile")
+    private List<Keyword> keywords = new ArrayList<>();
+
+    @OneToMany(mappedBy = "profile")
+    private List<Picture> pictures = new ArrayList<>();
 }
