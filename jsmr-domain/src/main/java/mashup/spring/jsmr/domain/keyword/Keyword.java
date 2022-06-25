@@ -1,7 +1,8 @@
-package mashup.spring.jsmr.domain.profile;
+package mashup.spring.jsmr.domain.keyword;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
+import mashup.spring.jsmr.domain.profile.Profile;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
