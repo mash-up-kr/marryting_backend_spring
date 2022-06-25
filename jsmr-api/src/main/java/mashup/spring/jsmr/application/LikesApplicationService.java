@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.facade;
+package mashup.spring.jsmr.application;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesDTO;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class LikesFacade {
+public class LikesApplicationService {
 
     private final LikeService likeService;
 

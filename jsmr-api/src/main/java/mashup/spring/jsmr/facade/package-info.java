@@ -1,1 +1,0 @@
-package mashup.spring.jsmr.facade;
