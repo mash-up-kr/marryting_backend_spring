@@ -13,4 +13,8 @@ import javax.persistence.Entity;
 public class Questionnaire extends BaseEntity {
 
     private String question;
+
+    private String answer1;
+
+    private String answer2;
 }
