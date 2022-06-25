@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.exception;
+package mashup.spring.jsmr.domain.exception;
 
 public class BusinessException extends RuntimeException {
 
