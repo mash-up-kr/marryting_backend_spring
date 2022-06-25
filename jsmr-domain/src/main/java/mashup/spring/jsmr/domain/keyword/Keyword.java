@@ -3,11 +3,11 @@ package mashup.spring.jsmr.domain.keyword;
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.profile.ProfileKeyword;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,7 +18,6 @@ public class Keyword extends BaseEntity {
 
     private String keyword;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "profile_id")
-    private Profile profile;
+    @OneToMany(mappedBy = "keyword")
+    private List<ProfileKeyword> profileKeyword = new ArrayList<>();
 }
