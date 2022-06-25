@@ -1,7 +1,6 @@
 package mashup.spring.jsmr;
 
 import com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor;
-import mashup.spring.jsmr.config.JasyptConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,16 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled
-@ContextConfiguration(classes = {
-    JasyptConfig.class
-})
 @SpringBootTest
 public class JasyptConfigTest {
 
@@ -36,7 +31,7 @@ public class JasyptConfigTest {
     @BeforeEach
     void setUp() throws Exception {
         System.out.println(jasyptEncryptorPassword);
-        if(StringUtils.isBlank(jasyptEncryptorPassword)) {
+        if (StringUtils.isBlank(jasyptEncryptorPassword)) {
             throw new Exception("jasypt.encryptor.password must not be null, empty or blank.");
         }
         encryptor = new DefaultLazyEncryptor(configurableEnvironment);
