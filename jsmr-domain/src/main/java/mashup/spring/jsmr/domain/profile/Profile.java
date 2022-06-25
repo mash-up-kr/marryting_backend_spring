@@ -2,6 +2,7 @@ package mashup.spring.jsmr.domain.profile;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
+import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.user.User;
 
@@ -37,7 +38,7 @@ public class Profile extends BaseEntity {
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "profile")
-    private List<Keyword> keywords = new ArrayList<>();
+    private List<ProfileKeyword> profileKeywords = new ArrayList<>();
 
     @OneToMany(mappedBy = "profile")
     private List<Picture> pictures = new ArrayList<>();

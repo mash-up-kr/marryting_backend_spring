@@ -1,12 +1,11 @@
-package mashup.spring.jsmr.domain.profile;
+package mashup.spring.jsmr.domain.answer;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
+import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.question.Questionnaire;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -20,4 +19,8 @@ public class Answer extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private Profile profile;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "questionnaire_id")
+    private Questionnaire questionnaire;
 }

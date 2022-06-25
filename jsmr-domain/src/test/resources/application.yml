@@ -4,14 +4,6 @@ spring:
     username: ENC(+YBDZmDMWrf1g2b2UbEx7J0GP8pbjTzBW6hMZaPieZyNrmzC6jmPaV5C9b2P+Csg)
     password: ENC(enRWr1B0BUW734/YaxKWgMG0Cqt4deXrXFnzt+ib3z+bX6FyTmSem1TtxotRe0r/)
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
 
 jwt:
   access_token_secretKey: asdaskdadjawldjalwdkjlakwdjwaldjalwdwaAWdawdawdAWEWAeawe
