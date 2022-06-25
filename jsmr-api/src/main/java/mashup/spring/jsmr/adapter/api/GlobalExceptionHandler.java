@@ -1,8 +1,8 @@
 package mashup.spring.jsmr.adapter.api;
 
 import lombok.extern.slf4j.Slf4j;
-import mashup.spring.jsmr.exception.BusinessException;
-import mashup.spring.jsmr.exception.ExceptionCode;
+import mashup.spring.jsmr.domain.exception.BusinessException;
+import mashup.spring.jsmr.domain.exception.ExceptionCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

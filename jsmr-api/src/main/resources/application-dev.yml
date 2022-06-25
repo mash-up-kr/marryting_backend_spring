@@ -14,7 +14,7 @@ spring:
         format_sql: true
     generate-ddl: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
 
 jwt:
   access_token_secretKey: asdaskdadjawldjalwdkjlakwdjwaldjalwdwaAWdawdawdAWEWAeawe

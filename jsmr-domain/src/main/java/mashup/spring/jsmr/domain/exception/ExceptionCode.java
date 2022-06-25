@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.exception;
+package mashup.spring.jsmr.domain.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

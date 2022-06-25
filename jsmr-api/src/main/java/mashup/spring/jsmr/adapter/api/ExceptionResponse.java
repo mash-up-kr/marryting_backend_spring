@@ -3,7 +3,7 @@ package mashup.spring.jsmr.adapter.api;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import mashup.spring.jsmr.exception.ExceptionCode;
+import mashup.spring.jsmr.domain.exception.ExceptionCode;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
