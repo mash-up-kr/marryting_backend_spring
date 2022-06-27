@@ -1,7 +1,6 @@
 package mashup.spring.jsmr.service;
 
 import lombok.RequiredArgsConstructor;
-import mashup.spring.jsmr.domain.like.Likes;
 import mashup.spring.jsmr.domain.like.LikesRepository;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
