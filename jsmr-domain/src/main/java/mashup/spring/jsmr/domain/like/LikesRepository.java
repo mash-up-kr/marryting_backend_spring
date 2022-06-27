@@ -7,4 +7,6 @@ import java.util.List;
 public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     List<Likes> findAllBySenderIdAndIsMatch(Long userId, Boolean isMatch);
+
+    long countByIsMatchIsTrue();
 }

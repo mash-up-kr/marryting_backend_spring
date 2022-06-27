@@ -29,4 +29,7 @@ public class LikesService {
         return profileRepository.findAllByUserIdIn(myLikeIds);
     }
 
+    public long getTotalMatchingNumber(){
+        return likesRepository.countByIsMatchIsTrue();
+    }
 }

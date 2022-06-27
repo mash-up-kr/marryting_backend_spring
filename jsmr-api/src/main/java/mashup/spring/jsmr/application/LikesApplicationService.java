@@ -20,4 +20,7 @@ public class LikesApplicationService {
                 .collect(Collectors.toList());
     }
 
+    public long getTotalMatchingNumber(){
+        return likeService.getTotalMatchingNumber();
+    }
 }
