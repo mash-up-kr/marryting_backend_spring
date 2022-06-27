@@ -12,26 +12,26 @@ import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class LikeProfilesDTO {
+public class LikeProfilesResponseDTO {
 
-    private List<String> picture;
+    private List<String> pictures;
     private String address;
     private Integer age;
     private String career;
     private List<String> keywords;
 
     @Builder
-    public LikeProfilesDTO(List<String> picture, String address, Integer age, String career, List<String> keywords) {
-        this.picture = picture;
+    public LikeProfilesResponseDTO(List<String> pictures, String address, Integer age, String career, List<String> keywords) {
+        this.pictures = pictures;
         this.address = address;
         this.age = age;
         this.career = career;
         this.keywords = keywords;
     }
 
-    public static LikeProfilesDTO from(Profile profile) {
-        return LikeProfilesDTO.builder()
-                .picture(profile.getPictures().stream()
+    public static LikeProfilesResponseDTO from(Profile profile) {
+        return LikeProfilesResponseDTO.builder()
+                .pictures(profile.getPictures().stream()
                         .map(Picture::getProfileUrl)
                         .collect(Collectors.toList()))
                 .address(profile.getAddress())
