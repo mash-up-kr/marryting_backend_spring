@@ -19,5 +19,5 @@ public class Keyword extends BaseEntity {
     private String keyword;
 
     @OneToMany(mappedBy = "keyword")
-    private List<ProfileKeyword> profileKeyword = new ArrayList<>();
+    private List<ProfileKeyword> profileKeywords = new ArrayList<>();
 }
