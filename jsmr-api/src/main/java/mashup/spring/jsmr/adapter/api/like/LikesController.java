@@ -21,6 +21,6 @@ public class LikesController {
     @ApiOperation("내가 좋아요한 사람들 조회")
     @GetMapping("/profiles")
     public List<LikeProfilesResponseDTO> getMyLikesPeople(@LoginUserId Long userId) {
-        return likesFacade.getLikesProfiles(userId);d
+        return likesFacade.getLikesProfiles(userId);
     }
 }
