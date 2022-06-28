@@ -16,11 +16,11 @@ import java.util.List;
 @RestController
 public class LikesController {
 
-    private final LikesApplicationService likesFacade;
+    private final LikesApplicationService likesApplicationService;
 
     @ApiOperation("내가 좋아요한 사람들 조회")
     @GetMapping("/profiles")
     public List<LikeProfilesResponseDTO> getMyLikesPeople(@LoginUserId Long userId) {
-        return likesFacade.getLikesProfiles(userId);
+        return likesApplicationService.getLikesProfiles(userId);
     }
 }
