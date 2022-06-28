@@ -12,6 +12,7 @@ public enum ExceptionCode {
     METHOD_NOT_ALLOWED(HttpStatus.METHOD_NOT_ALLOWED, "Global002", "Invalid Input Value"),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Global004", "Server Error"),
     INVALID_TYPE_VALUE(HttpStatus.BAD_REQUEST, "Global005", "Invalid Type Value"),
+    ENTITY_NOT_FOUND(HttpStatus.BAD_REQUEST, "Global006", "Entity Not Found"),
 
     // Security
     FAIL_AUTHENTICATION(HttpStatus.UNAUTHORIZED, "S001", "401 에러 인증 실패"),

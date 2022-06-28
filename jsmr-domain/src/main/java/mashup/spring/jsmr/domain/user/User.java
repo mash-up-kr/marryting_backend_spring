@@ -18,7 +18,7 @@ public class User extends BaseEntity {
 
     private String appleId;
 
-    @Enumerated(EnumType.STRING)
-    private SocialType socialType;
+//    @Enumerated(EnumType.STRING)
+//    private SocialType socialType;
 
 }

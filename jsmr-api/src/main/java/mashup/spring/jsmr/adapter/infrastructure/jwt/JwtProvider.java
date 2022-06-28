@@ -3,7 +3,7 @@ package mashup.spring.jsmr.adapter.infrastructure.jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import mashup.spring.jsmr.adapter.api.jwt.TokenResponseDTO;
+import mashup.spring.jsmr.adapter.api.jwt.dto.TokenResponseDTO;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.DatatypeConverter;
