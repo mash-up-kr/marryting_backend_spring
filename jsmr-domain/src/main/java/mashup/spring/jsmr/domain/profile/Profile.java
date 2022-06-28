@@ -3,6 +3,7 @@ package mashup.spring.jsmr.domain.profile;
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.answer.Answer;
+import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.user.User;
 
