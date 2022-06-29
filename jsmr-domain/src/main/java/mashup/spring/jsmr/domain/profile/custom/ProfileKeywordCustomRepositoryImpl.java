@@ -25,8 +25,10 @@ public class ProfileKeywordCustomRepositoryImpl extends QuerydslRepositorySuppor
     @Override
     public List<Profile> findByProfileByFetch(final Long userId, final Profile profile) {
         return setFetchJoinQuery()
-                .where(this.profileKeywords.profile.eq(profile))
-                .where(this.profile.user.id.eq(userId))
+                .where(
+                        this.profileKeywords.profile.eq(profile),
+                        this.profile.user.id.eq(userId)
+                )
                 .distinct()
                 .fetch();
     }
