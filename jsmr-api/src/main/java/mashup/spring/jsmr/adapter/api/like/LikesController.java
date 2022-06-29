@@ -2,7 +2,6 @@ package mashup.spring.jsmr.adapter.api.like;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import mashup.spring.jsmr.adapter.api.ApiV1;
 import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.LikesApplicationService;
@@ -12,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@ApiV1
-@RequestMapping("/like")
+@RequestMapping("/api/v1/like")
 @RequiredArgsConstructor
 @RestController
 public class LikesController {

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProfileKeywordCustomRepository {
 
-    List<Profile> findByProfileKeywordByFetch(Long userId, Profile profile);
+    List<Profile> findByProfileByFetch(Long userId, Profile profile);
 }

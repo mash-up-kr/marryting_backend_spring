@@ -2,7 +2,6 @@ package mashup.spring.jsmr.domain.profile.custom;
 
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import mashup.spring.jsmr.domain.keyword.QKeyword;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileKeyword;
 import mashup.spring.jsmr.domain.profile.QProfile;
@@ -15,7 +14,6 @@ public class ProfileKeywordCustomRepositoryImpl extends QuerydslRepositorySuppor
 
     private final QProfileKeyword profileKeywords = QProfileKeyword.profileKeyword;
     private final QProfile profile = QProfile.profile;
-    private final QKeyword keyword = QKeyword.keyword1;
 
     private final JPAQueryFactory jpaQueryFactory;
 
@@ -25,7 +23,7 @@ public class ProfileKeywordCustomRepositoryImpl extends QuerydslRepositorySuppor
     }
 
     @Override
-    public List<Profile> findByProfileKeywordByFetch(final Long userId, final Profile profile) {
+    public List<Profile> findByProfileByFetch(final Long userId, final Profile profile) {
         return setFetchJoinQuery()
                 .where(this.profileKeywords.profile.eq(profile))
                 .where(this.profile.user.id.eq(userId))
