@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.adapter.api.jwt;
+package mashup.spring.jsmr.adapter.api.jwt.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

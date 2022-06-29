@@ -1,25 +1,22 @@
-package mashup.spring.jsmr.adapter.api;
+package mashup.spring.jsmr.adapter.api.jwt;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.jwt.dto.TokenResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.jwt.JwtProvider;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/api/v1/token")
 @RequiredArgsConstructor
 @RestController
-public class AdviceController {
+public class TokenController {
 
     private final JwtProvider jwtProvider;
 
-    @GetMapping("/server-error")
-    public void serverError() throws Exception {
-        throw new Exception("서버 에러");
+    @GetMapping("/{userId}")
+    public TokenResponseDTO getToken(@PathVariable Long userId) {
+        return jwtProvider.createTokenResponse(userId);
     }
-
-    @GetMapping("/jwt-create")
-    public TokenResponseDTO createJwtTest() {
-        return jwtProvider.createTokenResponse(1L);
-    }
-
 }

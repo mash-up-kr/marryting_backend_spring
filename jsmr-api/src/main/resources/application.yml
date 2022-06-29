@@ -2,3 +2,7 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 1000
