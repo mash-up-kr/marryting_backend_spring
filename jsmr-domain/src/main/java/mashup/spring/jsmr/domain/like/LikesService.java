@@ -73,7 +73,4 @@ public class LikesService {
                    return likesRepository.save(likes);
                 });
     }
-    public long getTotalMatchingNumber() {
-        return likesRepository.countByIsMatchIsTrue();
-    }
 }

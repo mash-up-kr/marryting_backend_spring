@@ -9,7 +9,5 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     List<Likes> findAllBySenderIdAndIsMatch(Long userId, Boolean isMatch);
 
-    long countByIsMatchIsTrue();
-
     Optional<Likes> findBySenderIdAndReceiverId(Long senderId, Long receiverId);
 }

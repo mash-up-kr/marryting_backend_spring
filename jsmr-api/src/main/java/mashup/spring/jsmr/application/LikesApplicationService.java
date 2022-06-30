@@ -33,9 +33,6 @@ public class LikesApplicationService {
                 })
                 .collect(Collectors.toList());
     }
-    public long getTotalMatchingNumber(){
-        return likesService.getTotalMatchingNumber();
-    }
 
     public CreateLikeResponseDTO createLikes(CreateLikeRequestDTO requestDTO){
         Long userId = requestDTO.getUserId();
