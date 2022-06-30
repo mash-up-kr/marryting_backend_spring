@@ -1,6 +1,7 @@
 package mashup.spring.jsmr.domain.like;
 
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -29,7 +31,24 @@ public class LikesService {
         return profileRepository.findAllByUserIdIn(myLikeIds);
     }
 
-    public long getTotalMatchingNumber(){
+    public List<Profile> getMyMatchingProfiles(final Long userId){
+        List<Long> myMatchingIds = likesRepository.findAllBySenderIdAndIsMatch(userId, TRUE).stream()
+                .map(likes -> likes.getReceiver().getId())
+                .collect(Collectors.toList());
+        return profileRepository.findAllByUserIdIn(myMatchingIds);
+    }
+
+    /**
+     * 매칭된 상대방 메시지 조회
+     */
+    public String getMatchingMessage(final Long userId, final Long partnerId){
+        return likesRepository.findBySenderIdAndReceiverId(userId, partnerId)
+                .map(Likes::getReceiverMessage)
+                .orElseGet(() -> likesRepository.findBySenderIdAndReceiverId(partnerId,userId)
+                        .map(Likes::getSenderMessage)
+                        .orElseThrow(EntityNotFoundException::new));
+    }
+    public long getTotalMatchingNumber() {
         return likesRepository.countByIsMatchIsTrue();
     }
 }

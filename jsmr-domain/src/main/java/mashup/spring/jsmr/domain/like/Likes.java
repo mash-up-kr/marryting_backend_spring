@@ -22,10 +22,13 @@ public class Likes extends BaseEntity {
     @JoinColumn(name = "receiver_id")
     private User receiver;
 
+    private String senderMessage;
+
+    private String receiverMessage;
+
     private LocalDateTime sendDateTime;
 
     private LocalDateTime receiveDateTime;
 
     private Boolean isMatch;
-
 }

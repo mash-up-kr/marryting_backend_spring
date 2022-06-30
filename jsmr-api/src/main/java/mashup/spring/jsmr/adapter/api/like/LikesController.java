@@ -3,6 +3,7 @@ package mashup.spring.jsmr.adapter.api.like;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesResponseDTO;
+import mashup.spring.jsmr.adapter.api.like.dto.MatchingProfileResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.LikesApplicationService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +23,11 @@ public class LikesController {
     @GetMapping("/profiles")
     public List<LikeProfilesResponseDTO> getMyLikesPeople(@LoginUserId Long userId) {
         return likesApplicationService.getLikesProfiles(userId);
+    }
+
+    @ApiOperation("매칭된 사람들 조회")
+    @GetMapping("/matching-profiles")
+    public List<MatchingProfileResponseDTO> getMyMatchingPeople(@LoginUserId Long userId){
+        return likesApplicationService.getMatchingProfiles(userId);
     }
 }
