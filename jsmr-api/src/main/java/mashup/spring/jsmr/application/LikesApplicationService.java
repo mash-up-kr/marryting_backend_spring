@@ -1,8 +1,11 @@
 package mashup.spring.jsmr.application;
 
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.adapter.api.like.dto.CreateLikeRequestDTO;
+import mashup.spring.jsmr.adapter.api.like.dto.CreateLikeResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.MatchingProfileResponseDTO;
+import mashup.spring.jsmr.domain.like.Likes;
 import mashup.spring.jsmr.domain.like.LikesService;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +36,13 @@ public class LikesApplicationService {
     public long getTotalMatchingNumber(){
         return likesService.getTotalMatchingNumber();
     }
+
+    public CreateLikeResponseDTO createLikes(CreateLikeRequestDTO requestDTO){
+        Long userId = requestDTO.getUserId();
+        Long partnerId = requestDTO.getPartnerId();
+        String message = requestDTO.getMessage();
+        Likes likes = likesService.createLikes(userId, partnerId, message);
+        return CreateLikeResponseDTO.from(likes);
+    }
+
 }

@@ -2,13 +2,13 @@ package mashup.spring.jsmr.adapter.api.like;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.adapter.api.like.dto.CreateLikeRequestDTO;
+import mashup.spring.jsmr.adapter.api.like.dto.CreateLikeResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.MatchingProfileResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.LikesApplicationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +29,11 @@ public class LikesController {
     @GetMapping("/matching-profiles")
     public List<MatchingProfileResponseDTO> getMyMatchingPeople(@LoginUserId Long userId){
         return likesApplicationService.getMatchingProfiles(userId);
+    }
+
+    @ApiOperation("좋아요 생성")
+    @PostMapping()
+    public CreateLikeResponseDTO createLike(@RequestBody CreateLikeRequestDTO createLikeRequestDTO){
+        return likesApplicationService.createLikes(createLikeRequestDTO);
     }
 }

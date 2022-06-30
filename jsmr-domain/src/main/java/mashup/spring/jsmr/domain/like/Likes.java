@@ -31,4 +31,10 @@ public class Likes extends BaseEntity {
     private LocalDateTime receiveDateTime;
 
     private Boolean isMatch;
+
+    void toMatch(String receiverMessage){
+        this.receiverMessage = receiverMessage;
+        this.receiveDateTime = LocalDateTime.now();
+        isMatch = Boolean.TRUE;
+    }
 }

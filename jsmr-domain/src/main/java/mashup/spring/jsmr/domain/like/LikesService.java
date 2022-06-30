@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
+import mashup.spring.jsmr.domain.user.User;
+import mashup.spring.jsmr.domain.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +23,7 @@ public class LikesService {
 
     private final LikesRepository likesRepository;
     private final ProfileRepository profileRepository;
-
+    private final UserRepository userRepository;
     /**
      * 내가 좋아요 한 사람 조회(매칭되진 않음)
      */
@@ -47,6 +50,28 @@ public class LikesService {
                 .orElseGet(() -> likesRepository.findBySenderIdAndReceiverId(partnerId,userId)
                         .map(Likes::getSenderMessage)
                         .orElseThrow(EntityNotFoundException::new));
+    }
+
+    @Transactional
+    public Likes createLikes(final Long userId, final Long partnerId, String message){
+        return likesRepository.findBySenderIdAndReceiverId(partnerId,userId)
+                .map(likes -> {
+                    likes.toMatch(message);
+                    return likesRepository.save(likes);
+                })
+                .orElseGet(() -> {
+                    //UserRepository findById
+                    User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
+                    User partner = userRepository.findById(partnerId).orElseThrow(EntityNotFoundException::new);
+                    Likes likes = Likes.builder()
+                            .sender(user)
+                            .receiver(partner)
+                            .senderMessage(message)
+                            .sendDateTime(LocalDateTime.now())
+                            .build();
+
+                   return likesRepository.save(likes);
+                });
     }
     public long getTotalMatchingNumber() {
         return likesRepository.countByIsMatchIsTrue();
