@@ -1,8 +1,10 @@
 package mashup.spring.jsmr.domain.like;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.user.User;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -68,6 +68,7 @@ public class LikesService {
                             .receiver(partner)
                             .senderMessage(message)
                             .sendDateTime(LocalDateTime.now())
+                            .isMatch(FALSE)
                             .build();
 
                    return likesRepository.save(likes);
