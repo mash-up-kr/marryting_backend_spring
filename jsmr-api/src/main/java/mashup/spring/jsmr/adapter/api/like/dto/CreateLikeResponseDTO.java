@@ -14,17 +14,15 @@ public class CreateLikeResponseDTO {
 
     private Long receiverId;
 
-    private String senderMessage;
+    private String message;
 
-    private String receiverMessage;
     private Boolean isMatch;
 
     @Builder
-    public CreateLikeResponseDTO(Long senderId, Long receiverId, String senderMessage, String receiverMessage, Boolean isMatch) {
+    public CreateLikeResponseDTO(Long senderId, Long receiverId, String message, Boolean isMatch) {
         this.senderId = senderId;
         this.receiverId = receiverId;
-        this.senderMessage = senderMessage;
-        this.receiverMessage = receiverMessage;
+        this.message = message;
         this.isMatch = isMatch;
     }
 
@@ -32,8 +30,7 @@ public class CreateLikeResponseDTO {
         return CreateLikeResponseDTO.builder()
                 .senderId(likes.getSender().getId())
                 .receiverId(likes.getReceiver().getId())
-                .senderMessage(likes.getSenderMessage())
-                .receiverMessage(likes.getReceiverMessage())
+                .message(likes.getMessage())
                 .isMatch(likes.getIsMatch())
                 .build();
     }

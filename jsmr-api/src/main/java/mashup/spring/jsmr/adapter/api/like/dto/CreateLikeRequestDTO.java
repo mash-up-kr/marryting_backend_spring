@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateLikeRequestDTO {
 
-    private Long userId;
+    private Long myProfileId;
 
-    private Long partnerId;
+    private Long partnerProfileId;
 
     private String message;
 

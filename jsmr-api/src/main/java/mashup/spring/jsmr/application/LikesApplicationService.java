@@ -7,6 +7,7 @@ import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.MatchingProfileResponseDTO;
 import mashup.spring.jsmr.domain.like.Likes;
 import mashup.spring.jsmr.domain.like.LikesService;
+import mashup.spring.jsmr.domain.profile.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,27 +19,24 @@ public class LikesApplicationService {
 
     private final LikesService likesService;
 
-    public List<LikeProfilesResponseDTO> getLikesProfiles(final Long userId) {
-        return likesService.getMyLikesProfile(userId).stream()
+    public List<LikeProfilesResponseDTO> getLikesProfiles(final Long profileId) {
+        return likesService.getMyLikesProfile(profileId).stream()
                 .map(LikeProfilesResponseDTO::from)
                 .collect(Collectors.toList());
     }
 
-    public List<MatchingProfileResponseDTO> getMatchingProfiles(final Long userId){
-        return likesService.getMyMatchingProfiles(userId).stream()
-                .map(profile -> {
-                    Long partnerId = profile.getUser().getId();
-                    String matchingMessage = likesService.getMatchingMessage(userId, partnerId);
-                    return MatchingProfileResponseDTO.from(profile,matchingMessage);
+    public List<MatchingProfileResponseDTO> getMatchingProfiles(final Long profileId){
+        return likesService.getMyMatchingProfiles(profileId).entrySet().stream()
+                .map(e -> {
+                    Profile profile = e.getKey();
+                    String message = e.getValue();
+                    return MatchingProfileResponseDTO.from(profile, message);
                 })
                 .collect(Collectors.toList());
     }
 
-    public CreateLikeResponseDTO createLikes(CreateLikeRequestDTO requestDTO){
-        Long userId = requestDTO.getUserId();
-        Long partnerId = requestDTO.getPartnerId();
-        String message = requestDTO.getMessage();
-        Likes likes = likesService.createLikes(userId, partnerId, message);
+    public CreateLikeResponseDTO createLike(CreateLikeRequestDTO requestDTO){
+        Likes likes = likesService.createLike(requestDTO.getMyProfileId(), requestDTO.getPartnerProfileId(), requestDTO.getMessage());
         return CreateLikeResponseDTO.from(likes);
     }
 
