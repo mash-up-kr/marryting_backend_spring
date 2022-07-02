@@ -3,6 +3,7 @@ package mashup.spring.jsmr.adapter.api.profile;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.ApiResponse;
+import mashup.spring.jsmr.adapter.api.profile.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.QuestionResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
@@ -32,6 +33,13 @@ public class ProfileController {
     public ApiResponse<List<QuestionResponseDTO>> getProfileQuestion() {
 
         return profileApplicationService.getQuestionnare();
+    }
+
+    @ApiOperation("키워드 확인")
+    @GetMapping("/keywords")
+    public ApiResponse<List<KeywordResponseDTO>> getProfileKeyword() {
+
+        return profileApplicationService.getKeyword();
     }
 
 }
