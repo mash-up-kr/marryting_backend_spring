@@ -1,12 +1,16 @@
 package mashup.spring.jsmr.application;
 
 import lombok.RequiredArgsConstructor;
-import mashup.spring.jsmr.adapter.api.ApiResponse;
-import mashup.spring.jsmr.adapter.api.profile.dto.KeywordResponseDTO;
-import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
-import mashup.spring.jsmr.adapter.api.profile.dto.QuestionResponseDTO;
+import mashup.spring.jsmr.adapter.api.profile.dto.*;
+import mashup.spring.jsmr.domain.answer.Answer;
+import mashup.spring.jsmr.domain.answer.AnswerService;
+import mashup.spring.jsmr.domain.picture.Picture;
+import mashup.spring.jsmr.domain.picture.PictureService;
+import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.profile.ProfileKeyword;
+import mashup.spring.jsmr.domain.profile.ProfileKeywordService;
 import mashup.spring.jsmr.domain.profile.ProfileService;
-import org.springframework.http.HttpStatus;
+import mashup.spring.jsmr.domain.user.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +21,11 @@ import java.util.stream.Collectors;
 public class ProfileApplicationService {
 
     private final ProfileService profileService;
+    private final UserService userService;
+    private final ProfileKeywordService profileKeywordService;
+    private final PictureService pictureService;
+    private final AnswerService answerService;
+
 
     public List<ProfileDetailResponseDTO> getDetailProfile(final Long userId, final Long profileId) {
         return profileService.getDetailProfile(userId, profileId).stream()
@@ -24,20 +33,29 @@ public class ProfileApplicationService {
                 .collect(Collectors.toList());
     }
 
-    public ApiResponse<List<QuestionResponseDTO>> getQuestionnare() {
-        List<QuestionResponseDTO> questionResponseDTOS = profileService.getQuestionnaire().stream()
+    public List<QuestionResponseDTO> getQuestionnare() {
+        return profileService.getQuestionnaire().stream()
                 .map(QuestionResponseDTO::from)
                 .collect(Collectors.toList());
-
-        return new ApiResponse<>(HttpStatus.OK.value(), questionResponseDTOS);
     }
 
-    public ApiResponse<List<KeywordResponseDTO>> getKeyword() {
-        List<KeywordResponseDTO> keywordResponseDTOS = profileService.getKeyword().stream()
+    public List<KeywordResponseDTO> getKeyword() {
+        return profileService.getKeyword().stream()
                 .map(KeywordResponseDTO::from)
                 .collect(Collectors.toList());
+    }
 
-        return new ApiResponse<>(HttpStatus.OK.value(), keywordResponseDTOS);
+    public CreateProfileResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
+        Profile profile = profileService.createProfile(createProfileRequestDTO.toProfileEntity(userService.getOne(userId)));
+
+        List<ProfileKeyword> profileKeywords = createProfileRequestDTO.toProfileKeywordEntity(profile);
+        profileKeywordService.saveAll(profileKeywords);
+        List<Picture> pictures = createProfileRequestDTO.toPictureEntity(profile);
+        pictureService.saveAll(pictures);
+        List<Answer> answers = createProfileRequestDTO.toAnswerEntity(profile);
+        answerService.saveAll(answers);
+
+        return new CreateProfileResponseDTO(profile.getId());
     }
 
 }

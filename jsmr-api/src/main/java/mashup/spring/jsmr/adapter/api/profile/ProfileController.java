@@ -3,15 +3,11 @@ package mashup.spring.jsmr.adapter.api.profile;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.ApiResponse;
-import mashup.spring.jsmr.adapter.api.profile.dto.KeywordResponseDTO;
-import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
-import mashup.spring.jsmr.adapter.api.profile.dto.QuestionResponseDTO;
+import mashup.spring.jsmr.adapter.api.profile.dto.*;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.ProfileApplicationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,14 +28,21 @@ public class ProfileController {
     @GetMapping("/questions")
     public ApiResponse<List<QuestionResponseDTO>> getProfileQuestion() {
 
-        return profileApplicationService.getQuestionnare();
+        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getQuestionnare());
     }
 
     @ApiOperation("키워드 확인")
     @GetMapping("/keywords")
     public ApiResponse<List<KeywordResponseDTO>> getProfileKeyword() {
 
-        return profileApplicationService.getKeyword();
+        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getKeyword());
+    }
+
+    @ApiOperation("프로필 생성")
+    @PostMapping
+    public ApiResponse<CreateProfileResponseDTO> createProfile(@LoginUserId Long userId, @RequestBody CreateProfileRequestDTO createProfileRequestDTO) {
+
+        return ApiResponse.success(HttpStatus.CREATED, profileApplicationService.createProfile(userId, createProfileRequestDTO));
     }
 
 }

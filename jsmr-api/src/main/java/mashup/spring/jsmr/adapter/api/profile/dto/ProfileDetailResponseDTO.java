@@ -18,7 +18,6 @@ public class ProfileDetailResponseDTO {
 
     private Long profileId;
     private String profileName;
-    private Integer age;
     private String address;
     private String career;
     private List<String> keywords;
@@ -29,7 +28,6 @@ public class ProfileDetailResponseDTO {
     public ProfileDetailResponseDTO(
             Long profileId,
             String profileName,
-            Integer age,
             String address,
             String career,
             List<String> keywords,
@@ -38,7 +36,6 @@ public class ProfileDetailResponseDTO {
     ) {
         this.profileId = profileId;
         this.profileName = profileName;
-        this.age = age;
         this.address = address;
         this.career = career;
         this.keywords = keywords;
@@ -50,7 +47,6 @@ public class ProfileDetailResponseDTO {
         return ProfileDetailResponseDTO.builder()
                 .profileId(profile.getId())
                 .profileName(profile.getName())
-                .age(profile.getAge())
                 .address(profile.getAddress())
                 .career(profile.getCareer())
                 .keywords(profile.getProfileKeywords().stream()
