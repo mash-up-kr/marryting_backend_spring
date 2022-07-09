@@ -13,6 +13,7 @@ public class AnswerService {
 
     private AnswerRepository answerRepository;
 
+    @Transactional
     public void saveAll(List<Answer> answers) {
         answerRepository.saveAll(answers);
     }

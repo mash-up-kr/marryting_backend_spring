@@ -12,6 +12,7 @@ import java.util.List;
 public class PictureService {
     private PictureRepository pictureRepository;
 
+    @Transactional
     public void saveAll(List<Picture> pictures) {
         pictureRepository.saveAll(pictures);
     }
