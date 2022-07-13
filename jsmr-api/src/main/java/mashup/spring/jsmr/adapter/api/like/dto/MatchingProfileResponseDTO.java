@@ -22,7 +22,7 @@ public class MatchingProfileResponseDTO {
     private String message;
 
     @Builder
-    public MatchingProfileResponseDTO(List<String> pictures, String address, Integer age, String career, List<String> keywords, String message){
+    public MatchingProfileResponseDTO(List<String> pictures, String address, Integer age, String career, List<String> keywords, String message) {
         this.pictures = pictures;
         this.address = address;
         this.age = age;
@@ -31,7 +31,7 @@ public class MatchingProfileResponseDTO {
         this.message = message;
     }
 
-    public static MatchingProfileResponseDTO from(Profile profile,String message){
+    public static MatchingProfileResponseDTO from(Profile profile,String message) {
         return MatchingProfileResponseDTO.builder()
                 .pictures(profile.getPictures().stream()
                         .map(Picture::getProfileUrl)

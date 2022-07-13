@@ -29,13 +29,13 @@ public class LikesController {
 
     @ApiOperation("매칭된 사람들 조회")
     @GetMapping("/matching-profiles")
-    public ApiResponse<List<MatchingProfileResponseDTO>> getMyMatchingPeople(@LoginUserId Long userId){
+    public ApiResponse<List<MatchingProfileResponseDTO>> getMyMatchingPeople(@LoginUserId Long userId) {
         return ApiResponse.success(HttpStatus.OK, likesApplicationService.getMatchingProfiles(userId));
     }
 
     @ApiOperation("좋아요 생성")
     @PostMapping
-    public ApiResponse<CreateLikeResponseDTO> createLike(@RequestBody CreateLikeRequestDTO createLikeRequestDTO){
+    public ApiResponse<CreateLikeResponseDTO> createLike(@RequestBody CreateLikeRequestDTO createLikeRequestDTO) {
         return ApiResponse.success(HttpStatus.CREATED, likesApplicationService.createLike(createLikeRequestDTO));
     }
 }

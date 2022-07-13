@@ -25,7 +25,7 @@ public class LikesApplicationService {
                 .collect(Collectors.toList());
     }
 
-    public List<MatchingProfileResponseDTO> getMatchingProfiles(final Long profileId){
+    public List<MatchingProfileResponseDTO> getMatchingProfiles(final Long profileId) {
         return likesService.getMyMatchingProfiles(profileId).entrySet().stream()
                 .map(e -> {
                     Profile profile = e.getKey();
@@ -35,8 +35,8 @@ public class LikesApplicationService {
                 .collect(Collectors.toList());
     }
 
-    public CreateLikeResponseDTO createLike(CreateLikeRequestDTO requestDTO){
-        Likes likes = likesService.createLike(requestDTO.getMyProfileId(), requestDTO.getPartnerProfileId(), requestDTO.getMessage());
+    public CreateLikeResponseDTO createLike(CreateLikeRequestDTO requestDTO) {
+        Likes likes = likesService.createLike(requestDTO.getSenderProfileId(), requestDTO.getReceiverProfileId(), requestDTO.getMessage());
         return CreateLikeResponseDTO.from(likes);
     }
 

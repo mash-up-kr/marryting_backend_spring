@@ -15,5 +15,5 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     @Query("select l from Likes l JOIN FETCH l.sender " +
             "where l.receiver = :profileId and l.isMatch = :isMatch")
-    List<Likes> findMatchingProfileWithMessage(Long profileId,Boolean isMatch);
+    List<Likes> findMatchingProfileWithMessage(Long profileId, Boolean isMatch);
 }

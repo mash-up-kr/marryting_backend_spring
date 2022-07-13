@@ -31,20 +31,20 @@ public class LikesService {
 
     public Map<Profile, String> getMyMatchingProfiles(final Long userId) {
         return likesRepository.findMatchingProfileWithMessage(userId, TRUE).stream()
-                .collect(Collectors.toMap(Likes::getSender,Likes::getMessage));
+                .collect(Collectors.toMap(Likes::getSender, Likes::getMessage));
     }
 
     @Transactional
     public Likes createLike(final Long profileId, final Long partnerProfileId, String message) {
-         likesRepository.findBySenderIdAndReceiverId(partnerProfileId,profileId)
+         return likesRepository.findBySenderIdAndReceiverId(partnerProfileId, profileId)
                 .map(likes -> {
                     likes.toMatch();
-                    return likesRepository.save(likes);
-                });
-        return createMyLike(profileId, partnerProfileId, message);
+                    return createMyLike(profileId, partnerProfileId, message, TRUE);
+                })
+                 .orElse(createMyLike(profileId, partnerProfileId, message, FALSE));
     }
 
-    private Likes createMyLike(Long profileId, Long partnerProfileId, String message) {
+    private Likes createMyLike(Long profileId, Long partnerProfileId, String message, Boolean isMatch) {
         Profile profile = profileRepository.findById(profileId).orElseThrow(EntityNotFoundException::new);
         Profile partnerProfile = profileRepository.findById(partnerProfileId)
                 .orElseThrow(EntityNotFoundException::new);
@@ -54,7 +54,7 @@ public class LikesService {
                 .receiver(partnerProfile)
                 .message(message)
                 .sendDateTime(LocalDateTime.now())
-                .isMatch(FALSE)
+                .isMatch(isMatch)
                 .build();
         return likesRepository.save(likes);
     }

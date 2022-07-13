@@ -10,26 +10,26 @@ import mashup.spring.jsmr.domain.like.Likes;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateLikeResponseDTO {
 
-    private Long senderId;
+    private Long senderProfileId;
 
-    private Long receiverId;
+    private Long receiverProfileId;
 
     private String message;
 
     private Boolean isMatch;
 
     @Builder
-    public CreateLikeResponseDTO(Long senderId, Long receiverId, String message, Boolean isMatch) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
+    public CreateLikeResponseDTO(Long senderProfileId, Long receiverProfileId, String message, Boolean isMatch) {
+        this.senderProfileId = senderProfileId;
+        this.receiverProfileId = receiverProfileId;
         this.message = message;
         this.isMatch = isMatch;
     }
 
-    public static CreateLikeResponseDTO from(Likes likes){
+    public static CreateLikeResponseDTO from(Likes likes) {
         return CreateLikeResponseDTO.builder()
-                .senderId(likes.getSender().getId())
-                .receiverId(likes.getReceiver().getId())
+                .senderProfileId(likes.getSender().getId())
+                .receiverProfileId(likes.getReceiver().getId())
                 .message(likes.getMessage())
                 .isMatch(likes.getIsMatch())
                 .build();
