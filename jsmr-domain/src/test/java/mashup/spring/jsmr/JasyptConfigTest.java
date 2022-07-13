@@ -47,7 +47,7 @@ public class JasyptConfigTest {
 
     private static Stream<Arguments> stringForEncrypt() { // argument source method
         return Stream.of(
-                Arguments.of("Test!")
+                Arguments.of("admin")
         );
     }
 }
