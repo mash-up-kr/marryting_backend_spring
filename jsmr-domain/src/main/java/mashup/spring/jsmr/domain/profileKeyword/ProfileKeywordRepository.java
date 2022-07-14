@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.domain.profile;
+package mashup.spring.jsmr.domain.profileKeyword;
 
 import mashup.spring.jsmr.domain.profile.custom.ProfileKeywordCustomRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
