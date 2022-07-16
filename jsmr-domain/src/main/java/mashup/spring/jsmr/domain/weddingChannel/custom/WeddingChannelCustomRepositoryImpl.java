@@ -25,7 +25,7 @@ public class WeddingChannelCustomRepositoryImpl extends QuerydslRepositorySuppor
     @Override
     public List<WeddingChannel> findByWeddingGuestsByFetch(Gender gender) {
         return setFetchJoinQuery()
-                .where(this.weddingChannel.profile.gender.eq(gender))
+                .where(profile.gender.ne(gender))
                 .fetch();
     }
 
