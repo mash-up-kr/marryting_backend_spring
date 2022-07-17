@@ -6,6 +6,7 @@ import mashup.spring.jsmr.domain.keyword.Keyword;
 import mashup.spring.jsmr.domain.keyword.KeywordRepository;
 import mashup.spring.jsmr.domain.question.QuestionRepository;
 import mashup.spring.jsmr.domain.question.Questionnaire;
+import mashup.spring.jsmr.profileKeyword.ProfileKeywordRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,7 +38,6 @@ public class ProfileService {
         return keywords;
     }
 
-    @Transactional
     public Profile createProfile(Profile profile) {
         return profileRepository.save(profile);
     }

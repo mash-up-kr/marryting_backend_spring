@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
-import mashup.spring.jsmr.domain.profile.ProfileKeyword;
 
 import java.util.List;
 import java.util.stream.Collectors;

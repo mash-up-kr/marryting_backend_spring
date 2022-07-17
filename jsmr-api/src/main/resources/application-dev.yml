@@ -3,9 +3,9 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: ENC(RpBep9Rol7emGq7LPFxjQhliIJX+8hLEtyGmr8VgMK/sYnRjFIJtOd9ztJMQcbVazqCPhJlKaH62xQGMUseudxdIF529aGg9aJD56h43mpGppw5tNhmAR9tdRPnexKlxkBl6p9NiJQX8B6m9o99H5OH2pi+1BTCh+6CCbM3FEdYwSG7GtcrAK7Eotc7t4Pvvcf9Ku56orCp/SP2KvtsR/KNfN3j9az9H+OpnXHLVy6KxTWTbj4hCsoEjZkYYLcJ9)
-    username: ENC(+YBDZmDMWrf1g2b2UbEx7J0GP8pbjTzBW6hMZaPieZyNrmzC6jmPaV5C9b2P+Csg)
-    password: ENC(enRWr1B0BUW734/YaxKWgMG0Cqt4deXrXFnzt+ib3z+bX6FyTmSem1TtxotRe0r/)
+    url: ENC(5/jTaG1GhEwmE5WIA0Js7OAHJRGCguYLv7D2NKbCsQdB5bcy80B2sRwMSprEikFOyAvL9Dl0oIaSWIMoTknzXSMwOuFEVkNwHkMXGQ1JW3jcR4/6dEXqGUBS7WzVZHzL8AllQhpz8SJtvv33vXnjVpUPSOLSeMo6UtxN+nLoQrpVpWZjLb5MPjNeD57O9k/E90h0zC8ZRRXBo4NI5go0Tw==)
+    username: ENC(3pckAzp1HGF7uRpjWEsPqPmXTR7Evj44YB5unT7pQ5qu91bYc/AUs++8ulYQihLf)
+    password: ENC(SIBoSGDHirlXgK06o/o7P++8FAeF3P8EEfJNMftt4BNPSinXO88rnDhIlxKy9uiH)
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -19,3 +19,4 @@ spring:
 jwt:
   access_token_secretKey: asdaskdadjawldjalwdkjlakwdjwaldjalwdwaAWdawdawdAWEWAeawe
   access_token_valid_time: 1800000000
+

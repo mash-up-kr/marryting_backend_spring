@@ -2,8 +2,7 @@ package mashup.spring.jsmr.domain.keyword;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
-import mashup.spring.jsmr.domain.profile.Profile;
-import mashup.spring.jsmr.domain.profile.ProfileKeyword;
+import mashup.spring.jsmr.profileKeyword.ProfileKeyword;
 
 import javax.persistence.*;
 import java.util.ArrayList;

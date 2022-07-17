@@ -12,7 +12,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User getOne(final Long userId) {
+    public User findById(final Long userId) {
         return userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
     }
 }

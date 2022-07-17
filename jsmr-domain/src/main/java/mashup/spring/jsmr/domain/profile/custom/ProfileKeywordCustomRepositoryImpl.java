@@ -3,7 +3,7 @@ package mashup.spring.jsmr.domain.profile.custom;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import mashup.spring.jsmr.domain.profile.Profile;
-import mashup.spring.jsmr.domain.profile.ProfileKeyword;
+import mashup.spring.jsmr.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.profile.QProfile;
 import mashup.spring.jsmr.domain.profile.QProfileKeyword;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;

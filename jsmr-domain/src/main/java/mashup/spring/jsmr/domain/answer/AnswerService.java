@@ -11,9 +11,8 @@ import java.util.List;
 @Service
 public class AnswerService {
 
-    private AnswerRepository answerRepository;
+    private final AnswerRepository answerRepository;
 
-    @Transactional
     public void saveAll(List<Answer> answers) {
         answerRepository.saveAll(answers);
     }
