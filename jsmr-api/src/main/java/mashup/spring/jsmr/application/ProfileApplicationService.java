@@ -12,7 +12,6 @@ import mashup.spring.jsmr.domain.picture.PictureService;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileService;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeywordService;
-import mashup.spring.jsmr.domain.question.Questionnaire;
 import mashup.spring.jsmr.domain.question.QuestionnaireService;
 import mashup.spring.jsmr.domain.user.UserService;
 import org.springframework.stereotype.Service;
@@ -50,25 +49,11 @@ public class ProfileApplicationService {
         pictureService.saveAll(createRequestDTO.getPictures(), profile); // profile Picture saveAll
 
         List<AnswerCreateRequestDTO> answerCreateRequestDTOS = createRequestDTO.getAnswerCreateRequestDTOS();
-
-        List<Questionnaire> questionnaires = questionnaireService.getQuestionnaires(
-                createRequestDTO.getAnswerCreateRequestDTOS().stream()
-                        .map(AnswerCreateRequestDTO::getQuestionnaireId)
-                        .collect(Collectors.toList())
-        );
-
         List<Answer> answers = new ArrayList<>();
-        for (int i = 0; i < answerCreateRequestDTOS.size(); ++i) {
-            AnswerCreateRequestDTO answerCreateRequestDTO = answerCreateRequestDTOS.get(i);
-            for (int j = 0; j < questionnaires.size(); ++j) {
-                if (questionnaires.get(j).getId().equals(answerCreateRequestDTO.getQuestionnaireId())) {
-                    Answer answer = answerCreateRequestDTO.toEntity(profile, questionnaires.get(j));
-                    answers.add(answer);
-                }
-            }
+        for (AnswerCreateRequestDTO answerCreateRequestDTO : answerCreateRequestDTOS) {
+            answers.add(answerCreateRequestDTO.toEntity(profile));
         }
 
         answerService.saveAll(answers);
     }
-
 }
