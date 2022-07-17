@@ -4,7 +4,6 @@ import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.QProfile;
-import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.weddingChannel.QWeddingChannel;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -23,9 +22,12 @@ public class WeddingChannelCustomRepositoryImpl extends QuerydslRepositorySuppor
     }
 
     @Override
-    public List<WeddingChannel> findByWeddingGuestsByFetch(Gender gender) {
+    public List<WeddingChannel> findByWeddingGuestsByFetch(Profile profile) {
         return setFetchJoinQuery()
-                .where(profile.gender.ne(gender))
+                .where(
+                        weddingChannel.profile.gender.ne(profile.getGender()),
+                        weddingChannel.profile.id.ne(profile.getId())
+                )
                 .fetch();
     }
 

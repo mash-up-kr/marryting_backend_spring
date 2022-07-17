@@ -21,7 +21,7 @@ public class WeddingChannelService {
     public List<WeddingChannel> getWeddingGuests(final Long userId) {
         Profile profile = profileRepository.findAllByUserId(userId)
                 .orElseThrow(EntityNotFoundException::new);
-        return weddingChannelRepository.findByWeddingGuestsByFetch(profile.getGender());
+        return weddingChannelRepository.findByWeddingGuestsByFetch(profile);
     }
 
 }
