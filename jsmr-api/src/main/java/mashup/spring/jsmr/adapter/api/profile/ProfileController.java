@@ -22,26 +22,11 @@ public class ProfileController {
 
     private final ProfileApplicationService profileApplicationService;
     private final QuestionnareApplicationService questionnareApplicationService;
-    private final KeywordApplicationService keywordApplicationService;
 
     @GetMapping("/{profileId}/detail")
     public List<ProfileDetailResponseDTO> getProfileDetail(@LoginUserId Long userId,
                                                            @PathVariable Long profileId) {
         return profileApplicationService.getDetailProfile(userId, profileId);
-    }
-
-    @ApiOperation("질문지 확인")
-    @GetMapping("/questionnaire")
-    public ApiResponse<List<QuestionnaireResponseDTO>> getProfileQuestionnaire() {
-
-        return ApiResponse.success(HttpStatus.OK, questionnareApplicationService.getQuestionnaire());
-    }
-
-    @ApiOperation("키워드 확인")
-    @GetMapping("/keywords")
-    public ApiResponse<List<KeywordResponseDTO>> getProfileKeyword() {
-
-        return ApiResponse.success(HttpStatus.OK, keywordApplicationService.getKeywords());
     }
 
     @ApiOperation("프로필 생성")
