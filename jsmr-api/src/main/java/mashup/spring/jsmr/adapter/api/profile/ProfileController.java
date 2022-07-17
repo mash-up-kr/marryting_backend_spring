@@ -27,7 +27,7 @@ public class ProfileController {
     }
 
     @ApiOperation("질문지 확인")
-    @GetMapping("/question")
+    @GetMapping("/questionnaire")
     public ApiResponse<List<QuestionnaireResponseDTO>> getProfileQuestionnaire() {
 
         return ApiResponse.success(HttpStatus.OK, profileApplicationService.getQuestionnare());
