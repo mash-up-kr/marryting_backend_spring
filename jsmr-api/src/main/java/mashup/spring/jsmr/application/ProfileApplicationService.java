@@ -2,9 +2,9 @@ package mashup.spring.jsmr.application;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.answer.dto.CreateAnswerRequestDTO;
-import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
-import mashup.spring.jsmr.adapter.api.profile.dto.*;
-import mashup.spring.jsmr.adapter.api.questionnare.dto.QuestionnaireResponseDTO;
+import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileRequestDTO;
+import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileResponseDTO;
+import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.answer.AnswerService;
 import mashup.spring.jsmr.domain.keyword.Keyword;
@@ -40,18 +40,6 @@ public class ProfileApplicationService {
     public List<ProfileDetailResponseDTO> getDetailProfile(final Long userId, final Long profileId) {
         return profileService.getDetailProfile(userId, profileId).stream()
                 .map(ProfileDetailResponseDTO::from)
-                .collect(Collectors.toList());
-    }
-
-    public List<QuestionnaireResponseDTO> getQuestionnare() {
-        return questionnareService.getQuestionnaire().stream()
-                .map(QuestionnaireResponseDTO::from)
-                .collect(Collectors.toList());
-    }
-
-    public List<KeywordResponseDTO> getKeyword() {
-        return keywordService.getKeyword().stream()
-                .map(KeywordResponseDTO::from)
                 .collect(Collectors.toList());
     }
 

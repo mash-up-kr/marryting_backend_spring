@@ -7,7 +7,9 @@ import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.*;
 import mashup.spring.jsmr.adapter.api.questionnare.dto.QuestionnaireResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
+import mashup.spring.jsmr.application.KeywordApplicationService;
 import mashup.spring.jsmr.application.ProfileApplicationService;
+import mashup.spring.jsmr.application.QuestionnareApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ import java.util.List;
 public class ProfileController {
 
     private final ProfileApplicationService profileApplicationService;
+    private final QuestionnareApplicationService questionnareApplicationService;
+    private final KeywordApplicationService keywordApplicationService;
 
     @GetMapping("/{profileId}/detail")
     public List<ProfileDetailResponseDTO> getProfileDetail(@LoginUserId Long userId,
@@ -30,14 +34,14 @@ public class ProfileController {
     @GetMapping("/questionnaire")
     public ApiResponse<List<QuestionnaireResponseDTO>> getProfileQuestionnaire() {
 
-        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getQuestionnare());
+        return ApiResponse.success(HttpStatus.OK, questionnareApplicationService.getQuestionnare());
     }
 
     @ApiOperation("키워드 확인")
     @GetMapping("/keywords")
     public ApiResponse<List<KeywordResponseDTO>> getProfileKeyword() {
 
-        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getKeyword());
+        return ApiResponse.success(HttpStatus.OK, keywordApplicationService.getKeywords());
     }
 
     @ApiOperation("프로필 생성")
