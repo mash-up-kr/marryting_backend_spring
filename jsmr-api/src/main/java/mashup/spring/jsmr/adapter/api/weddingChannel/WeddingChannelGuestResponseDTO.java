@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 
@@ -20,17 +21,19 @@ public class WeddingChannelGuestResponseDTO {
     private String address;
     private String career;
 
-    private String profileUrl;
+    private List<String> profileUrl;
     private List<String> keywords;
 
     @Builder
-    public WeddingChannelGuestResponseDTO(Long profileId,
-                                          String name,
-                                          Integer age,
-                                          String address,
-                                          String career,
-                                          String profileUrl,
-                                          List<String> keywords) {
+    public WeddingChannelGuestResponseDTO(
+            Long profileId,
+            String name,
+            Integer age,
+            String address,
+            String career,
+            List<String> profileUrl,
+            List<String> keywords
+    ) {
         this.profileId = profileId;
         this.name = name;
         this.age = age;
@@ -49,7 +52,9 @@ public class WeddingChannelGuestResponseDTO {
                 .address(profile.getAddress())
                 .age(profile.getAge())
                 .career(profile.getCareer())
-                .profileUrl(profile.getPictures().get(0).getProfileUrl()) // TODO 대표 사진 여부 체크
+                .profileUrl(profile.getPictures().stream()
+                        .map(Picture::getProfileUrl)
+                        .collect(Collectors.toList()))
                 .keywords(profile.getProfileKeywords().stream()
                         .map(profileKeyword -> profileKeyword.getKeyword().getKeyword())
                         .collect(Collectors.toList()))
