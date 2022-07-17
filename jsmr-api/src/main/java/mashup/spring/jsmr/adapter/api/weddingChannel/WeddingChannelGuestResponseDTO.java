@@ -49,6 +49,7 @@ public class WeddingChannelGuestResponseDTO {
                 .address(profile.getAddress())
                 .age(profile.getAge())
                 .career(profile.getCareer())
+                .profileUrl(profile.getPictures().get(0).getProfileUrl()) // TODO 대표 사진 여부 체크
                 .keywords(profile.getProfileKeywords().stream()
                         .map(profileKeyword -> profileKeyword.getKeyword().getKeyword())
                         .collect(Collectors.toList()))
