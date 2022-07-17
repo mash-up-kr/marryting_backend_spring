@@ -23,4 +23,10 @@ public class KeywordService {
 
         return keywords;
     }
+
+    public List<Keyword> getKeyword() {
+        List<Keyword> keywords = keywordRepository.findAll();
+
+        return keywords;
+    }
 }

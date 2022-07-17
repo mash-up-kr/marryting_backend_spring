@@ -13,4 +13,9 @@ public class QuestionnareService {
     public List<Questionnaire> getQuestionnaires(List<Long> questionnaireIds) {
         return questionRepository.findAllByIdIn(questionnaireIds);
     }
+
+    public List<Questionnaire> getQuestionnaire() {
+        List<Questionnaire> questionnaires = questionRepository.findAll();
+        return questionnaires;
+    }
 }

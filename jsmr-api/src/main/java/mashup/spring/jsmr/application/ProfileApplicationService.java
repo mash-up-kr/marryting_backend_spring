@@ -42,13 +42,13 @@ public class ProfileApplicationService {
     }
 
     public List<QuestionResponseDTO> getQuestionnare() {
-        return profileService.getQuestionnaire().stream()
+        return questionnareService.getQuestionnaire().stream()
                 .map(QuestionResponseDTO::from)
                 .collect(Collectors.toList());
     }
 
     public List<KeywordResponseDTO> getKeyword() {
-        return profileService.getKeyword().stream()
+        return keywordService.getKeyword().stream()
                 .map(KeywordResponseDTO::from)
                 .collect(Collectors.toList());
     }

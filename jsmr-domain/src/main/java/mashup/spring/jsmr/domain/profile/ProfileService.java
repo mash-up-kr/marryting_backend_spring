@@ -27,17 +27,6 @@ public class ProfileService {
         return profileKeywordRepository.findByProfileByFetch(userId, profile);
     }
 
-    public List<Questionnaire> getQuestionnaire() {
-        List<Questionnaire> questionnaires = questionRepository.findAll();
-        return questionnaires;
-    }
-
-    public List<Keyword> getKeyword() {
-        List<Keyword> keywords = keywordRepository.findAll();
-
-        return keywords;
-    }
-
     public Profile createProfile(Profile profile) {
         return profileRepository.save(profile);
     }
