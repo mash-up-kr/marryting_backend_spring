@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class QuestionnareApplicationService {
     private final QuestionnareService questionnareService;
 
-    public List<QuestionnaireResponseDTO> getQuestionnare() {
+    public List<QuestionnaireResponseDTO> getQuestionnaire() {
         return questionnareService.getQuestionnaire().stream()
                 .map(QuestionnaireResponseDTO::from)
                 .collect(Collectors.toList());
