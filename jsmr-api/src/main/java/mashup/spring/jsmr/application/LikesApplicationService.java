@@ -8,6 +8,7 @@ import mashup.spring.jsmr.adapter.api.like.dto.MatchingProfileResponseDTO;
 import mashup.spring.jsmr.domain.like.Likes;
 import mashup.spring.jsmr.domain.like.LikesService;
 import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.profile.ProfileService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,14 +19,18 @@ import java.util.stream.Collectors;
 public class LikesApplicationService {
 
     private final LikesService likesService;
+    private final ProfileService profileService;
+    public List<LikeProfilesResponseDTO> getLikesProfiles(final Long userId) {
+        Long profileId = profileService.getProfile(userId).getId();
 
-    public List<LikeProfilesResponseDTO> getLikesProfiles(final Long profileId) {
         return likesService.getMyLikesProfile(profileId).stream()
                 .map(LikeProfilesResponseDTO::from)
                 .collect(Collectors.toList());
     }
 
-    public List<MatchingProfileResponseDTO> getMatchingProfiles(final Long profileId) {
+    public List<MatchingProfileResponseDTO> getMatchingProfiles(final Long userId) {
+        Long profileId = profileService.getProfile(userId).getId();
+
         return likesService.getMyMatchingProfiles(profileId).entrySet().stream()
                 .map(e -> {
                     Profile profile = e.getKey();
