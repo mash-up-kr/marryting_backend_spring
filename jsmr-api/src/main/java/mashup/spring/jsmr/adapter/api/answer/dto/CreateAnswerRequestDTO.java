@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.adapter.api.answer;
+package mashup.spring.jsmr.adapter.api.answer.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;

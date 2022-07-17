@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.adapter.api.profile.dto;
+package mashup.spring.jsmr.adapter.api.keyword.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

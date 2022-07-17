@@ -3,7 +3,9 @@ package mashup.spring.jsmr.adapter.api.profile;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.ApiResponse;
+import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.*;
+import mashup.spring.jsmr.adapter.api.questionnare.dto.QuestionnaireResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.ProfileApplicationService;
 import org.springframework.http.HttpStatus;
@@ -25,8 +27,8 @@ public class ProfileController {
     }
 
     @ApiOperation("질문지 확인")
-    @GetMapping("/questions")
-    public ApiResponse<List<QuestionResponseDTO>> getProfileQuestion() {
+    @GetMapping("/question")
+    public ApiResponse<List<QuestionnaireResponseDTO>> getProfileQuestionnaire() {
 
         return ApiResponse.success(HttpStatus.OK, profileApplicationService.getQuestionnare());
     }

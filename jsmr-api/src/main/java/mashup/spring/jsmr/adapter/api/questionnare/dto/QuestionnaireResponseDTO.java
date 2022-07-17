@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.adapter.api.profile.dto;
+package mashup.spring.jsmr.adapter.api.questionnare.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import mashup.spring.jsmr.domain.question.Questionnaire;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class QuestionResponseDTO {
+public class QuestionnaireResponseDTO {
 
     private Long questionId;
     private String question;
@@ -16,7 +16,7 @@ public class QuestionResponseDTO {
     private String answer2;
 
     @Builder
-    public QuestionResponseDTO(
+    public QuestionnaireResponseDTO(
             Long questionId,
             String question,
             String answer1,
@@ -28,8 +28,8 @@ public class QuestionResponseDTO {
         this.answer2 = answer2;
     }
 
-    public static QuestionResponseDTO from(Questionnaire questionnaire) {
-        return QuestionResponseDTO.builder()
+    public static QuestionnaireResponseDTO from(Questionnaire questionnaire) {
+        return QuestionnaireResponseDTO.builder()
                 .questionId(questionnaire.getId())
                 .question(questionnaire.getQuestion())
                 .answer1(questionnaire.getAnswer1())

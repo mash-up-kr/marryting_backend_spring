@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import mashup.spring.jsmr.adapter.api.answer.CreateAnswerRequestDTO;
+import mashup.spring.jsmr.adapter.api.answer.dto.CreateAnswerRequestDTO;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.user.User;
