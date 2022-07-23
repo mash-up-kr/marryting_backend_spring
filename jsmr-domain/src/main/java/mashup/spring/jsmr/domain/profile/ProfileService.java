@@ -19,4 +19,8 @@ public class ProfileService {
         Profile profile = profileRepository.findById(profileId).orElseThrow(EntityNotFoundException::new);
         return profileKeywordRepository.findByProfileByFetch(userId, profile);
     }
+
+    public Profile getProfile(final Long userId){
+        return profileRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+    }
 }
