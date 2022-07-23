@@ -3,12 +3,12 @@ package mashup.spring.jsmr.domain.wedding;
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.user.User;
+import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,4 +29,6 @@ public class Wedding extends BaseEntity {
 
     private LocalDate weddingDate;
 
+    @OneToMany(mappedBy = "wedding", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<WeddingChannel> weddingChannels = new ArrayList<>();
 }
