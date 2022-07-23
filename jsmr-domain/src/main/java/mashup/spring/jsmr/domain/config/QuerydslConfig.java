@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.config;
+package mashup.spring.jsmr.domain.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;

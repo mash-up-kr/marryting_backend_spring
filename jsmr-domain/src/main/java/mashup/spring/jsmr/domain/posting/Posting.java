@@ -2,7 +2,7 @@ package mashup.spring.jsmr.domain.posting;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
-import mashup.spring.jsmr.domain.wedding.WeddingChannel;
+import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Entity;
