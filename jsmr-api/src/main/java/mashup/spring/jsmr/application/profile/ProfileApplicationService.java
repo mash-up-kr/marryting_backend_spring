@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.application;
+package mashup.spring.jsmr.application.profile;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;

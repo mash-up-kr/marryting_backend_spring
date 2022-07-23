@@ -8,7 +8,7 @@ import mashup.spring.jsmr.adapter.api.like.dto.CreateLikeResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.LikeProfilesResponseDTO;
 import mashup.spring.jsmr.adapter.api.like.dto.MatchingProfileResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
-import mashup.spring.jsmr.application.LikesApplicationService;
+import mashup.spring.jsmr.application.like.LikesApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

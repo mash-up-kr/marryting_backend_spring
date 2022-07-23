@@ -3,7 +3,7 @@ package mashup.spring.jsmr.adapter.api.profile;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
-import mashup.spring.jsmr.application.ProfileApplicationService;
+import mashup.spring.jsmr.application.profile.ProfileApplicationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

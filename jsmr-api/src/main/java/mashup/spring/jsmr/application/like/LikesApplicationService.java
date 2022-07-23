@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.application;
+package mashup.spring.jsmr.application.like;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.like.dto.CreateLikeRequestDTO;

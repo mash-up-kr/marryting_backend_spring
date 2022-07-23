@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.application;
+package mashup.spring.jsmr.application.weddingChannel;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.weddingChannel.WeddingChannelGuestResponseDTO;
@@ -20,4 +20,7 @@ public class WeddingChannelApplicationService {
                 .collect(Collectors.toList());
     }
 
+    public void createWeddingChannel(final Long userId, final Long weddingId) {
+        weddingChannelService.createWeddingChannel(userId, weddingId);
+    }
 }
