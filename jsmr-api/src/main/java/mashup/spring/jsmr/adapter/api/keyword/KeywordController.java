@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.ApiResponse;
 import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
-import mashup.spring.jsmr.application.KeywordApplicationService;
+import mashup.spring.jsmr.application.keyword.KeywordApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
