@@ -18,7 +18,7 @@ public class ProfileDetailResponseDTO {
 
     private Long profileId;
     private String profileName;
-    Integer age;
+    private Integer age;
     private String address;
     private String career;
     private List<String> keywords;
@@ -38,6 +38,7 @@ public class ProfileDetailResponseDTO {
     ) {
         this.profileId = profileId;
         this.profileName = profileName;
+        this.age = age;
         this.address = address;
         this.career = career;
         this.keywords = keywords;
