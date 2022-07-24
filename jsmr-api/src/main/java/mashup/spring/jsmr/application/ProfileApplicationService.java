@@ -62,23 +62,18 @@ public class ProfileApplicationService {
         // profile picture save
         pictureService.saveAll(createProfileRequestDTO.getPictures(), profile);
 
-        // profile question answer save
-        List<CreateAnswerRequestDTO> createAnswerRequestDTOS = createProfileRequestDTO.getAnswers();
+        // answer save
         List<Questionnaire> questionnaires = questionnareService.getQuestionnaires(
                 createProfileRequestDTO.getAnswers().stream()
                         .map(CreateAnswerRequestDTO::getQuestionId)
                         .collect(Collectors.toList())
         );
-        List<Answer> answers = new ArrayList<>();
-        for (CreateAnswerRequestDTO createAnswerRequestDTO : createAnswerRequestDTOS) {
-            for (Questionnaire questionnaire : questionnaires) {
-                if (questionnaire.getId().equals(createAnswerRequestDTO.getQuestionId())) {
-                    Answer answer = createAnswerRequestDTO.toEntity(profile, questionnaire);
-                    answers.add(answer);
-                }
-            }
-        }
-        answerService.saveAll(answers);
+
+        List<String> answers = createProfileRequestDTO.getAnswers().stream()
+                .map(CreateAnswerRequestDTO::getAnswer)
+                .collect(Collectors.toList());
+
+        answerService.saveAll(questionnaires, answers, profile);
 
         return CreateProfileResponseDTO.from(profile);
     }
