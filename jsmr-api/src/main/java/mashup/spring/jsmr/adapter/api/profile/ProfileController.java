@@ -7,9 +7,13 @@ import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileRequestDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
-import mashup.spring.jsmr.application.ProfileApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import mashup.spring.jsmr.application.profile.ProfileApplicationService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

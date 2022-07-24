@@ -17,13 +17,9 @@ import java.time.LocalDate;
 @Entity
 public class Wedding extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "groom_id")
-    private User groom;
+    private String groomName;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bride_id")
-    private User bride;
+    private String brideName;
 
     private String weddingHallAddress;
 

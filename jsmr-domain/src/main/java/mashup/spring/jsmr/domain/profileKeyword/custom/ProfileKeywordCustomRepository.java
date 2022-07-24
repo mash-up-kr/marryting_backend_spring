@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.domain.profile.custom;
+package mashup.spring.jsmr.domain.profileKeyword.custom;
 
 import mashup.spring.jsmr.domain.profile.Profile;
 

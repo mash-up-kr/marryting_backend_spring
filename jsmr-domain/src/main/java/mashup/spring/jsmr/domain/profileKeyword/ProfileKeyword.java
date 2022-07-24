@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.profileKeyword;
+package mashup.spring.jsmr.domain.profileKeyword;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;

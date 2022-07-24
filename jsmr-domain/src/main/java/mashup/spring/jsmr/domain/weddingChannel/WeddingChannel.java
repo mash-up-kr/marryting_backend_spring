@@ -1,8 +1,10 @@
-package mashup.spring.jsmr.domain.wedding;
+package mashup.spring.jsmr.domain.weddingChannel;
 
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
-import mashup.spring.jsmr.domain.user.User;
+import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.wedding.Role;
+import mashup.spring.jsmr.domain.wedding.Wedding;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,8 +21,8 @@ import javax.persistence.EnumType;
 public class WeddingChannel extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wedding_id")

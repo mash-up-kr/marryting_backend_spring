@@ -2,9 +2,7 @@ package mashup.spring.jsmr.domain.profile;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
-import mashup.spring.jsmr.domain.keyword.KeywordRepository;
-import mashup.spring.jsmr.domain.question.QuestionRepository;
-import mashup.spring.jsmr.profileKeyword.ProfileKeywordRepository;
+import mashup.spring.jsmr.domain.profileKeyword.ProfileKeywordRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +24,9 @@ public class ProfileService {
     @Transactional
     public Profile createProfile(Profile profile) {
         return profileRepository.save(profile);
+    }
+
+    public Profile getProfile(final Long userId){
+        return profileRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
     }
 }

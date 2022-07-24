@@ -2,7 +2,7 @@ package mashup.spring.jsmr.adapter.infrastructure.interceptor;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.infrastructure.jwt.JwtProvider;
-import mashup.spring.jsmr.domain.user.UserRepository;
+import mashup.spring.jsmr.domain.profile.ProfileRepository;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -23,8 +23,8 @@ public class LoginUserIdArgumentResolver implements HandlerMethodArgumentResolve
     private static final int HEADER_KEY_INDEX = 0;
     private static final int HEADER_VALUE_INDEX = 1;
 
-    private final UserRepository userRepository;
     private final JwtProvider jwtProvider;
+    private final ProfileRepository profileRepository;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -41,12 +41,7 @@ public class LoginUserIdArgumentResolver implements HandlerMethodArgumentResolve
             throw new IllegalArgumentException();
         }
 
-        Long userId = jwtProvider.getAccessTokenPayload(accessToken);
-        if (userRepository.findById(userId).isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-
-        return userId;
+        return jwtProvider.getAccessTokenPayload(accessToken);
     }
 }
 
