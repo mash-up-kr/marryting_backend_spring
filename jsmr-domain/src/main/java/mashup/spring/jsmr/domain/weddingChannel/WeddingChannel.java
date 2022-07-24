@@ -3,7 +3,6 @@ package mashup.spring.jsmr.domain.weddingChannel;
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.profile.Profile;
-import mashup.spring.jsmr.domain.user.User;
 import mashup.spring.jsmr.domain.wedding.Role;
 import mashup.spring.jsmr.domain.wedding.Wedding;
 

@@ -1,13 +1,13 @@
 package mashup.spring.jsmr.domain.wedding;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
+import mashup.spring.jsmr.domain.user.User;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Getter
@@ -17,9 +17,15 @@ import java.time.LocalDate;
 @Entity
 public class Wedding extends BaseEntity {
 
-    private String groomName;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "groom_id")
+    private User groom;
 
-    private String brideName;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bride_id")
+    private User bride;
+
+    private String weddingHallAddress;
 
     private LocalDate weddingDate;
 
