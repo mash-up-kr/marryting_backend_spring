@@ -31,7 +31,7 @@ public class SecurityConfig {
                 "/swagger-ui/**",
                 "/api/v1/token",
                 "/api/v1/profile/**",
-                "/api/v1/login" // 임시
+                "/api/v1/test" // 임시
         );
     }
 
