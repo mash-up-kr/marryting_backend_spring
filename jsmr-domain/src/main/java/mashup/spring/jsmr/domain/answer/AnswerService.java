@@ -16,17 +16,7 @@ public class AnswerService {
 
     private final AnswerRepository answerRepository;
 
-    public void saveAll(List<Questionnaire> questionnaires, List<String> answers, Profile profile) {
-        List<Answer> answerList = new ArrayList<>();
-        for (int i = 0; i < questionnaires.size(); i++) {
-            Answer answer = Answer.builder()
-                    .questionnaire(questionnaires.get(i))
-                    .answer(answers.get(i))
-                    .profile(profile)
-                    .build();
-
-            answerList.add(answer);
-        }
-        answerRepository.saveAll(answerList);
+    public void saveAll(List<Answer> answers) {
+        answerRepository.saveAll(answers);
     }
 }

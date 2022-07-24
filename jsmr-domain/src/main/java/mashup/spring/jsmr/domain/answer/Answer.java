@@ -20,7 +20,5 @@ public class Answer extends BaseEntity {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "questionnaire_id")
-    private Questionnaire questionnaire;
+    private Long questionnaireId;
 }

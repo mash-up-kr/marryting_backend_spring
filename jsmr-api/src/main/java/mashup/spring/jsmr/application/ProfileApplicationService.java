@@ -13,7 +13,6 @@ import mashup.spring.jsmr.domain.keyword.KeywordService;
 import mashup.spring.jsmr.domain.picture.PictureService;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileService;
-import mashup.spring.jsmr.domain.question.Questionnaire;
 import mashup.spring.jsmr.domain.question.QuestionnareService;
 import mashup.spring.jsmr.domain.user.User;
 import mashup.spring.jsmr.domain.user.UserService;
@@ -63,17 +62,14 @@ public class ProfileApplicationService {
         pictureService.saveAll(createProfileRequestDTO.getPictures(), profile);
 
         // answer save
-        List<Questionnaire> questionnaires = questionnareService.getQuestionnaires(
-                createProfileRequestDTO.getAnswers().stream()
-                        .map(CreateAnswerRequestDTO::getQuestionId)
-                        .collect(Collectors.toList())
-        );
+        List<CreateAnswerRequestDTO> createAnswerRequestDTOS = createProfileRequestDTO.getAnswers();
+        List<Answer> answers = new ArrayList<>();
+        for (CreateAnswerRequestDTO createAnswerRequestDTO : createAnswerRequestDTOS) {
+            Answer answer = createAnswerRequestDTO.toEntity(profile);
+            answers.add(answer);
+        }
 
-        List<String> answers = createProfileRequestDTO.getAnswers().stream()
-                .map(CreateAnswerRequestDTO::getAnswer)
-                .collect(Collectors.toList());
-
-        answerService.saveAll(questionnaires, answers, profile);
+        answerService.saveAll(answers);
 
         return CreateProfileResponseDTO.from(profile);
     }

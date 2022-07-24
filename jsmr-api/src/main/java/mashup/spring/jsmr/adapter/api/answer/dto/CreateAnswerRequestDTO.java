@@ -14,10 +14,10 @@ public class CreateAnswerRequestDTO {
     private Long questionId;
     private String answer;
 
-    public Answer toEntity(Profile profile, Questionnaire questionnaire) {
+    public Answer toEntity(Profile profile) {
         return Answer.builder()
                 .profile(profile)
-                .questionnaire(questionnaire)
+                .questionnaireId(questionId)
                 .answer(answer)
                 .build();
     }
