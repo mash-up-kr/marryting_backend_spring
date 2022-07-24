@@ -9,6 +9,7 @@ import mashup.spring.jsmr.domain.weddingChannel.WeddingChannelRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class WeddingService {
 
     private final WeddingChannelRepository weddingChannelRepository;
+    private final WeddingRepository weddingRepository;
     private final ProfileRepository profileRepository;
 
     public List<Wedding> getWeddingParticipateList(Long userId) {
@@ -29,5 +31,10 @@ public class WeddingService {
         return weddingChannelRepository.findAllByProfile(profile).stream()
                 .map(WeddingChannel::getWedding)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteExpiredWeddingsAsOfToday() {  // wedding 은 weddingDate 일자가 지나면 제거된다.
+        weddingRepository.deleteWeddingsByWeddingDateIsBefore(LocalDate.now());
     }
 }

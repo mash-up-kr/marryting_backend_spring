@@ -19,4 +19,8 @@ public class WeddingApplicationService {
                 .map(WeddingParticipateListDTO::from)
                 .collect(Collectors.toList());
     }
+
+    public void deleteExpiredWeddings(){
+        weddingService.deleteExpiredWeddingsAsOfToday();
+    }
 }
