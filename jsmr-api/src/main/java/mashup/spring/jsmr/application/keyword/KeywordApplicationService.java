@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-
 public class KeywordApplicationService {
     private final KeywordService keywordService;
 
