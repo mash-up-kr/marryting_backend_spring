@@ -7,7 +7,6 @@ import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.user.User;
-import mashup.spring.jsmr.profileKeyword.ProfileKeyword;
 
 import javax.persistence.*;
 import java.util.ArrayList;
