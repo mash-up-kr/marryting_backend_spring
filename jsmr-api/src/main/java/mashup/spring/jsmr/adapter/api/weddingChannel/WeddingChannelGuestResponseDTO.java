@@ -8,6 +8,7 @@ import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,11 +47,15 @@ public class WeddingChannelGuestResponseDTO {
     public static WeddingChannelGuestResponseDTO from(WeddingChannel weddingChannel) {
         Profile profile = weddingChannel.getProfile();
 
+        int nowYear = LocalDate.now().getYear();
+        int age = nowYear - Integer.parseInt(profile.getBirth().substring(0, 4)) + 1;
+
+
         return WeddingChannelGuestResponseDTO.builder()
                 .profileId(profile.getId())
                 .name(profile.getName())
                 .address(profile.getAddress())
-                .age(profile.getAge())
+                .age(age)
                 .career(profile.getCareer())
                 .profileUrl(profile.getPictures().stream()
                         .map(Picture::getProfileUrl)
