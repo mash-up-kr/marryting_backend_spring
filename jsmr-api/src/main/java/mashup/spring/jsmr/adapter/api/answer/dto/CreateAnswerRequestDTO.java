@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.profile.Profile;
-import mashup.spring.jsmr.domain.question.Questionnaire;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

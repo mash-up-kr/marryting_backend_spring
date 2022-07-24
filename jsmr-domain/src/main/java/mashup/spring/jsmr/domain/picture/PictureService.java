@@ -14,6 +14,7 @@ import java.util.List;
 public class PictureService {
     private final PictureRepository pictureRepository;
 
+    @Transactional
     public List<Picture> saveAll(List<String> profileUrls, Profile profile) {
         List<Picture> pictures = new ArrayList<>();
 

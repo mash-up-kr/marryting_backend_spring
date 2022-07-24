@@ -16,6 +16,7 @@ public class ProfileKeywordService {
 
     private final ProfileKeywordRepository profileKeywordRepository;
 
+    @Transactional
     public List<ProfileKeyword> saveAll(List<Keyword> choosedKeywords, Profile profile) {
         List<ProfileKeyword> profileKeywords = new ArrayList<>();
         for (Keyword keyword : choosedKeywords) {

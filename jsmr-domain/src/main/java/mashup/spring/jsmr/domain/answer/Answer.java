@@ -3,9 +3,11 @@ package mashup.spring.jsmr.domain.answer;
 import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.profile.Profile;
-import mashup.spring.jsmr.domain.question.Questionnaire;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

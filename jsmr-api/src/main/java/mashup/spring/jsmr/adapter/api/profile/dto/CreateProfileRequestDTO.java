@@ -3,7 +3,6 @@ package mashup.spring.jsmr.adapter.api.profile.dto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import mashup.spring.jsmr.adapter.api.answer.dto.CreateAnswerRequestDTO;
 import mashup.spring.jsmr.adapter.api.profileKeyword.dto.CreateProfileKeywordRequestDTO;
 import mashup.spring.jsmr.domain.profile.Profile;
