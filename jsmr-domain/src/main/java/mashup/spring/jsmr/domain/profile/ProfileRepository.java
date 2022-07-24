@@ -1,14 +1,12 @@
 package mashup.spring.jsmr.domain.profile;
 
+import mashup.spring.jsmr.domain.profile.custom.ProfileCustomRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface ProfileRepository extends JpaRepository<Profile, Long> {
-
-    List<Profile> findAllByUserIdIn(List<Long> userIds);
+public interface ProfileRepository extends JpaRepository<Profile, Long>, ProfileCustomRepository {
     
     Optional<Profile> findAllByUserId(Long userId);
 
