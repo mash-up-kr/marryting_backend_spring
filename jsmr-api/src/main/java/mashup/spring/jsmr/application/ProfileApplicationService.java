@@ -5,6 +5,7 @@ import mashup.spring.jsmr.adapter.api.answer.dto.CreateAnswerRequestDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileRequestDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
+import mashup.spring.jsmr.adapter.api.profileKeyword.dto.CreateProfileKeywordRequestDTO;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.answer.AnswerService;
 import mashup.spring.jsmr.domain.keyword.Keyword;
@@ -46,13 +47,23 @@ public class ProfileApplicationService {
     @Transactional
     public CreateProfileResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
         User user = userService.findById(userId);
+
+        // profile save
         Profile profile = profileService.createProfile(createProfileRequestDTO.toEntity(user));
-        List<Keyword> choosedKeywords = keywordService.getChoosedKeyword(createProfileRequestDTO.getKeywords());
+
+        // profile keywords save
+        List<Keyword> choosedKeywords = keywordService.getChoosedKeyword(
+                createProfileRequestDTO.getKeywords().stream()
+                        .map(CreateProfileKeywordRequestDTO::getKeywordId)
+                        .collect(Collectors.toList())
+        );
         profileKeywordService.saveAll(choosedKeywords, profile);
+
+        // profile picture save
         pictureService.saveAll(createProfileRequestDTO.getPictures(), profile);
 
+        // profile question answer save
         List<CreateAnswerRequestDTO> createAnswerRequestDTOS = createProfileRequestDTO.getAnswers();
-
         List<Questionnaire> questionnaires = questionnareService.getQuestionnaires(
                 createProfileRequestDTO.getAnswers().stream()
                         .map(CreateAnswerRequestDTO::getQuestionId)

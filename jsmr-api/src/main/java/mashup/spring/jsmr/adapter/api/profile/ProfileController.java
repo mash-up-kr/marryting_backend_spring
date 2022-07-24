@@ -21,7 +21,6 @@ import java.util.List;
 public class ProfileController {
 
     private final ProfileApplicationService profileApplicationService;
-    private final QuestionnareApplicationService questionnareApplicationService;
 
     @GetMapping("/{profileId}/detail")
     public List<ProfileDetailResponseDTO> getProfileDetail(@LoginUserId Long userId,

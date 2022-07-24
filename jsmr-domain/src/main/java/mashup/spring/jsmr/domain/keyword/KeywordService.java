@@ -11,17 +11,10 @@ import java.util.List;
 public class KeywordService {
     private final KeywordRepository keywordRepository;
 
-    public List<Keyword> getChoosedKeyword(List<String> choosedKeyword) {
-        List<Keyword> allKeywords = keywordRepository.findAll();
+    public List<Keyword> getChoosedKeyword(List<Long> choosedKeywordId) {
+        List<Keyword> choosedKeywords = keywordRepository.findAllByIdIn(choosedKeywordId);
 
-        List<Keyword> keywords = new ArrayList<>();
-        for (Keyword keyword : allKeywords) {
-            if (choosedKeyword.contains(keyword.getKeyword())) {
-                keywords.add(keyword);
-            }
-        }
-
-        return keywords;
+        return choosedKeywords;
     }
 
     public List<Keyword> getKeyword() {

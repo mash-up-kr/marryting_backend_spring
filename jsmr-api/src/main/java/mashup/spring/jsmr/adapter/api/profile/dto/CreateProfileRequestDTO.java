@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import mashup.spring.jsmr.adapter.api.answer.dto.CreateAnswerRequestDTO;
+import mashup.spring.jsmr.adapter.api.profileKeyword.dto.CreateProfileKeywordRequestDTO;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.user.Gender;
 import mashup.spring.jsmr.domain.user.User;
@@ -21,7 +22,7 @@ public class CreateProfileRequestDTO {
     private String address;
     private List<String> pictures;
     private List<CreateAnswerRequestDTO> answers;
-    private List<String> keywords;
+    private List<CreateProfileKeywordRequestDTO> keywords;
 
     public Profile toEntity(User user) {
         return Profile.builder()
