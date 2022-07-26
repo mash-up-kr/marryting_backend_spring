@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,12 +33,15 @@ public class MatchingProfileResponseDTO {
     }
 
     public static MatchingProfileResponseDTO from(Profile profile,String message) {
+        int nowYear = LocalDate.now().getYear();
+        int age = nowYear - Integer.parseInt(profile.getBirth().substring(0, 4)) + 1;
+
         return MatchingProfileResponseDTO.builder()
                 .pictures(profile.getPictures().stream()
                         .map(Picture::getProfileUrl)
                         .collect(Collectors.toList()))
                 .address(profile.getAddress())
-                .age(profile.getAge())
+                .age(age)
                 .career(profile.getCareer())
                 .keywords(profile.getProfileKeywords().stream()
                         .map(p -> p.getKeyword().getKeyword())

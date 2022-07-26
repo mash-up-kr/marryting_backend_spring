@@ -30,7 +30,7 @@ public class SecurityConfig {
         return (web) -> web.ignoring().mvcMatchers(
                 "/v3/api-docs/**",
                 "/swagger-ui/**",
-                "/api/v1/token",
+                "/api/v1/token/**",
                 "/api/v1/profile/**",
                 "/api/v1/test" // 임시
         );

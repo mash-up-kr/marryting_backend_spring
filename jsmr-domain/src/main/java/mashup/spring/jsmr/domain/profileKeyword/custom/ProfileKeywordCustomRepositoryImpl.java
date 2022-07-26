@@ -4,8 +4,8 @@ import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.QProfile;
-import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.profileKeyword.QProfileKeyword;
+import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;

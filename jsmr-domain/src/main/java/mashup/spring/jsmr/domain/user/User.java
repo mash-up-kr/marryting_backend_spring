@@ -4,8 +4,6 @@ import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

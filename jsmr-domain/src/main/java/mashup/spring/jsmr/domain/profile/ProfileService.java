@@ -21,6 +21,11 @@ public class ProfileService {
         return profileKeywordRepository.findByProfileByFetch(userId, profile);
     }
 
+    @Transactional
+    public Profile createProfile(Profile profile) {
+        return profileRepository.save(profile);
+    }
+
     public Profile getProfile(final Long userId){
         return profileRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
     }

@@ -8,6 +8,7 @@ import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,13 @@ public class ProfileDetailResponseDTO {
     }
 
     public static ProfileDetailResponseDTO from(Profile profile) {
+        int nowYear = LocalDate.now().getYear();
+        int age = nowYear - Integer.parseInt(profile.getBirth().substring(0, 4)) + 1;
+
         return ProfileDetailResponseDTO.builder()
                 .profileId(profile.getId())
                 .profileName(profile.getName())
-                .age(profile.getAge())
+                .age(age)
                 .address(profile.getAddress())
                 .career(profile.getCareer())
                 .keywords(profile.getProfileKeywords().stream()

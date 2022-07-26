@@ -18,4 +18,4 @@ spring:
 
 jwt:
   access_token_secretKey: asdaskdadjawldjalwdkjlakwdjwaldjalwdwaAWdawdawdAWEWAeawe
-  access_token_valid_time: 1800000000
+
