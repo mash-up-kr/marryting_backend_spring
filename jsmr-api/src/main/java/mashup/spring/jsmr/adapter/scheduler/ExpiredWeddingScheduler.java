@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import mashup.spring.jsmr.application.wedding.WeddingApplicationService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
-@Controller
+@Component
 @Slf4j
 public class ExpiredWeddingScheduler {
 
