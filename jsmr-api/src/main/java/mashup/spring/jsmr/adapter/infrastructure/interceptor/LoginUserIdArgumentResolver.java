@@ -17,7 +17,6 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @RequiredArgsConstructor
 @Component
 public class LoginUserIdArgumentResolver implements HandlerMethodArgumentResolver {
-
     private static final String SPACE = " ";
     private static final String BEARER = "Bearer";
     private static final int HEADER_KEY_INDEX = 0;
