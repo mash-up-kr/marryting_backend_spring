@@ -19,6 +19,7 @@ public enum ExceptionCode {
     FAIL_AUTHORIZATION(HttpStatus.FORBIDDEN, "S002", "403 에러 권한 없음"),
     ;
 
+    // OAuth
 
     private final HttpStatus status;
     private final String code;
