@@ -6,6 +6,7 @@ import mashup.spring.jsmr.adapter.api.ExceptionResponse;
 import mashup.spring.jsmr.adapter.infrastructure.jwt.JwtAuthenticationFilter;
 import mashup.spring.jsmr.domain.exception.ExceptionCode;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,6 +40,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.antMatcher("/**")
                 .authorizeRequests()
+                .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Preflight Request 허용해주기
                 .antMatchers("/api/v1/**").hasAuthority(USER.name())
                         .and()
                 .httpBasic().disable()
