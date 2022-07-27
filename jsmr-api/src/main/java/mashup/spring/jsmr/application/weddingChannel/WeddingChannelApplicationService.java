@@ -1,7 +1,7 @@
 package mashup.spring.jsmr.application.weddingChannel;
 
 import lombok.RequiredArgsConstructor;
-import mashup.spring.jsmr.adapter.api.weddingChannel.WeddingChannelGuestResponseDTO;
+import mashup.spring.jsmr.adapter.api.weddingChannel.dto.WeddingChannelGuestResponseDTO;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannelService;
 import org.springframework.stereotype.Service;
 
