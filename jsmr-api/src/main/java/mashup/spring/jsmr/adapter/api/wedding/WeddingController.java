@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class WeddingController {
     private final WeddingApplicationService weddingApplicationService;
 
     @GetMapping("/participate/list")
-    public ApiResponse<List<WeddingParticipateListDTO>> getWeddingList(@LoginUserId Long userId) {
+    public ApiResponse<List<WeddingParticipateListDTO>> getWeddingList(@ApiIgnore @LoginUserId Long userId) {
         return ApiResponse.success(HttpStatus.OK, weddingApplicationService.getWeddingParticipateList(userId));
     }
 }

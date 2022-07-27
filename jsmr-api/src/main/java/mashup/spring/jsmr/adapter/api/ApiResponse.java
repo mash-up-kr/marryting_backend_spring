@@ -1,6 +1,7 @@
 package mashup.spring.jsmr.adapter.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public class ApiResponse<T> {
 
+    @ApiModelProperty(value = "응답 상태 코드", example = "200")
     private int status;
     private T data;
 

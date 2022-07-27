@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -25,14 +26,14 @@ public class ProfileController {
     private final ProfileApplicationService profileApplicationService;
 
     @GetMapping("/{profileId}/detail")
-    public List<ProfileDetailResponseDTO> getProfileDetail(@LoginUserId Long userId,
+    public List<ProfileDetailResponseDTO> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
                                                            @PathVariable Long profileId) {
         return profileApplicationService.getDetailProfile(userId, profileId);
     }
 
     @ApiOperation("프로필 생성")
     @PostMapping
-    public ApiResponse<CreateProfileResponseDTO> createProfile(@LoginUserId Long userId, @RequestBody CreateProfileRequestDTO createProfileRequestDTO) {
+    public ApiResponse<CreateProfileResponseDTO> createProfile(@ApiIgnore @LoginUserId Long userId, @RequestBody CreateProfileRequestDTO createProfileRequestDTO) {
 
         return ApiResponse.success(HttpStatus.CREATED, profileApplicationService.createProfile(userId, createProfileRequestDTO));
     }

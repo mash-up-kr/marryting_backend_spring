@@ -11,6 +11,7 @@ import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.like.LikesApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -23,13 +24,13 @@ public class LikesController {
 
     @ApiOperation("내가 좋아요한 사람들 조회")
     @GetMapping("/profiles")
-    public ApiResponse<List<LikeProfilesResponseDTO>>getMyLikesPeople(@LoginUserId Long userId) {
+    public ApiResponse<List<LikeProfilesResponseDTO>>getMyLikesPeople(@ApiIgnore @LoginUserId Long userId) {
         return ApiResponse.success(HttpStatus.OK, likesApplicationService.getLikesProfiles(userId));
     }
 
     @ApiOperation("매칭된 사람들 조회")
     @GetMapping("/matching-profiles")
-    public ApiResponse<List<MatchingProfileResponseDTO>> getMyMatchingPeople(@LoginUserId Long userId) {
+    public ApiResponse<List<MatchingProfileResponseDTO>> getMyMatchingPeople(@ApiIgnore @LoginUserId Long userId) {
         return ApiResponse.success(HttpStatus.OK, likesApplicationService.getMatchingProfiles(userId));
     }
 

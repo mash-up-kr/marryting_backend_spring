@@ -1,5 +1,6 @@
 package mashup.spring.jsmr.adapter.api.wedding.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +14,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class WeddingParticipateListDTO {
 
+    @ApiModelProperty(value = "웨딩 Id", example = "1L")
     private Long weddingId;
+
+    @ApiModelProperty(value = "신랑 이름", example = "자바")
     private String groomName;
+
+    @ApiModelProperty(value = "신부 이름", example = "코틀린")
     private String brideName;
+
+    @ApiModelProperty(value = "결혼식 날짜", example = "2022-07-27")
     private LocalDate weddingDate;
 
     @Builder
