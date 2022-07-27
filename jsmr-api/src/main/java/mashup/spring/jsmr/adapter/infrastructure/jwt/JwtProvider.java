@@ -3,10 +3,8 @@ package mashup.spring.jsmr.adapter.infrastructure.jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import mashup.spring.jsmr.adapter.api.jwt.dto.TokenResponseDTO;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.DatatypeConverter;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -23,25 +21,8 @@ public class JwtProvider {
                 .compact();
     }
 
-    private String createAccessToken(final long payload) {
+    public String createAccessToken(final long payload) {
         return createToken(payload, jwtProperty.getAccessTokenSecretKey(), jwtProperty.getAccessTokenValidTime());
-    }
-
-    public TokenResponseDTO createTokenResponse(long userId) {
-        var accessToken = createAccessToken(userId);
-
-        return TokenResponseDTO.builder()
-                .accessToken(accessToken)
-                .accessTokenExpiredAt(getTokenExpiredTime(accessToken, jwtProperty.getAccessTokenSecretKey()))
-                .build();
-    }
-
-    private Date getTokenExpiredTime(final String accessToken, final String secretKey) {
-        return Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
-                .parseClaimsJws(accessToken)
-                .getBody()
-                .getExpiration();
     }
 
     public Long getAccessTokenPayload(String accessToken) {
