@@ -29,7 +29,7 @@ public class LikeProfilesResponseDTO {
     @ApiModelProperty(value = "직업", example = "개발자")
     private String career;
 
-    @ApiModelProperty(value = "주소", example = "['유머있는', '열정적인', '친절한']")
+    @ApiModelProperty(value = "키워드", example = "['유머있는', '열정적인', '친절한']")
     private List<String> keywords;
 
     @Builder

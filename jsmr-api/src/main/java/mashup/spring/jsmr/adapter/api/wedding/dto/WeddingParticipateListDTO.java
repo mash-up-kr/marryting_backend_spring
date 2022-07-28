@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.wedding.Wedding;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
