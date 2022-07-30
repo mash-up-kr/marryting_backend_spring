@@ -25,6 +25,7 @@ public class ProfileController {
 
     private final ProfileApplicationService profileApplicationService;
 
+    @ApiOperation("프로필 상세 조회")
     @GetMapping("/{profileId}/detail")
     public List<ProfileDetailResponseDTO> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
                                                            @PathVariable Long profileId) {
