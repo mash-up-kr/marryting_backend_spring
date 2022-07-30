@@ -19,8 +19,4 @@ public class WeddingChannelApplicationService {
                 .map(WeddingChannelGuestResponseDTO::from)
                 .collect(Collectors.toList());
     }
-
-    public void createWeddingChannel(final Long userId, final Long weddingId) {
-        weddingChannelService.createWeddingChannel(userId, weddingId);
-    }
 }

@@ -34,8 +34,8 @@ public class ProfileController {
 
     @ApiOperation("프로필 생성")
     @PostMapping
-    public ApiResponse<CreateProfileResponseDTO> createProfile(@ApiIgnore @LoginUserId Long userId, @RequestBody CreateProfileRequestDTO createProfileRequestDTO) {
-
+    public ApiResponse<CreateProfileResponseDTO> createProfile(@ApiIgnore @LoginUserId Long userId,
+                                                               @RequestBody CreateProfileRequestDTO createProfileRequestDTO) {
         return ApiResponse.success(HttpStatus.CREATED, profileApplicationService.createProfile(userId, createProfileRequestDTO));
     }
 

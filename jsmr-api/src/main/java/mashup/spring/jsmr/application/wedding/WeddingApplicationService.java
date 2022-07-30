@@ -1,6 +1,7 @@
 package mashup.spring.jsmr.application.wedding;
 
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.adapter.api.wedding.dto.CreateWeddingRequestDTO;
 import mashup.spring.jsmr.adapter.api.wedding.dto.WeddingParticipateListDTO;
 import mashup.spring.jsmr.domain.wedding.WeddingService;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class WeddingApplicationService {
 
     public void deleteExpiredWeddings(){
         weddingService.deleteExpiredWeddingsAsOfToday();
+    }
+
+    public void createWeddingChannel(final CreateWeddingRequestDTO weddingRequestDTO) {
+        weddingService.createWedding(weddingRequestDTO.toEntity());
     }
 }

@@ -5,6 +5,7 @@ import mashup.spring.jsmr.domain.exception.BusinessException;
 import mashup.spring.jsmr.domain.exception.ExceptionCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -12,6 +13,14 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    // @Valid 예와 발생
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    protected ResponseEntity<ExceptionResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.error("handleMethodArgumentNotValidException", e);
+        final ExceptionResponse response = ExceptionResponse.of(ExceptionCode.INVALID_TYPE_VALUE);
+        return new ResponseEntity<>(response, ExceptionCode.INVALID_TYPE_VALUE.getStatus());
+    }
 
     /**
      * enum type 일치하지 않아 binding 못할 경우 발생
