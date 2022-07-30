@@ -26,7 +26,7 @@ public class WeddingController {
     private final WeddingApplicationService weddingApplicationService;
 
     @ApiOperation("내가 참여했던 결혼식 리스트")
-    @GetMapping("/participate/list")
+    @GetMapping("/guest/list")
     public ApiResponse<List<WeddingParticipateListDTO>> getWeddingList(@ApiIgnore @LoginUserId Long userId) {
         return ApiResponse.success(HttpStatus.OK, weddingApplicationService.getWeddingParticipateList(userId));
     }
