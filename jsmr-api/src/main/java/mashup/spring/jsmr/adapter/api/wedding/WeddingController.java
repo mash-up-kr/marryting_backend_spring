@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/api/v1/wedding")
@@ -32,7 +33,7 @@ public class WeddingController {
 
     @ApiOperation("결혼식 생성하기")
     @PostMapping
-    public ApiResponse<Void> createWeddingChannel(@RequestBody CreateWeddingRequestDTO weddingRequestDTO) {
+    public ApiResponse<Void> createWeddingChannel(@Valid @RequestBody CreateWeddingRequestDTO weddingRequestDTO) {
         weddingApplicationService.createWeddingChannel(weddingRequestDTO);
         return ApiResponse.success(HttpStatus.CREATED);
     }
