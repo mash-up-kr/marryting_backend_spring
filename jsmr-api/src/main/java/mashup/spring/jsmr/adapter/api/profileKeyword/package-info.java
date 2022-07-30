@@ -1,0 +1,1 @@
+package mashup.spring.jsmr.adapter.api.profileKeyword;
