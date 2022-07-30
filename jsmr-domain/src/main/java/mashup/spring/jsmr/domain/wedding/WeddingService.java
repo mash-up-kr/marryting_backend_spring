@@ -37,4 +37,9 @@ public class WeddingService {
     public void deleteExpiredWeddingsAsOfToday() {  // wedding 은 weddingDate 일자가 지나면 제거된다.
         weddingRepository.deleteWeddingsByWeddingDateIsBefore(LocalDate.now());
     }
+
+    @Transactional
+    public void createWedding(Wedding wedding) {
+        weddingRepository.save(wedding);
+    }
 }

@@ -21,7 +21,6 @@ public class KeywordController {
     @ApiOperation("키워드 확인")
     @GetMapping
     public ApiResponse<List<KeywordResponseDTO>> getProfileKeyword() {
-
         return ApiResponse.success(HttpStatus.OK, keywordApplicationService.getKeywords());
     }
 }

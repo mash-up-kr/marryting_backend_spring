@@ -34,12 +34,15 @@ public class Profile extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Builder.Default
     @OneToMany(mappedBy = "profile")
     private List<Answer> answers = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "profile")
     private List<ProfileKeyword> profileKeywords = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "profile")
     private List<Picture> pictures = new ArrayList<>();
 }
