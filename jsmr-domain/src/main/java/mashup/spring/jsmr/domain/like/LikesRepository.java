@@ -1,5 +1,6 @@
 package mashup.spring.jsmr.domain.like;
 
+import mashup.spring.jsmr.domain.profile.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +21,6 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
 
     @Query("select count(l) > 0 from Likes l WHERE l.sender.id = :senderId and l.receiver.id = :receiverId")
     boolean existsBySenderAndReceiver(@Param("senderId") Long senderId, @Param("receiverId") Long receiverId);
+
+    List<Likes> findAllBySender(Profile sender);
 }
