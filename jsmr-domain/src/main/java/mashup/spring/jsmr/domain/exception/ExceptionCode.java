@@ -17,7 +17,9 @@ public enum ExceptionCode {
     // Security
     FAIL_AUTHENTICATION(HttpStatus.UNAUTHORIZED, "S001", "401 에러 인증 실패"),
     FAIL_AUTHORIZATION(HttpStatus.FORBIDDEN, "S002", "403 에러 권한 없음"),
-    ;
+
+    // Duplicated Entity
+    EXIST_ENTITY(HttpStatus.BAD_REQUEST, "D001", "Already Exist Entity");
 
 
     private final HttpStatus status;

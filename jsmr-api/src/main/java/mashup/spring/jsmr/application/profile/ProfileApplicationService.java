@@ -8,6 +8,7 @@ import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
 import mashup.spring.jsmr.adapter.api.profileKeyword.dto.CreateProfileKeywordRequestDTO;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.answer.AnswerService;
+import mashup.spring.jsmr.domain.exception.DuplicatedException;
 import mashup.spring.jsmr.domain.keyword.Keyword;
 import mashup.spring.jsmr.domain.keyword.KeywordService;
 import mashup.spring.jsmr.domain.picture.PictureService;
@@ -47,6 +48,9 @@ public class ProfileApplicationService {
     public CreateProfileResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
         User user = userService.findById(userId);
 
+        if(profileService.existProfile(user)){
+           throw new DuplicatedException();
+        }
         // profile save
         Profile profile = profileService.createProfile(createProfileRequestDTO.toEntity(user));
 
