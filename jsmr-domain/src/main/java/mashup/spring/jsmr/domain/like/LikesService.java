@@ -1,6 +1,7 @@
 package mashup.spring.jsmr.domain.like;
 
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.domain.exception.DuplicatedException;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
@@ -36,6 +37,11 @@ public class LikesService {
 
     @Transactional
     public Likes createLike(final Long profileId, final Long partnerProfileId, String message) {
+
+        if (likesRepository.existsBySenderAndReceiver(profileId, partnerProfileId)){
+            throw new DuplicatedException();
+        }
+
          return likesRepository.findBySenderIdAndReceiverId(partnerProfileId, profileId)
                 .map(likes -> {
                     likes.toMatch();
