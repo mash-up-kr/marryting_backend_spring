@@ -35,6 +35,9 @@ public class SecurityConfig {
                 "/api/v1/wedding",
                 "/api/v1/like/**",
                 "/api/v1/test" // 임시
+        ).antMatchers(
+                "/api/v1/users/signup",
+                "/api/v1/users/login"
         );
     }
 
