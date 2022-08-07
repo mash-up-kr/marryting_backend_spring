@@ -1,8 +1,12 @@
 package mashup.spring.jsmr.adapter.infrastructure.jwt;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.domain.exception.JwtException;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -26,12 +30,16 @@ public class JwtProvider {
     }
 
     public Long getAccessTokenPayload(String accessToken) {
-        var claims = Jwts.parser()
-                .setSigningKey(jwtProperty.getAccessTokenSecretKey())
-                .parseClaimsJws(accessToken)
-                .getBody();
+        try {
+            var claims = Jwts.parser()
+                    .setSigningKey(jwtProperty.getAccessTokenSecretKey())
+                    .parseClaimsJws(accessToken)
+                    .getBody();
 
-        return Long.parseLong(claims.getSubject());
+            return Long.parseLong(claims.getSubject());
+        } catch (ExpiredJwtException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException e) {
+            throw new JwtException();
+        }
     }
 
     public boolean validateToken(String accessToken) {
