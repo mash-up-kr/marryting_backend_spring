@@ -1,6 +1,10 @@
 package mashup.spring.jsmr.domain.user;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.BaseEntity;
 
 import javax.persistence.Entity;

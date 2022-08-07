@@ -1,7 +1,6 @@
 package mashup.spring.jsmr.adapter.api.like.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

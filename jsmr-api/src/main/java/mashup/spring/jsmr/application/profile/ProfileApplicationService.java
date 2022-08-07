@@ -14,10 +14,9 @@ import mashup.spring.jsmr.domain.keyword.KeywordService;
 import mashup.spring.jsmr.domain.picture.PictureService;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileService;
-import mashup.spring.jsmr.domain.question.QuestionnareService;
+import mashup.spring.jsmr.domain.profileKeyword.ProfileKeywordService;
 import mashup.spring.jsmr.domain.user.User;
 import mashup.spring.jsmr.domain.user.UserService;
-import mashup.spring.jsmr.domain.profileKeyword.ProfileKeywordService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +34,6 @@ public class ProfileApplicationService {
     private final PictureService pictureService;
     private final AnswerService answerService;
     private final KeywordService keywordService;
-    private final QuestionnareService questionnareService;
-
 
     public List<ProfileDetailResponseDTO> getDetailProfile(final Long userId, final Long profileId) {
         return profileService.getDetailProfile(userId, profileId).stream()

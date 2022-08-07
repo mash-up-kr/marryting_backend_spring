@@ -1,6 +1,10 @@
 package mashup.spring.jsmr.domain.picture;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.profile.Profile;
 

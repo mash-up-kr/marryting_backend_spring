@@ -1,17 +1,21 @@
 package mashup.spring.jsmr.domain.weddingChannel;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.wedding.Role;
 import mashup.spring.jsmr.domain.wedding.Wedding;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

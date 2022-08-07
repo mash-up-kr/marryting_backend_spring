@@ -2,7 +2,6 @@ package mashup.spring.jsmr.adapter.infrastructure.interceptor;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.infrastructure.jwt.JwtProvider;
-import mashup.spring.jsmr.domain.profile.ProfileRepository;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -24,7 +23,6 @@ public class LoginUserIdArgumentResolver implements HandlerMethodArgumentResolve
     private static final int HEADER_VALUE_INDEX = 1;
 
     private final JwtProvider jwtProvider;
-    private final ProfileRepository profileRepository;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
