@@ -1,0 +1,3 @@
+### 내가 참여했던 웨딩 리스트 조회
+GET {{api}}/api/v1/wedding/guest/list
+Authorization: Bearer {{Authorization}}
