@@ -28,9 +28,9 @@ public class ProfileController {
 
     @ApiOperation("프로필 상세 조회")
     @GetMapping("/{profileId}/detail")
-    public List<ProfileDetailResponseDTO> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
-                                                           @PathVariable Long profileId) {
-        return profileApplicationService.getDetailProfile(userId, profileId);
+    public ApiResponse<List<ProfileDetailResponseDTO>> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
+                                                                        @PathVariable Long profileId) {
+        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getDetailProfile(userId, profileId));
     }
 
     @ApiOperation("프로필 생성")
