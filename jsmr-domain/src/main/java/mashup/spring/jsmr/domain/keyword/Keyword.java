@@ -22,6 +22,7 @@ public class Keyword extends BaseEntity {
 
     private String keyword;
 
+    @Builder.Default
     @OneToMany(mappedBy = "keyword")
     private List<ProfileKeyword> profileKeywords = new ArrayList<>();
 }
