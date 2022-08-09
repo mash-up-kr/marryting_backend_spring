@@ -33,6 +33,7 @@ public class SecurityConfig {
                 "/api/v1/token/**",
                 "/api/v1/profile/**",
                 "/api/v1/wedding",
+                "/api/v1/like/**",
                 "/api/v1/test" // 임시
         );
     }
