@@ -27,9 +27,8 @@ public class UserService {
             String appleId = authService.verifyApple(thirdPartyToken);
             return userRepository.findUserByAppleIdAndSocialType(appleId, SocialType.APPLE)
                     .orElseThrow(EntityNotFoundException::new);
-        } else {
-            throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
         }
+        throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
     }
 
     @Transactional
@@ -48,9 +47,8 @@ public class UserService {
                         throw new BusinessException(ExceptionCode.USER_DUPLICATED);
                     });
             return userRepository.save(User.createAppleUser(appleId));
-        } else {
-            throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
         }
+        throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
     }
 
     public User findById(final Long userId) {
