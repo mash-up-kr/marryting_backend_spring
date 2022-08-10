@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.wedding.Wedding;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 
 import java.time.LocalDate;
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class WeddingChannelGuestResponseDTO {
+
+    @ApiModelProperty(value = "웨딩 Id", example = "1L")
+    private Long weddingId;
 
     @ApiModelProperty(value = "프로필 Id", example = "1L")
     private Long profileId;
@@ -40,6 +44,7 @@ public class WeddingChannelGuestResponseDTO {
 
     @Builder
     public WeddingChannelGuestResponseDTO(
+            Long weddingId,
             Long profileId,
             String name,
             Integer age,
@@ -48,6 +53,7 @@ public class WeddingChannelGuestResponseDTO {
             List<String> profileUrl,
             List<String> keywords
     ) {
+        this.weddingId = weddingId;
         this.profileId = profileId;
         this.name = name;
         this.age = age;
@@ -59,12 +65,13 @@ public class WeddingChannelGuestResponseDTO {
 
     public static WeddingChannelGuestResponseDTO from(WeddingChannel weddingChannel) {
         Profile profile = weddingChannel.getProfile();
+        Wedding wedding = weddingChannel.getWedding();
 
         int nowYear = LocalDate.now().getYear();
         int age = nowYear - Integer.parseInt(profile.getBirth().substring(0, 4)) + 1;
 
-
         return WeddingChannelGuestResponseDTO.builder()
+                .weddingId(wedding.getId())
                 .profileId(profile.getId())
                 .name(profile.getName())
                 .address(profile.getAddress())
