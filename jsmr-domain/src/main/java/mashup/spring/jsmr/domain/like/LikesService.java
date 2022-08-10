@@ -30,8 +30,8 @@ public class LikesService {
                 .collect(Collectors.toList());
     }
 
-    public Map<Profile, String> getMyMatchingProfiles(final Long userId) {
-        return likesRepository.findMatchingProfileWithMessage(userId, TRUE).stream()
+    public Map<Profile, String> getMyMatchingProfiles(final Long profileId) {
+        return likesRepository.findMatchingProfileWithMessage(profileId, TRUE).stream()
                 .collect(Collectors.toMap(Likes::getSender, Likes::getMessage));
     }
 
