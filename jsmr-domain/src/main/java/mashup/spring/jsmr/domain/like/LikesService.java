@@ -32,7 +32,6 @@ public class LikesService {
 
     public Map<Profile, String> getMyMatchingProfiles(final Long profileId) {
         return likesRepository.findMatchingProfileWithMessage(profileId, TRUE).stream()
-                .peek(likes -> System.out.println(likes.toString()))
                 .collect(Collectors.toMap(Likes::getSender, Likes::getMessage));
     }
 

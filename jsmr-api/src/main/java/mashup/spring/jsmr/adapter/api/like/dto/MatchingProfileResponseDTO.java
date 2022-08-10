@@ -75,7 +75,7 @@ public class MatchingProfileResponseDTO {
         this.message = message;
     }
 
-    public static MatchingProfileResponseDTO from(Profile profile,String message) {
+    public static MatchingProfileResponseDTO from(Profile profile, String message) {
         int nowYear = LocalDate.now().getYear();
         int age = nowYear - Integer.parseInt(profile.getBirth().substring(0, 4)) + 1;
 
