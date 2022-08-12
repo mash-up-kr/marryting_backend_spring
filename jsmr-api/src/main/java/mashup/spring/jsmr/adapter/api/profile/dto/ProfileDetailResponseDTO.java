@@ -34,10 +34,10 @@ public class ProfileDetailResponseDTO {
     @ApiModelProperty(value = "직업", example = "개발자")
     private String career;
 
-    @ApiModelProperty(value = "키워드 리스트", example = "[{'keywordId': 1, 'keyword': '따뜻한'}, {'keywordId' : 2, 'answer: '유머있는'}]")
+    @ApiModelProperty(value = "키워드 리스트", example = "키워드 리스트")
     private List<KeywordResponseDTO> keywords;
 
-    @ApiModelProperty(value = "답변 리스트", example = "[{'questionId': 1, 'answer': '생각 정리하고 이야기'}, {'questionId' : 1, 'answer': '별로 중요하지 않아요'}]")
+    @ApiModelProperty(value = "답변 리스트", example = "답변 리스트")
     private List<AnswerResponseDTO> answers;
 
     @ApiModelProperty(value = "사진 리스트", example = "['URL1', 'URL2']")
