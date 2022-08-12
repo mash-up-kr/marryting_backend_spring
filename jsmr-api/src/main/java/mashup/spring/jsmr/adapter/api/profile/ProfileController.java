@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.List;
-
 @RequestMapping("/api/v1/profile")
 @RequiredArgsConstructor
 @RestController
@@ -28,9 +26,9 @@ public class ProfileController {
 
     @ApiOperation("프로필 상세 조회")
     @GetMapping("/{profileId}/detail")
-    public ApiResponse<List<ProfileDetailResponseDTO>> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
-                                                                        @PathVariable Long profileId) {
-        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getDetailProfile(userId, profileId));
+    public ApiResponse<ProfileDetailResponseDTO> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
+                                                                  @PathVariable Long profileId) {
+        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getDetailProfile(profileId));
     }
 
     @ApiOperation("프로필 생성")

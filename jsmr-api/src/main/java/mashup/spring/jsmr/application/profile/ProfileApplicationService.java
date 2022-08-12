@@ -35,10 +35,8 @@ public class ProfileApplicationService {
     private final AnswerService answerService;
     private final KeywordService keywordService;
 
-    public List<ProfileDetailResponseDTO> getDetailProfile(final Long userId, final Long profileId) {
-        return profileService.getDetailProfile(userId, profileId).stream()
-                .map(ProfileDetailResponseDTO::from)
-                .collect(Collectors.toList());
+    public ProfileDetailResponseDTO getDetailProfile(final Long profileId) {
+        return ProfileDetailResponseDTO.from(profileService.getDetailProfile(profileId));
     }
 
     @Transactional
