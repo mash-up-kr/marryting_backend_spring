@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.adapter.api.answer.dto.AnswerResponseDTO;
 import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.domain.picture.Picture;
+import mashup.spring.jsmr.domain.profile.Gender;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
-import mashup.spring.jsmr.domain.user.Gender;
 
 import java.time.LocalDate;
 import java.util.List;
