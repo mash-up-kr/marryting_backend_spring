@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import mashup.spring.jsmr.adapter.api.answer.dto.AnswerResponseDTO;
+import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
@@ -32,11 +34,11 @@ public class ProfileDetailResponseDTO {
     @ApiModelProperty(value = "직업", example = "개발자")
     private String career;
 
-    @ApiModelProperty(value = "키워드 리스트", example = "['keyword1', 'keyword3', 'keyword3']")
-    private List<String> keywords;
+    @ApiModelProperty(value = "키워드 리스트", example = "[{'keywordId': 1, 'keyword': '따뜻한'}, {'keywordId' : 2, 'answer: '유머있는'}]")
+    private List<KeywordResponseDTO> keywords;
 
-    @ApiModelProperty(value = "답변 리스트", example = "['싸울 땐 생각을 정리하고 이야기', '연락은 자주 할수록 좋아요']")
-    private List<String> answers;
+    @ApiModelProperty(value = "답변 리스트", example = "[{'questionId': 1, 'answer': '생각 정리하고 이야기'}, {'questionId' : 1, 'answer': '별로 중요하지 않아요'}]")
+    private List<AnswerResponseDTO> answers;
 
     @ApiModelProperty(value = "사진 리스트", example = "['URL1', 'URL2']")
     private List<String> pictures;
@@ -48,8 +50,8 @@ public class ProfileDetailResponseDTO {
             Integer age,
             String address,
             String career,
-            List<String> keywords,
-            List<String> answers,
+            List<KeywordResponseDTO> keywords,
+            List<AnswerResponseDTO> answers,
             List<String> pictures
     ) {
         this.profileId = profileId;
@@ -73,10 +75,10 @@ public class ProfileDetailResponseDTO {
                 .address(profile.getAddress())
                 .career(profile.getCareer())
                 .keywords(profile.getProfileKeywords().stream()
-                        .map(p -> p.getKeyword().getKeyword())
+                        .map(p -> KeywordResponseDTO.from(p.getKeyword()))
                         .collect(Collectors.toList()))
                 .answers(profile.getAnswers().stream()
-                        .map(Answer::getAnswer)
+                        .map(AnswerResponseDTO::from)
                         .collect(Collectors.toList()))
                 .pictures(profile.getPictures().stream()
                         .map(Picture::getProfileUrl)
