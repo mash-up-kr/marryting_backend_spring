@@ -12,8 +12,8 @@ import javax.validation.constraints.NotBlank;
 public class LoginRequestDTO {
 
     @NotBlank
-    @ApiModelProperty(value = "로그인타입", example = "APPLE or KAKAO")
-    private String type;
+    @ApiModelProperty(value = "OAuth 타입", example = "APPLE or KAKAO")
+    private String oauthType;
 
     @NotBlank
     @ApiModelProperty(value = "ThirdParty 토큰", example = "Base64 encoded token")
