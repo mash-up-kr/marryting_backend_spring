@@ -6,8 +6,8 @@ import mashup.spring.jsmr.adapter.api.ApiResponse;
 import mashup.spring.jsmr.adapter.api.user.dto.CreateUserWithProfileRequestDTO;
 import mashup.spring.jsmr.adapter.api.user.dto.CreateUserWithProfileResponseDTO;
 import mashup.spring.jsmr.adapter.api.user.dto.LoginRequestDTO;
-import mashup.spring.jsmr.adapter.api.user.dto.TokenResponseDTO;
-import mashup.spring.jsmr.application.UserApplicationService;
+import mashup.spring.jsmr.adapter.api.user.dto.LoginResponseDTO;
+import mashup.spring.jsmr.application.user.UserApplicationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +23,10 @@ public class UserController {
 
     @ApiOperation("로그인")
     @PostMapping("/login")
-    public ApiResponse<TokenResponseDTO> login(@RequestBody LoginRequestDTO request) {
+    public ApiResponse<LoginResponseDTO> login(@RequestBody LoginRequestDTO request) {
         return ApiResponse.success(
                 HttpStatus.OK,
-                userApplicationService.login(request.getType(), request.getThirdPartyToken())
+                userApplicationService.login(request.getOauthType(), request.getThirdPartyToken())
         );
     }
 
