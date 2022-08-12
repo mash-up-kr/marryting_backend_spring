@@ -37,14 +37,14 @@ public class UserService {
             Long kakaoId = authService.verifyKakao(thirdPartyToken).getKakaoId();
             userRepository.findUserByKakaoIdAndSocialType(kakaoId, SocialType.KAKAO)
                     .ifPresent(user -> {
-                        throw new BusinessException(ExceptionCode.USER_DUPLICATED);
+                        throw new BusinessException(ExceptionCode.EXIST_ENTITY);
                     });
             return userRepository.save(User.createKakaoUser(kakaoId));
         } else if (socialType.equals(SocialType.APPLE.name())) {
             String appleId = authService.verifyApple(thirdPartyToken);
             userRepository.findUserByAppleIdAndSocialType(appleId, SocialType.APPLE)
                     .ifPresent(user -> {
-                        throw new BusinessException(ExceptionCode.USER_DUPLICATED);
+                        throw new BusinessException(ExceptionCode.EXIST_ENTITY);
                     });
             return userRepository.save(User.createAppleUser(appleId));
         }
