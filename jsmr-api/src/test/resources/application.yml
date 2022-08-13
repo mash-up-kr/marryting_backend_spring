@@ -11,3 +11,16 @@ spring:
 jwt:
   access_token_secretKey: asdaskdadjawldjalwdkjlakwdjwaldjalwdwaAWdawdawdAWEWAeawe
   access_token_valid_time: 1800000000
+
+cloud:
+  aws:
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY_ID}
+      secretKey: ${AWS_SECRET_ACCESS_KEY}
+    s3:
+      bucket: marryting-profile-image
+      dir: /marry
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
