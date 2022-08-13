@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
+//@Disabled
 @SpringBootTest
 public class JasyptConfigTest {
 
@@ -47,7 +47,7 @@ public class JasyptConfigTest {
 
     private static Stream<Arguments> stringForEncrypt() { // argument source method
         return Stream.of(
-                Arguments.of("admin")
+                Arguments.of("sdasd")
         );
     }
 }
