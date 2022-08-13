@@ -5,7 +5,6 @@ import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.like.LikesRepository;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
-import mashup.spring.jsmr.domain.wedding.WeddingRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 public class WeddingChannelService {
 
     private final WeddingChannelRepository weddingChannelRepository;
-    private final WeddingRepository weddingRepository;
+
     private final ProfileRepository profileRepository;
 
     private final LikesRepository likesRepository;
