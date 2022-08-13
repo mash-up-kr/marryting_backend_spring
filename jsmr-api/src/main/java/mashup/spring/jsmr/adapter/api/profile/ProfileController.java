@@ -45,7 +45,7 @@ public class ProfileController {
         return ApiResponse.success(HttpStatus.CREATED, profileApplicationService.createProfile(userId, createProfileRequestDTO));
     }
 
-    @ApiOperation("프로필 이미지 업로드")
+    @ApiOperation("프로필 이미지 업로드 (Multipart 배열로 보내기)")
     @PostMapping("/image")
     public ApiResponse<List<String>> uploadProfileImage(@RequestParam("images") MultipartFile[] multipartFile,
                                                         @RequestParam String fileSize) throws IOException {
