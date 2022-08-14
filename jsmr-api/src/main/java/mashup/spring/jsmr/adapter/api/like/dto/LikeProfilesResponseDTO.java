@@ -44,7 +44,7 @@ public class LikeProfilesResponseDTO {
     @ApiModelProperty(value = "키워드 선택한 것들")
     private List<KeywordResponseDTO> keywords;
 
-    @ApiModelProperty(value = "내가 좋아요한 사람들 프로필 리스트", example = "['URL1', 'URL2', 'URL3']")
+    @ApiModelProperty(value = "사진 리스트", example = "['URL1', 'URL2', 'URL3']")
     private List<String> pictures;
 
     @ApiModelProperty(value = "좋아요 여부", example = "TRUE or FALSE")
