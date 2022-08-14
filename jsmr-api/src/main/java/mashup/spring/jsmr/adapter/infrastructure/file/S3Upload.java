@@ -27,8 +27,8 @@ public class S3Upload implements FileUploader {
     private final AmazonS3Client s3Client;
 
     @Override
-    public String upload(InputStream inputStream, String fileSize) {
-        String s3FileName = UUID.randomUUID() + "-" ;
+    public String upload(InputStream inputStream, String originFileName, String fileSize) {
+        String s3FileName = UUID.randomUUID() + "-" + originFileName;
 
         ObjectMetadata objMeta = new ObjectMetadata();
         objMeta.setContentLength(Long.parseLong(fileSize));
@@ -42,7 +42,7 @@ public class S3Upload implements FileUploader {
     public List<String> multiUpload(MultipartFile[] multipartFiles, String fileSize) throws IOException {
         List<String> imageList = new ArrayList<>();
         for (MultipartFile multiPart : multipartFiles) {
-            imageList.add(upload(multiPart.getInputStream(), fileSize));
+            imageList.add(upload(multiPart.getInputStream(), multiPart.getOriginalFilename(), fileSize));
         }
         return imageList;
     }
