@@ -1,10 +1,6 @@
 package mashup.spring.jsmr.domain.user;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mashup.spring.jsmr.domain.BaseEntity;
 
 import javax.persistence.Entity;
@@ -26,10 +22,16 @@ public class User extends BaseEntity {
     private SocialType socialType;
 
     public static User createKakaoUser(Long kakaoId) {
-        return new User(kakaoId, null, SocialType.KAKAO);
+        return User.builder()
+                .kakaoId(kakaoId)
+                .socialType(SocialType.KAKAO)
+                .build();
     }
 
     public static User createAppleUser(String appleId) {
-        return new User(null, appleId, SocialType.APPLE);
+        return User.builder()
+                .appleId(appleId)
+                .socialType(SocialType.APPLE)
+                .build();
     }
 }
