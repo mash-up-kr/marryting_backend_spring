@@ -35,16 +35,20 @@ public class ProfileApplicationService {
     private final AnswerService answerService;
     private final KeywordService keywordService;
 
-    public ProfileDetailResponseDTO getDetailProfile(final Long profileId) {
+    public ProfileDetailResponseDTO getDetailProfileById(final Long profileId) {
         return ProfileDetailResponseDTO.from(profileService.getDetailProfile(profileId));
+    }
+
+    public ProfileDetailResponseDTO getDetailProfileByUserId(final Long userId) {
+        return ProfileDetailResponseDTO.from(profileService.getProfile(userId));
     }
 
     @Transactional
     public CreateProfileResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
         User user = userService.findById(userId);
 
-        if(profileService.existProfile(user)){
-           throw new DuplicatedException();
+        if (profileService.existProfile(user)) {
+            throw new DuplicatedException();
         }
         // profile save
         Profile profile = profileService.createProfile(createProfileRequestDTO.toEntity(user));

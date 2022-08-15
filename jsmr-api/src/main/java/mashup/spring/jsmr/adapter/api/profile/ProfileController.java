@@ -35,7 +35,7 @@ public class ProfileController {
     @GetMapping("/{profileId}/detail")
     public ApiResponse<ProfileDetailResponseDTO> getProfileDetail(@ApiIgnore @LoginUserId Long userId,
                                                                   @PathVariable Long profileId) {
-        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getDetailProfile(profileId));
+        return ApiResponse.success(HttpStatus.OK, profileApplicationService.getDetailProfileById(profileId));
     }
 
     @ApiOperation("프로필 생성")

@@ -22,7 +22,6 @@ public enum ExceptionCode {
     // Duplicated Entity
     EXIST_ENTITY(HttpStatus.BAD_REQUEST, "D001", "Already Exist Entity");
 
-
     private final HttpStatus status;
     private final String code;
     private final String message;
