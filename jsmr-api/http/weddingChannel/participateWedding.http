@@ -1,0 +1,3 @@
+### 웨딩 코드로 웨딩 채널 참여하기
+POST {{api}}/api/v1/wedding/2SQF4Q
+Authorization: Bearer {{Authorization}}
