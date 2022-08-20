@@ -8,7 +8,7 @@ dependencies {
     implementation "io.jsonwebtoken:jjwt:$jwtVersion"
 
     implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
-    implementation 'ca.pjer:logback-awslogs-appender:1.4.0'
+    implementation "ca.pjer:logback-awslogs-appender:$appenderVersion"
 }
 
 test {
