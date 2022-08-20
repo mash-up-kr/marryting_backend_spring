@@ -1,0 +1,9 @@
+### 좋아요 생성
+POST {{api}}/api/v1/like
+Content-Type: application/json
+
+{
+  "message": "나두 좋아~",
+  "receiverProfileId": 1,
+  "senderProfileId": 2
+}
