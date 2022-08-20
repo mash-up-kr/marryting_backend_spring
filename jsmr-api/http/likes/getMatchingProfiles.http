@@ -1,0 +1,3 @@
+### 매칭된 프로필 조회
+GET {{api}}/api/v1/like/matching-profiles
+Authorization: Bearer {{Authorization}}
