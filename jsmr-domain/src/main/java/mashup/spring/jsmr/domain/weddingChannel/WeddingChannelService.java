@@ -1,6 +1,7 @@
 package mashup.spring.jsmr.domain.weddingChannel;
 
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.domain.exception.DuplicatedException;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.like.LikesRepository;
 import mashup.spring.jsmr.domain.profile.Profile;
@@ -47,6 +48,9 @@ public class WeddingChannelService {
                 .orElseThrow(EntityNotFoundException::new);
         Wedding wedding = weddingRepository.findByWeddingCode((weddingCode))
                 .orElseThrow(EntityNotFoundException::new);
+        if (weddingChannelRepository.existsWeddingChannelByProfile(profile)) {
+            throw new DuplicatedException();
+        };
 
         WeddingChannel weddingChannel = WeddingChannel.builder()
                 .profile(profile)

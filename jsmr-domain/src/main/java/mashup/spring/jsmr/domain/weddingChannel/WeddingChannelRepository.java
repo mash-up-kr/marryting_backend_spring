@@ -18,4 +18,6 @@ public interface WeddingChannelRepository extends JpaRepository<WeddingChannel, 
             "and w.profile.id <> :#{#profile.id} " +
             "and w.profile.id not in :likedList")
     List<WeddingChannel> findByProfile(@Param("profile") Profile profile, @Param("likedList") List<Long> likedList);
+
+    boolean existsWeddingChannelByProfile(Profile profile);
 }
