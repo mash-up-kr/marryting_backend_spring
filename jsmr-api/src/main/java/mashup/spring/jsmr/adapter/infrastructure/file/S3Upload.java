@@ -6,8 +6,9 @@ import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.domain.file.FileUploader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
+import java.io.IOException;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -23,13 +24,13 @@ public class S3Upload implements FileUploader {
     private final AmazonS3Client s3Client;
 
     @Override
-    public String upload(InputStream inputStream, String fileSize) {
-        String s3FileName = UUID.randomUUID().toString();
+    public String upload(MultipartFile multipartFile) throws IOException {
+        String s3FileName = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
 
         ObjectMetadata objMeta = new ObjectMetadata();
-        objMeta.setContentLength(Long.parseLong(fileSize));
+        objMeta.setContentLength(multipartFile.getInputStream().available());
 
-        s3Client.putObject(bucket, s3FileName, inputStream, objMeta);
+        s3Client.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
 
         return s3Client.getUrl(bucket, dir + s3FileName).toString();
     }

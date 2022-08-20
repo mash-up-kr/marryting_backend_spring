@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RequestMapping("/api/v1/profile")
@@ -50,13 +49,12 @@ public class ProfileController {
     @ApiOperation("프로필 이미지 업로드 (application/octet-stream)")
     @PostMapping(value = "/image",
             produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_OCTET_STREAM_VALUE
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    public ApiResponse<String> uploadProfileImage(HttpServletRequest httpServletRequest,
-                                                  @RequestParam String fileSize) throws IOException {
+    public ApiResponse<String> uploadProfileImage(@RequestParam("image") MultipartFile multipartFile) throws IOException {
         return ApiResponse.success(
                 HttpStatus.CREATED,
-                fileUploader.upload(httpServletRequest.getInputStream(), fileSize)
+                fileUploader.upload(multipartFile)
         );
     }
 }
