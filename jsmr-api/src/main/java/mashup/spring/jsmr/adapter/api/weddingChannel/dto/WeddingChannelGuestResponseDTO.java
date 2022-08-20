@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.adapter.api.answer.dto.AnswerResponseDTO;
 import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
+import mashup.spring.jsmr.adapter.util.AgeUtil;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Gender;
 import mashup.spring.jsmr.domain.profile.Profile;
@@ -86,15 +87,12 @@ public class WeddingChannelGuestResponseDTO {
         Profile profile = weddingChannel.getProfile();
         Wedding wedding = weddingChannel.getWedding();
 
-        int nowYear = LocalDate.now().getYear();
-        int age = nowYear - Integer.parseInt(profile.getBirth().substring(0, 4)) + 1;
-
         return WeddingChannelGuestResponseDTO.builder()
                 .weddingId(wedding.getId())
                 .profileId(profile.getId())
                 .name(profile.getName())
                 .gender(profile.getGender())
-                .age(age)
+                .age(AgeUtil.CalculateUserAge(profile.getBirth()))
                 .address(profile.getAddress())
                 .career(profile.getCareer())
                 .answers(profile.getAnswers().stream()
