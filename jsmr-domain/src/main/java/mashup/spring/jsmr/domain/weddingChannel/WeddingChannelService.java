@@ -30,6 +30,9 @@ public class WeddingChannelService {
                 .map(likes -> likes.getReceiver().getId())
                 .collect(Collectors.toList());
 
+        if (postedLikeList.isEmpty()){ //빈 경우 query : not in (null) 방지
+            postedLikeList.add(-1L);
+        }
         return weddingChannelRepository.findByProfile(profile, postedLikeList);
     }
 }
