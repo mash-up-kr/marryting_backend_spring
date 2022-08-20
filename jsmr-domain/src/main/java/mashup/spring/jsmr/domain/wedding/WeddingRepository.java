@@ -11,4 +11,6 @@ public interface WeddingRepository extends JpaRepository<Wedding, Long> {
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("delete from Wedding w where w.weddingDate < :localDate")
     void deleteWeddingsByWeddingDateIsBefore(LocalDate localDate);
+
+    boolean existsByWeddingCode(String weddingCode);
 }

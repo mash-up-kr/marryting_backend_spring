@@ -1,0 +1,9 @@
+###
+POST {{api}}/api/v1/wedding
+Content-Type: application/json
+
+{
+  "brideName": "이재용",
+  "groomName": "윈터",
+  "weddingDate": "2022-07-30"
+}
