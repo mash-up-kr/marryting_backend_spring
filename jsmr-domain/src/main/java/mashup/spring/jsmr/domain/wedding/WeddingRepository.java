@@ -1,17 +1,11 @@
 package mashup.spring.jsmr.domain.wedding;
 
+import mashup.spring.jsmr.domain.wedding.custom.WeddingCustomRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
-public interface WeddingRepository extends JpaRepository<Wedding, Long> {
-
-    @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Query("delete from Wedding w where w.weddingDate < :localDate")
-    void deleteWeddingsByWeddingDateIsBefore(LocalDate localDate);
+public interface WeddingRepository extends JpaRepository<Wedding, Long>, WeddingCustomRepository {
 
     boolean existsByWeddingCode(String weddingCode);
 
