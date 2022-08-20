@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class KakaoAuthResponse {
-    private Long kakaoId;
+    private String kakaoId;
 }

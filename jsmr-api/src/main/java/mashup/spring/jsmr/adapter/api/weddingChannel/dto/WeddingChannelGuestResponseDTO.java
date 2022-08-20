@@ -15,7 +15,6 @@ import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.wedding.Wedding;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,7 +91,7 @@ public class WeddingChannelGuestResponseDTO {
                 .profileId(profile.getId())
                 .name(profile.getName())
                 .gender(profile.getGender())
-                .age(AgeUtil.CalculateUserAge(profile.getBirth()))
+                .age(AgeUtil.calculateUserAge(profile.getBirth()))
                 .address(profile.getAddress())
                 .career(profile.getCareer())
                 .answers(profile.getAnswers().stream()

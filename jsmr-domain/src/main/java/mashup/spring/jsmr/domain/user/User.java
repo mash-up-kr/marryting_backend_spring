@@ -14,23 +14,21 @@ import javax.persistence.Enumerated;
 @Entity
 public class User extends BaseEntity {
 
-    private Long kakaoId;
-
-    private String appleId;
+    private String socialId;
 
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
-    public static User createKakaoUser(Long kakaoId) {
+    public static User createKakaoUser(String kakaoId) {
         return User.builder()
-                .kakaoId(kakaoId)
+                .socialId(kakaoId)
                 .socialType(SocialType.KAKAO)
                 .build();
     }
 
     public static User createAppleUser(String appleId) {
         return User.builder()
-                .appleId(appleId)
+                .socialId(appleId)
                 .socialType(SocialType.APPLE)
                 .build();
     }
