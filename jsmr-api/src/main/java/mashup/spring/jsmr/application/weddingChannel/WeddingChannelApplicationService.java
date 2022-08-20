@@ -1,6 +1,7 @@
 package mashup.spring.jsmr.application.weddingChannel;
 
 import lombok.RequiredArgsConstructor;
+import mashup.spring.jsmr.adapter.api.weddingChannel.dto.ParticipateWeddingChannelResponseDTO;
 import mashup.spring.jsmr.adapter.api.weddingChannel.dto.WeddingChannelGuestResponseDTO;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannelService;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class WeddingChannelApplicationService {
                 .collect(Collectors.toList());
     }
 
-    public void participateWeddingChannel(final Long userId, String weddingCode) {
-        weddingChannelService.participateWeddingChannel(userId, weddingCode.toUpperCase());
+    public ParticipateWeddingChannelResponseDTO participateWeddingChannel(final Long userId, String weddingCode) {
+        return ParticipateWeddingChannelResponseDTO.from(weddingChannelService.participateWeddingChannel(userId, weddingCode.toUpperCase()).getWedding());
     }
 }

@@ -42,7 +42,7 @@ public class WeddingChannelService {
     }
 
     @Transactional
-    public void participateWeddingChannel(final Long userId, String weddingCode) {
+    public WeddingChannel participateWeddingChannel(final Long userId, String weddingCode) {
         Profile profile = profileRepository.findByUserId(userId)
                 .orElseThrow(EntityNotFoundException::new);
         Wedding wedding = weddingRepository.findByWeddingCode((weddingCode))
@@ -53,6 +53,6 @@ public class WeddingChannelService {
                 .wedding(wedding)
                 .build();
 
-        weddingChannelRepository.save(weddingChannel);
+        return weddingChannelRepository.save(weddingChannel);
     }
 }

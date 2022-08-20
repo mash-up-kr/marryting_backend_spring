@@ -3,6 +3,7 @@ package mashup.spring.jsmr.adapter.api.weddingChannel;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.ApiResponse;
+import mashup.spring.jsmr.adapter.api.weddingChannel.dto.ParticipateWeddingChannelResponseDTO;
 import mashup.spring.jsmr.adapter.api.weddingChannel.dto.WeddingChannelGuestResponseDTO;
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.weddingChannel.WeddingChannelApplicationService;
@@ -27,8 +28,7 @@ public class WeddingChannelController {
 
     @ApiOperation("웨딩코드로 결혼식에 참여")
     @PostMapping("/{weddingCode}")
-    public ApiResponse<Void> participateWeddingChannel(@ApiIgnore @LoginUserId Long userId, @PathVariable String weddingCode){
-        weddingChannelApplicationService.participateWeddingChannel(userId, weddingCode);
-        return ApiResponse.success(HttpStatus.OK);
+    public ApiResponse<ParticipateWeddingChannelResponseDTO> participateWeddingChannel(@ApiIgnore @LoginUserId Long userId, @PathVariable String weddingCode){
+        return ApiResponse.success(HttpStatus.OK,weddingChannelApplicationService.participateWeddingChannel(userId, weddingCode));
     }
 }
