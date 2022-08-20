@@ -46,7 +46,7 @@ public class ProfileController {
     }
 
 
-    @ApiOperation("프로필 이미지 업로드 (application/octet-stream)")
+    @ApiOperation("프로필 이미지 업로드 multipart/form-data")
     @PostMapping(value = "/image",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
