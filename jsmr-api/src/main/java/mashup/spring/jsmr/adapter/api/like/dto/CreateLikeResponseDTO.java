@@ -11,10 +11,10 @@ import mashup.spring.jsmr.domain.like.Likes;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateLikeResponseDTO {
 
-    @ApiModelProperty(value = "좋아요 보낸 사람 profileId", example = "1L")
+    @ApiModelProperty(value = "좋아요 보낸 사람 profileId", example = "1")
     private Long senderProfileId;
 
-    @ApiModelProperty(value = "좋아요 받는 사람 profileId", example = "2L")
+    @ApiModelProperty(value = "좋아요 받는 사람 profileId", example = "2")
     private Long receiverProfileId;
 
     @ApiModelProperty(value = "좋아요 보낼 때 보낸 메세지", example = "너가 좋아~")

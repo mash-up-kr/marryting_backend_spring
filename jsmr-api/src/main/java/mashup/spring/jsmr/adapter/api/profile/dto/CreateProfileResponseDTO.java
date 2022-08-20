@@ -11,7 +11,7 @@ import mashup.spring.jsmr.domain.profile.Profile;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateProfileResponseDTO {
 
-    @ApiModelProperty(value = "프로필 Id", example = "1L")
+    @ApiModelProperty(value = "프로필 Id", example = "1")
     private Long profileId;
 
     @Builder

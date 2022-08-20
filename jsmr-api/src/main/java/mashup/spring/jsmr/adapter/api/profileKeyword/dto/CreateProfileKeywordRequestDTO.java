@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateProfileKeywordRequestDTO {
 
-    @ApiModelProperty(value = "키워드 Id", example = "1L")
+    @ApiModelProperty(value = "키워드 Id", example = "1")
     private Long keywordId;
 
     @ApiModelProperty(value = "키워드 이름", example = "따듯한 or 유머있는")
