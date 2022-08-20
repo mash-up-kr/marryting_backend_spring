@@ -40,7 +40,7 @@ public class WeddingService {
     }
 
     @Transactional
-    public void createWedding(Wedding wedding) {
+    public Wedding createWedding(Wedding wedding) {
         while (true) {
             String newCode = createWeddingCode();
             //validation
@@ -50,7 +50,7 @@ public class WeddingService {
             }
         }
 
-        weddingRepository.save(wedding);
+        return weddingRepository.save(wedding);
     }
 
     public String createWeddingCode() {
