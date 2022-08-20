@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public interface WeddingRepository extends JpaRepository<Wedding, Long> {
 
@@ -13,4 +14,6 @@ public interface WeddingRepository extends JpaRepository<Wedding, Long> {
     void deleteWeddingsByWeddingDateIsBefore(LocalDate localDate);
 
     boolean existsByWeddingCode(String weddingCode);
+
+    Optional<Wedding> findByWeddingCode(String weddingCode);
 }

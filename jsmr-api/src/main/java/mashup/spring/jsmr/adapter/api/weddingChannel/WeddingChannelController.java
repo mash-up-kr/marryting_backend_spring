@@ -7,9 +7,7 @@ import mashup.spring.jsmr.adapter.api.weddingChannel.dto.WeddingChannelGuestResp
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.weddingChannel.WeddingChannelApplicationService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
@@ -25,5 +23,12 @@ public class WeddingChannelController {
     @GetMapping("/guests")
     public ApiResponse<List<WeddingChannelGuestResponseDTO>> getWeddingGuests(@ApiIgnore @LoginUserId Long userId) {
         return ApiResponse.success(HttpStatus.OK, weddingChannelApplicationService.getWeddingGuests(userId));
+    }
+
+    @ApiOperation("웨딩코드로 결혼식에 참여")
+    @PostMapping("/{weddingCode}")
+    public ApiResponse<Void> participateWeddingChannel(@ApiIgnore @LoginUserId Long userId, @PathVariable String weddingCode){
+        weddingChannelApplicationService.participateWeddingChannel(userId, weddingCode);
+        return ApiResponse.success(HttpStatus.OK);
     }
 }

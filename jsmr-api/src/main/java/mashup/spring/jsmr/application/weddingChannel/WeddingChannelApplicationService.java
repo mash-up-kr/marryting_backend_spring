@@ -19,4 +19,8 @@ public class WeddingChannelApplicationService {
                 .map(WeddingChannelGuestResponseDTO::from)
                 .collect(Collectors.toList());
     }
+
+    public void participateWeddingChannel(final Long userId, String weddingCode) {
+        weddingChannelService.participateWeddingChannel(userId, weddingCode);
+    }
 }
