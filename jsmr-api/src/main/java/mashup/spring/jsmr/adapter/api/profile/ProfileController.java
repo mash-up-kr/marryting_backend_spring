@@ -48,7 +48,10 @@ public class ProfileController {
 
 
     @ApiOperation("프로필 이미지 업로드 (application/octet-stream)")
-    @PostMapping(value = "/image", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @PostMapping(value = "/image",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_OCTET_STREAM_VALUE
+    )
     public ApiResponse<String> uploadProfileImage(HttpServletRequest httpServletRequest,
                                                   @RequestParam String fileSize) throws IOException {
         return ApiResponse.success(
