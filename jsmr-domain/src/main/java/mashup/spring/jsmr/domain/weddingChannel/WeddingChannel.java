@@ -11,7 +11,14 @@ import mashup.spring.jsmr.domain.wedding.Role;
 import mashup.spring.jsmr.domain.wedding.Wedding;
 import org.hibernate.annotations.DynamicInsert;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
