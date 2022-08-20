@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface WeddingChannelCustomRepository {
 
-    List<WeddingChannel> findByWeddingGuestsByFetch(Profile profile);
+    List<WeddingChannel> findByWeddingGuestsByFetch(Profile profile, Long weddingId, List<Long> likedList);
 }

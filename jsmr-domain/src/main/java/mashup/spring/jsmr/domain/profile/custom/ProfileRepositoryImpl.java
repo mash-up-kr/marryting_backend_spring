@@ -6,6 +6,8 @@ import mashup.spring.jsmr.domain.profile.QProfile;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.util.Optional;
+
 public class ProfileRepositoryImpl extends QuerydslRepositorySupport implements ProfileCustomRepository {
 
     private final QProfile profile = QProfile.profile;
@@ -18,9 +20,11 @@ public class ProfileRepositoryImpl extends QuerydslRepositorySupport implements 
     }
 
     @Override
-    public Profile findByUserIdByQuerydsl(final Long userId) {
-        return jpaQueryFactory.selectFrom(profile)
+    public Optional<Profile> findByUserIdByQuerydsl(final Long userId) {
+        Profile p = jpaQueryFactory.selectFrom(profile)
                 .where(profile.user.id.eq(userId))
                 .fetchOne();
+
+        return Optional.ofNullable(p);
     }
 }

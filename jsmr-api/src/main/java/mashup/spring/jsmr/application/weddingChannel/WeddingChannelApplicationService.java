@@ -15,8 +15,8 @@ public class WeddingChannelApplicationService {
 
     private final WeddingChannelService weddingChannelService;
 
-    public List<WeddingChannelGuestResponseDTO> getWeddingGuests(final Long userId) {
-        return weddingChannelService.getWeddingGuests(userId).stream()
+    public List<WeddingChannelGuestResponseDTO> getWeddingGuests(final Long userId, final Long weddingId) {
+        return weddingChannelService.getWeddingGuests(userId, weddingId).stream()
                 .map(WeddingChannelGuestResponseDTO::from)
                 .collect(Collectors.toList());
     }

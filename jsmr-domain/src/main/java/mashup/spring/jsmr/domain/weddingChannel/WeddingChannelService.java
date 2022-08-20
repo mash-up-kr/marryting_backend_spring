@@ -28,7 +28,7 @@ public class WeddingChannelService {
 
     private final WeddingRepository weddingRepository;
 
-    public List<WeddingChannel> getWeddingGuests(final Long userId) {
+    public List<WeddingChannel> getWeddingGuests(final Long userId, final Long weddingId) {
         Profile profile = profileRepository.findAllByUserId(userId)
                 .orElseThrow(EntityNotFoundException::new);
 
@@ -39,12 +39,12 @@ public class WeddingChannelService {
         if (postedLikeList.isEmpty()){ //빈 경우 query : not in (null) 방지
             postedLikeList.add(-1L);
         }
-        return weddingChannelRepository.findByProfile(profile, postedLikeList);
+        return weddingChannelRepository.findByWeddingGuestsByFetch(profile, weddingId, postedLikeList);
     }
 
     @Transactional
     public WeddingChannel participateWeddingChannel(final Long userId, String weddingCode) {
-        Profile profile = profileRepository.findByUserId(userId)
+        Profile profile = profileRepository.findByUserIdByQuerydsl(userId)
                 .orElseThrow(EntityNotFoundException::new);
         Wedding wedding = weddingRepository.findByWeddingCode((weddingCode))
                 .orElseThrow(EntityNotFoundException::new);

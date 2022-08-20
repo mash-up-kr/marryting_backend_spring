@@ -8,7 +8,11 @@ import mashup.spring.jsmr.adapter.api.weddingChannel.dto.WeddingChannelGuestResp
 import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.weddingChannel.WeddingChannelApplicationService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
@@ -21,14 +25,15 @@ public class WeddingChannelController {
     private final WeddingChannelApplicationService weddingChannelApplicationService;
 
     @ApiOperation("결혼식에 참석하는 소개팅 리스트 조회")
-    @GetMapping("/guests")
-    public ApiResponse<List<WeddingChannelGuestResponseDTO>> getWeddingGuests(@ApiIgnore @LoginUserId Long userId) {
-        return ApiResponse.success(HttpStatus.OK, weddingChannelApplicationService.getWeddingGuests(userId));
+    @GetMapping("/{weddingId}/guests")
+    public ApiResponse<List<WeddingChannelGuestResponseDTO>> getWeddingGuests(@ApiIgnore @LoginUserId Long userId,
+                                                                              @PathVariable Long weddingId) {
+        return ApiResponse.success(HttpStatus.OK, weddingChannelApplicationService.getWeddingGuests(userId, weddingId));
     }
 
     @ApiOperation("웨딩코드로 결혼식에 참여")
     @PostMapping("/{weddingCode}")
-    public ApiResponse<ParticipateWeddingChannelResponseDTO> participateWeddingChannel(@ApiIgnore @LoginUserId Long userId, @PathVariable String weddingCode){
-        return ApiResponse.success(HttpStatus.OK,weddingChannelApplicationService.participateWeddingChannel(userId, weddingCode));
+    public ApiResponse<ParticipateWeddingChannelResponseDTO> participateWeddingChannel(@ApiIgnore @LoginUserId Long userId, @PathVariable String weddingCode) {
+        return ApiResponse.success(HttpStatus.OK, weddingChannelApplicationService.participateWeddingChannel(userId, weddingCode));
     }
 }
