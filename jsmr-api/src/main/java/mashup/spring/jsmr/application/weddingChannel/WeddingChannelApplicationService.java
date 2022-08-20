@@ -21,6 +21,6 @@ public class WeddingChannelApplicationService {
     }
 
     public void participateWeddingChannel(final Long userId, String weddingCode) {
-        weddingChannelService.participateWeddingChannel(userId, weddingCode);
+        weddingChannelService.participateWeddingChannel(userId, weddingCode.toUpperCase());
     }
 }
