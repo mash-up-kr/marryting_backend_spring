@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: ENC(5/jTaG1GhEwmE5WIA0Js7OAHJRGCguYLv7D2NKbCsQdB5bcy80B2sRwMSprEikFOyAvL9Dl0oIaSWIMoTknzXSMwOuFEVkNwHkMXGQ1JW3jcR4/6dEXqGUBS7WzVZHzL8AllQhpz8SJtvv33vXnjVpUPSOLSeMo6UtxN+nLoQrpVpWZjLb5MPjNeD57O9k/E90h0zC8ZRRXBo4NI5go0Tw==)
+    username: ENC(3pckAzp1HGF7uRpjWEsPqPmXTR7Evj44YB5unT7pQ5qu91bYc/AUs++8ulYQihLf)
+    password: ENC(SIBoSGDHirlXgK06o/o7P++8FAeF3P8EEfJNMftt4BNPSinXO88rnDhIlxKy9uiH)
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+jwt:
+  access_token_secretKey: asdaskdadjawldjalwdkjlakwdjwaldjalwdwaAWdawdawdAWEWAeawe
+  access_token_validTime: 1800000000
+
+

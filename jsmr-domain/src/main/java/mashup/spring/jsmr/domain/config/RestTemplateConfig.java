@@ -1,4 +1,4 @@
-package mashup.spring.jsmr.adapter.infrastructure.config;
+package mashup.spring.jsmr.domain.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

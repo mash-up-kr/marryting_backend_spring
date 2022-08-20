@@ -1,4 +1,5 @@
 rootProject.name = 'jsmr'
 include 'jsmr-api'
 include 'jsmr-domain'
+include 'jsmr-admin'
 
