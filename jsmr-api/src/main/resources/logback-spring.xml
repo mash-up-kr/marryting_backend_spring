@@ -8,6 +8,9 @@
     <property name="LOG_PATTERN"
               value="${LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){blue} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
+    <springProperty name="AWS_ACCESS_KEY" source="cloud.aws.credentials.accessKey"/>
+    <springProperty name="AWS_SECRET_KEY" source="cloud.aws.credentials.secretKey"/>
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>${LOG_PATTERN}</Pattern>
@@ -15,6 +18,9 @@
     </appender>
 
     <appender name="aws_cloud_watch_log" class="ca.pjer.logback.AwsLogsAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
         <layout>
             <pattern>[%thread] [%date] [%level] [%file:%line] - %msg%n</pattern>
         </layout>
@@ -25,15 +31,13 @@
         <maxFlushTimeMillis>30000</maxFlushTimeMillis>
         <maxBlockTimeMillis>5000</maxBlockTimeMillis>
         <retentionTimeDays>0</retentionTimeDays>
+        <accessKeyId>${AWS_ACCESS_KEY}</accessKeyId>
+        <secretAccessKey>${AWS_SECRET_KEY}</secretAccessKey>
     </appender>
 
     <springProfile name="local,dev">
         <root level="info">
             <appender-ref ref="CONSOLE"/>
-        </root>
-
-        <root level="error">
-            <appender-ref ref="aws_cloud_watch_log"/>
         </root>
 
         <logger name="java.sql" level="warn" additivity="false">
@@ -42,6 +46,7 @@
 
         <logger name="jdbc" level="error" additivity="false">
             <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="aws_cloud_watch_log"/>
         </logger>
 
         <logger name="org.hibernate.SQL" level="info" additivity="false">
@@ -57,6 +62,11 @@
 
         <logger name="mashup.spring.jsmr" level="debug" additivity="false">
             <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <logger name="mashup.spring.jsmr" level="error" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="aws_cloud_watch_log"/>
         </logger>
     </springProfile>
 
@@ -88,5 +98,4 @@
             <appender-ref ref="CONSOLE"/>
         </logger>
     </springProfile>
-
 </configuration>

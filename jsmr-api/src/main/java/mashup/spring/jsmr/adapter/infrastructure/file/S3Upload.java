@@ -1,7 +1,6 @@
 package mashup.spring.jsmr.adapter.infrastructure.file;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.domain.file.FileUploader;
