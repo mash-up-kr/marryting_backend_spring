@@ -6,6 +6,7 @@ import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannelRepository;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +41,20 @@ public class WeddingService {
 
     @Transactional
     public void createWedding(Wedding wedding) {
+        while (true) {
+            String newCode = createWeddingCode();
+            //validation
+            if (!weddingRepository.existsByWeddingCode(newCode)) {
+                wedding.applyWeddingCode(newCode);
+                break;
+            }
+        }
+
         weddingRepository.save(wedding);
+    }
+
+    public String createWeddingCode() {
+        String generatedCode = RandomStringUtils.randomAlphanumeric(6);
+        return generatedCode.toUpperCase();
     }
 }

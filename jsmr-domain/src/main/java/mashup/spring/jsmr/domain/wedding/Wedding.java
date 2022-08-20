@@ -21,6 +21,11 @@ public class Wedding extends BaseEntity {
 
     private String brideName;
 
+    private String weddingCode;
+
     private LocalDate weddingDate;
 
+    public void applyWeddingCode(String weddingCode) {
+        this.weddingCode = weddingCode;
+    }
 }
