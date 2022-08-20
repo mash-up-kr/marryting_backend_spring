@@ -24,7 +24,7 @@ public class ProfileService {
     }
 
     public Profile getProfile(final Long userId){
-        return profileRepository.findByUserId(userId).orElseThrow(EntityNotFoundException::new);
+        return profileRepository.findByUserIdByQuerydsl(userId).orElseThrow(EntityNotFoundException::new);
     }
 
     public boolean existProfile(final User user){

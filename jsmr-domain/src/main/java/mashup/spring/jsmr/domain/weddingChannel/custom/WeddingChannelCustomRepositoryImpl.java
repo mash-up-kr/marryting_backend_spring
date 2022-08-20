@@ -22,11 +22,13 @@ public class WeddingChannelCustomRepositoryImpl extends QuerydslRepositorySuppor
     }
 
     @Override
-    public List<WeddingChannel> findByWeddingGuestsByFetch(Profile profile) {
+    public List<WeddingChannel> findByWeddingGuestsByFetch(Profile profile, Long weddingId, List<Long> likedList) {
         return setFetchJoinQuery()
                 .where(
+                        weddingChannel.wedding.id.eq(weddingId),
                         weddingChannel.profile.gender.ne(profile.getGender()),
-                        weddingChannel.profile.id.ne(profile.getId())
+                        weddingChannel.profile.id.ne(profile.getId()),
+                        weddingChannel.profile.id.notIn(likedList)
                 )
                 .fetch();
     }

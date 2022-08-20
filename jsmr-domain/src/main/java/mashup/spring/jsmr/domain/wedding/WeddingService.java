@@ -24,10 +24,8 @@ public class WeddingService {
     private final ProfileRepository profileRepository;
 
     public List<Wedding> getWeddingParticipateList(Long userId) {
-        Profile profile = profileRepository.findByUserIdByQuerydsl(userId);
-        if (profile == null) {
-            throw new EntityNotFoundException();
-        }
+        Profile profile = profileRepository.findByUserIdByQuerydsl(userId)
+                .orElseThrow(EntityNotFoundException::new);
 
         return weddingChannelRepository.findAllByProfile(profile).stream()
                 .map(WeddingChannel::getWedding)
