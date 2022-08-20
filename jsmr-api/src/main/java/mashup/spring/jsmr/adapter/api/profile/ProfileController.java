@@ -10,6 +10,7 @@ import mashup.spring.jsmr.adapter.infrastructure.interceptor.LoginUserId;
 import mashup.spring.jsmr.application.profile.ProfileApplicationService;
 import mashup.spring.jsmr.domain.file.FileUploader;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.List;
 
 @RequestMapping("/api/v1/profile")
 @RequiredArgsConstructor
@@ -45,10 +46,17 @@ public class ProfileController {
         return ApiResponse.success(HttpStatus.CREATED, profileApplicationService.createProfile(userId, createProfileRequestDTO));
     }
 
-    @ApiOperation("프로필 이미지 업로드 (Multipart 배열로 보내기)")
-    @PostMapping("/image")
-    public ApiResponse<List<String>> uploadProfileImage(@RequestParam("images") MultipartFile[] multipartFile,
-                                                        @RequestParam String fileSize) throws IOException {
-        return ApiResponse.success(HttpStatus.CREATED, fileUploader.multiUpload(multipartFile, fileSize));
+
+    @ApiOperation("프로필 이미지 업로드 (application/octet-stream)")
+    @PostMapping(value = "/image",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_OCTET_STREAM_VALUE
+    )
+    public ApiResponse<String> uploadProfileImage(HttpServletRequest httpServletRequest,
+                                                  @RequestParam String fileSize) throws IOException {
+        return ApiResponse.success(
+                HttpStatus.CREATED,
+                fileUploader.upload(httpServletRequest.getInputStream(), fileSize)
+        );
     }
 }
