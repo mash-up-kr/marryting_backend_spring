@@ -8,11 +8,9 @@ import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.adapter.api.answer.dto.AnswerResponseDTO;
 import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.adapter.util.AgeUtil;
-import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,7 +67,7 @@ public class ProfileDetailResponseDTO {
         return ProfileDetailResponseDTO.builder()
                 .profileId(profile.getId())
                 .profileName(profile.getName())
-                .age(AgeUtil.CalculateUserAge(profile.getBirth()))
+                .age(AgeUtil.calculateUserAge(profile.getBirth()))
                 .address(profile.getAddress())
                 .career(profile.getCareer())
                 .keywords(profile.getProfileKeywords().stream()

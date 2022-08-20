@@ -13,7 +13,6 @@ import mashup.spring.jsmr.domain.profile.Gender;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,7 +81,7 @@ public class LikeProfilesResponseDTO {
                 .name(profile.getName())
                 .gender(profile.getGender())
                 .address(profile.getAddress())
-                .age(AgeUtil.CalculateUserAge(profile.getBirth()))
+                .age(AgeUtil.calculateUserAge(profile.getBirth()))
                 .career(profile.getCareer())
                 .answers(profile.getAnswers().stream()
                         .map(AnswerResponseDTO::from)
