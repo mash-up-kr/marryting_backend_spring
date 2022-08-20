@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProfileDetailResponseDTO {
 
-    @ApiModelProperty(value = "프로필 Id", example = "1L")
+    @ApiModelProperty(value = "프로필 Id", example = "1")
     private Long profileId;
 
     @ApiModelProperty(value = "프로필 이름", example = "규니")

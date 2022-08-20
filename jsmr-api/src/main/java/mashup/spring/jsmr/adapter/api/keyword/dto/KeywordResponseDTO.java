@@ -11,7 +11,7 @@ import mashup.spring.jsmr.domain.keyword.Keyword;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class KeywordResponseDTO {
 
-    @ApiModelProperty(value = "키워드 Id", example = "1L")
+    @ApiModelProperty(value = "키워드 Id", example = "1")
     private Long keywordId;
 
     @ApiModelProperty(value = "키워드", example = "유머 있는")

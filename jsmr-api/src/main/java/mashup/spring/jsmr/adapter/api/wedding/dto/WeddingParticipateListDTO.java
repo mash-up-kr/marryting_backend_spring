@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class WeddingParticipateListDTO {
 
-    @ApiModelProperty(value = "웨딩 Id", example = "1L")
+    @ApiModelProperty(value = "웨딩 Id", example = "1")
     private Long weddingId;
 
     @ApiModelProperty(value = "신랑 이름", example = "자바")

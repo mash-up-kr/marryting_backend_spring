@@ -11,7 +11,7 @@ import mashup.spring.jsmr.domain.answer.Answer;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AnswerResponseDTO {
 
-    @ApiModelProperty(value = "질문 Id", example = "1L")
+    @ApiModelProperty(value = "질문 Id", example = "1")
     private Long questionId;
 
     @ApiModelProperty(value = "질문에 대답한 것", example = "생각 정리하고 이야기")

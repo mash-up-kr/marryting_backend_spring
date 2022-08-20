@@ -12,11 +12,11 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CreateLikeRequestDTO {
 
-    @ApiModelProperty(value = "보낸사람 profileId", example = "1L")
+    @ApiModelProperty(value = "보낸사람 profileId", example = "1")
     @NotNull
     private Long senderProfileId;
 
-    @ApiModelProperty(value = "받는사람 profileId", example = "2L")
+    @ApiModelProperty(value = "받는사람 profileId", example = "2")
     @NotNull
     private Long receiverProfileId;
 
