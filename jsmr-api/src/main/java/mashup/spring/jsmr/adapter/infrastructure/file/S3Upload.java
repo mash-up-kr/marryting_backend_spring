@@ -1,5 +1,6 @@
 package mashup.spring.jsmr.adapter.infrastructure.file;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class S3Upload implements FileUploader {
     @Value("${cloud.aws.s3.dir}")
     private String dir;
 
-    private final AmazonS3Client s3Client;
+    private final AmazonS3 amazonS3;
 
     @Override
     public String upload(MultipartFile multipartFile) throws IOException {
@@ -30,8 +31,8 @@ public class S3Upload implements FileUploader {
         ObjectMetadata objMeta = new ObjectMetadata();
         objMeta.setContentLength(multipartFile.getInputStream().available());
 
-        s3Client.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
+        amazonS3.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
 
-        return s3Client.getUrl(bucket, dir + s3FileName).toString();
+        return amazonS3.getUrl(bucket, dir + s3FileName).toString();
     }
 }
