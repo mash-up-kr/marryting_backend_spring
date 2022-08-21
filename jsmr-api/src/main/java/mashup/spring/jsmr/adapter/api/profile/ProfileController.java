@@ -27,7 +27,7 @@ public class ProfileController {
     private final FileUploader fileUploader;
 
     @ApiOperation("프로필 상세 조회")
-    @GetMapping("/{profileId}/detail")
+    @GetMapping("/{profileId}")
     public ApiResponse<ProfileDetailResponseDTO> getProfileDetail(@PathVariable Long profileId) {
         return ApiResponse.success(HttpStatus.OK, profileApplicationService.getDetailProfileById(profileId));
     }

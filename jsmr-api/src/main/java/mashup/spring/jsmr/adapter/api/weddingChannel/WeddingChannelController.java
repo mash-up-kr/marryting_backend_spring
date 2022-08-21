@@ -24,7 +24,7 @@ public class WeddingChannelController {
 
     private final WeddingChannelApplicationService weddingChannelApplicationService;
 
-    @ApiOperation("결혼식에 참석하는 소개팅 리스트 조회")
+    @ApiOperation("결혼식에 참석하는 하객 리스트 조회")
     @GetMapping("/{weddingId}/guests")
     public ApiResponse<List<WeddingChannelGuestResponseDTO>> getWeddingGuests(@ApiIgnore @LoginUserId Long userId,
                                                                               @PathVariable Long weddingId) {
