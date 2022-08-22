@@ -18,9 +18,6 @@ public class S3Upload implements FileUploader {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    @Value("${cloud.aws.s3.dir}")
-    private String dir;
-
     private final AmazonS3 amazonS3;
 
     @Override
@@ -32,6 +29,6 @@ public class S3Upload implements FileUploader {
 
         amazonS3.putObject(bucket, s3FileName, multipartFile.getInputStream(), objMeta);
 
-        return amazonS3.getUrl(bucket, dir + s3FileName).toString();
+        return amazonS3.getUrl(bucket, s3FileName).toString();
     }
 }
