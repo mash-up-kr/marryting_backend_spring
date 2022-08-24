@@ -33,6 +33,9 @@ public class ProfileDetailResponseDTO {
     @ApiModelProperty(value = "직업", example = "개발자")
     private String career;
 
+    @ApiModelProperty(value = "성별", example = "MALE")
+    private String gender;
+
     @ApiModelProperty(value = "키워드 리스트", example = "키워드 리스트")
     private List<KeywordResponseDTO> keywords;
 
@@ -49,6 +52,7 @@ public class ProfileDetailResponseDTO {
             Integer age,
             String address,
             String career,
+            String gender,
             List<KeywordResponseDTO> keywords,
             List<AnswerResponseDTO> answers,
             List<String> pictures
@@ -58,6 +62,7 @@ public class ProfileDetailResponseDTO {
         this.age = age;
         this.address = address;
         this.career = career;
+        this.gender = gender;
         this.keywords = keywords;
         this.answers = answers;
         this.pictures = pictures;
@@ -69,6 +74,7 @@ public class ProfileDetailResponseDTO {
                 .profileName(profile.getName())
                 .age(AgeUtil.calculateUserAge(profile.getBirth()))
                 .address(profile.getAddress())
+                .gender(profile.getGender().name())
                 .career(profile.getCareer())
                 .keywords(profile.getProfileKeywords().stream()
                         .map(p -> KeywordResponseDTO.from(p.getKeyword()))
