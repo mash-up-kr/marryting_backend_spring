@@ -29,12 +29,12 @@ public class UserApplicationService {
         );
     }
 
-    public CreateUserWithProfileResponseDTO signup(CreateUserWithProfileRequestDTO request) {
+    public LoginResponseDTO signup(CreateUserWithProfileRequestDTO request) {
         User user = userService.signup(request.getOauthType(), request.getThirdPartyToken());
-        CreateProfileResponseDTO profile = profileApplicationService.createProfile(user.getId(), request.getProfile());
-        return CreateUserWithProfileResponseDTO.from(
+        ProfileDetailResponseDTO profile = profileApplicationService.createProfile(user.getId(), request.getProfile());
+        return LoginResponseDTO.from(
                 jwtProvider.createAccessToken(user.getId()),
-                profile.getProfileId()
+                profile
         );
     }
 }

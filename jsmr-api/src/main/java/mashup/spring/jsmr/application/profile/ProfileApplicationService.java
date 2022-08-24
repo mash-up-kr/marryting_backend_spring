@@ -3,7 +3,6 @@ package mashup.spring.jsmr.application.profile;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.answer.dto.CreateAnswerRequestDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileRequestDTO;
-import mashup.spring.jsmr.adapter.api.profile.dto.CreateProfileResponseDTO;
 import mashup.spring.jsmr.adapter.api.profile.dto.ProfileDetailResponseDTO;
 import mashup.spring.jsmr.adapter.api.profileKeyword.dto.CreateProfileKeywordRequestDTO;
 import mashup.spring.jsmr.domain.answer.Answer;
@@ -44,7 +43,7 @@ public class ProfileApplicationService {
     }
 
     @Transactional
-    public CreateProfileResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
+    public ProfileDetailResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
         User user = userService.findById(userId);
 
         if (profileService.existProfile(user)) {
@@ -74,6 +73,6 @@ public class ProfileApplicationService {
 
         answerService.saveAll(answers);
 
-        return CreateProfileResponseDTO.from(profile);
+        return ProfileDetailResponseDTO.from(profile);
     }
 }

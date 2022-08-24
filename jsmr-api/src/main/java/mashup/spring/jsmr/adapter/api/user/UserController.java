@@ -32,7 +32,7 @@ public class UserController {
 
     @ApiOperation("프로필 생성 및 회원가입")
     @PostMapping("/signup")
-    public ApiResponse<CreateUserWithProfileResponseDTO> signup(@RequestBody CreateUserWithProfileRequestDTO request) {
+    public ApiResponse<LoginResponseDTO> signup(@RequestBody CreateUserWithProfileRequestDTO request) {
         return ApiResponse.success(
                 HttpStatus.CREATED,
                 userApplicationService.signup(request)
