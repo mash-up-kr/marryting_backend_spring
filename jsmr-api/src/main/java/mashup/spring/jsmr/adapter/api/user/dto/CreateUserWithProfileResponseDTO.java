@@ -13,7 +13,7 @@ public class CreateUserWithProfileResponseDTO {
     @ApiModelProperty(value = "jwt 토큰", example = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiZXhwIjoxNjYxNjU0NzY5fQ.Mfeqtuw2QIiiY8OfFSyPOIT4l5Jwq-CM1PwxYndFh8I")
     private String accessToken;
 
-    @ApiModelProperty(value = "프로필 Id", example = "1L")
+    @ApiModelProperty(value = "프로필 Id", example = "1")
     private Long profileId;
 
     @Builder
