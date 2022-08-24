@@ -46,9 +46,10 @@ public class WeddingChannelService {
     public WeddingChannel participateWeddingChannel(final Long userId, String weddingCode) {
         Profile profile = profileRepository.findByUserIdByQuerydsl(userId)
                 .orElseThrow(EntityNotFoundException::new);
-        Wedding wedding = weddingRepository.findByWeddingCode((weddingCode))
+        Wedding wedding = weddingRepository.findByWeddingCode(weddingCode)
                 .orElseThrow(EntityNotFoundException::new);
-        if (weddingChannelRepository.existsWeddingChannelByProfile(profile)) {
+
+        if (weddingChannelRepository.existsWeddingChannelByProfileAndWedding(profile, wedding)) {
             throw new DuplicatedException();
         };
 

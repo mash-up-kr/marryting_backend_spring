@@ -22,6 +22,8 @@ public class WeddingChannelApplicationService {
     }
 
     public ParticipateWeddingChannelResponseDTO participateWeddingChannel(final Long userId, String weddingCode) {
-        return ParticipateWeddingChannelResponseDTO.from(weddingChannelService.participateWeddingChannel(userId, weddingCode.toUpperCase()).getWedding());
+        return ParticipateWeddingChannelResponseDTO.from(
+                weddingChannelService.participateWeddingChannel(userId, weddingCode.toUpperCase()).getWedding()
+        );
     }
 }
