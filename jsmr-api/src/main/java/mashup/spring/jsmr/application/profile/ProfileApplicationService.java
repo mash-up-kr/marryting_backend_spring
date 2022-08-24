@@ -10,9 +10,11 @@ import mashup.spring.jsmr.domain.answer.AnswerService;
 import mashup.spring.jsmr.domain.exception.DuplicatedException;
 import mashup.spring.jsmr.domain.keyword.Keyword;
 import mashup.spring.jsmr.domain.keyword.KeywordService;
+import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.picture.PictureService;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileService;
+import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeywordService;
 import mashup.spring.jsmr.domain.user.User;
 import mashup.spring.jsmr.domain.user.UserService;
@@ -43,12 +45,11 @@ public class ProfileApplicationService {
     }
 
     @Transactional
-    public ProfileDetailResponseDTO createProfile(Long userId, CreateProfileRequestDTO createProfileRequestDTO) {
-        User user = userService.findById(userId);
-
+    public ProfileDetailResponseDTO createProfile(User user, CreateProfileRequestDTO createProfileRequestDTO) {
         if (profileService.existProfile(user)) {
             throw new DuplicatedException();
         }
+
         // profile save
         Profile profile = profileService.createProfile(createProfileRequestDTO.toEntity(user));
 
@@ -58,10 +59,10 @@ public class ProfileApplicationService {
                         .map(CreateProfileKeywordRequestDTO::getKeywordId)
                         .collect(Collectors.toList())
         );
-        profileKeywordService.saveAll(choosedKeywords, profile);
+        List<ProfileKeyword> saveProfileKeywords = profileKeywordService.saveAll(choosedKeywords, profile);
 
         // profile picture save
-        pictureService.saveAll(createProfileRequestDTO.getPictures(), profile);
+        List<Picture> savePictures = pictureService.saveAll(createProfileRequestDTO.getPictures(), profile);
 
         // answer save
         List<CreateAnswerRequestDTO> createAnswerRequestDTOS = createProfileRequestDTO.getAnswers();
@@ -71,8 +72,8 @@ public class ProfileApplicationService {
             answers.add(answer);
         }
 
-        answerService.saveAll(answers);
+        List<Answer> saveAnswers = answerService.saveAll(answers);
 
-        return ProfileDetailResponseDTO.from(profile);
+        return ProfileDetailResponseDTO.from(profile, saveProfileKeywords, saveAnswers, savePictures);
     }
 }

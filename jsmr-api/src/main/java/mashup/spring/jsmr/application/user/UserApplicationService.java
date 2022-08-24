@@ -31,7 +31,7 @@ public class UserApplicationService {
 
     public LoginResponseDTO signup(CreateUserWithProfileRequestDTO request) {
         User user = userService.signup(request.getOauthType(), request.getThirdPartyToken());
-        ProfileDetailResponseDTO profile = profileApplicationService.createProfile(user.getId(), request.getProfile());
+        ProfileDetailResponseDTO profile = profileApplicationService.createProfile(user, request.getProfile());
         return LoginResponseDTO.from(
                 jwtProvider.createAccessToken(user.getId()),
                 profile

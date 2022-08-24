@@ -14,7 +14,7 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     @Transactional
-    public void saveAll(List<Answer> answers) {
-        answerRepository.saveAll(answers);
+    public List<Answer> saveAll(List<Answer> answers) {
+        return answerRepository.saveAll(answers);
     }
 }

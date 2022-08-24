@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.adapter.api.answer.dto.AnswerResponseDTO;
 import mashup.spring.jsmr.adapter.api.keyword.dto.KeywordResponseDTO;
 import mashup.spring.jsmr.adapter.util.AgeUtil;
+import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -83,6 +85,29 @@ public class ProfileDetailResponseDTO {
                         .map(AnswerResponseDTO::from)
                         .collect(Collectors.toList()))
                 .pictures(profile.getPictures().stream()
+                        .map(Picture::getProfileUrl)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+    public static ProfileDetailResponseDTO from(Profile profile,
+                                                List<ProfileKeyword> profileKeywords,
+                                                List<Answer> answers,
+                                                List<Picture> pictures) {
+        return ProfileDetailResponseDTO.builder()
+                .profileId(profile.getId())
+                .profileName(profile.getName())
+                .age(AgeUtil.calculateUserAge(profile.getBirth()))
+                .address(profile.getAddress())
+                .gender(profile.getGender().name())
+                .career(profile.getCareer())
+                .keywords(profileKeywords.stream()
+                        .map(profileKeyword -> KeywordResponseDTO.from(profileKeyword.getKeyword()))
+                        .collect(Collectors.toList()))
+                .answers(answers.stream()
+                        .map(AnswerResponseDTO::from)
+                        .collect(Collectors.toList()))
+                .pictures(pictures.stream()
                         .map(Picture::getProfileUrl)
                         .collect(Collectors.toList()))
                 .build();
