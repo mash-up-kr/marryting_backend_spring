@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.answer.Answer;
 import mashup.spring.jsmr.domain.picture.Picture;
@@ -22,7 +21,6 @@ import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
