@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("api/v1/questionnaire")
+@RequestMapping("/api/v1/questionnaire")
 @RequiredArgsConstructor
 @RestController
 public class QuestionnaireController {

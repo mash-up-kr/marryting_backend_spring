@@ -36,6 +36,8 @@ public class SecurityConfig {
                 "/api/v1/like/**",
                 "/api/v1/users/signup",
                 "/api/v1/users/login",
+                "/api/v1/keywords",
+                "/api/v1/questionnaire",
                 "/api/v1/test" // 임시
         );
     }
