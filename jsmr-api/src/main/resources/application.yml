@@ -22,3 +22,6 @@ cloud:
       static: ap-northeast-2
     stack:
       auto: false
+
+kakao:
+  profile_url: https://kapi.kakao.com/v2/user/me

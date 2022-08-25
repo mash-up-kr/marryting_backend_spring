@@ -6,11 +6,13 @@ import mashup.spring.jsmr.domain.infra.RestTemplateService;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,23 +24,29 @@ import java.util.Map;
 public class OAuthService {
 
     private final RestTemplateService restTemplateService;
+    private final WebClient kaKaoWebClient;
+    private final KakaoProperty kakaoProperty;
 
-    private static final String KAKAO_AUTH_URL = "https://kapi.kakao.com/v1/user/access_token_info";
+    private static final String KAKAO_AUTH_URL = "https://kapi.kakao.com/v2/user/me";
     private static final String HEADER_AUTHORIZATION = "Authorization";
     private static final String BEARER_WITH_WHITESPACE = "Bearer ";
 
     private static final String APPLE_SUB_KEY = "sub";
 
-    public KakaoAuthResponse verifyKakao(String accessToken) {
-        Map<String, List<String>> headers = new HashMap<>();
-        headers.put(HEADER_AUTHORIZATION, List.of(BEARER_WITH_WHITESPACE + accessToken));
-        MultiValueMap<String, String> header = CollectionUtils.toMultiValueMap(headers);
-        ResponseEntity<KakaoAuthResponse> response = restTemplateService.get(
-                KAKAO_AUTH_URL,
-                new HttpHeaders(header),
-                KakaoAuthResponse.class
-        );
-        return response.getBody();
+    public String verifyKakao(String accessToken) {
+        try {
+            var account = kaKaoWebClient
+                    .post()
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .header(HEADER_AUTHORIZATION, BEARER_WITH_WHITESPACE + accessToken)
+                    .retrieve()
+                    .bodyToMono(KakaoAuthResponse.class)
+                    .block();
+
+            return account.getId();
+        } catch (Exception e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String verifyApple(String identityToken) {

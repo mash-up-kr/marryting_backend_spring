@@ -20,7 +20,7 @@ public class UserService {
 
     public User login(String socialType, String thirdPartyToken) {
         if (socialType.equals(SocialType.KAKAO.name())) {
-            String kakaoId = authService.verifyKakao(thirdPartyToken).getKakaoId();
+            String kakaoId = authService.verifyKakao(thirdPartyToken);
             return userRepository.findUserBySocialIdAndSocialType(kakaoId, SocialType.KAKAO)
                     .orElseThrow(EntityNotFoundException::new);
         } else if (socialType.equals(SocialType.APPLE.name())) {
@@ -34,7 +34,7 @@ public class UserService {
     @Transactional
     public User signup(String socialType, String thirdPartyToken) {
         if (socialType.equals(SocialType.KAKAO.name())) {
-            String kakaoId = authService.verifyKakao(thirdPartyToken).getKakaoId();
+            String kakaoId = authService.verifyKakao(thirdPartyToken);
             userRepository.findUserBySocialIdAndSocialType(kakaoId, SocialType.KAKAO)
                     .ifPresent(user -> {
                         throw new BusinessException(ExceptionCode.EXIST_ENTITY);
