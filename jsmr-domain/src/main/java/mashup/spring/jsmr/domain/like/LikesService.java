@@ -42,6 +42,13 @@ public class LikesService {
 
         likes.toMatch();
         return createMyLike(senderId, receiverId, weddingId, message, TRUE);
+//
+//        return likesRepository.findBySenderIdAndReceiverId(receiverId, senderId)
+//                .map(likes -> {
+//                    likes.toMatch();
+//                    return createMyLike(senderId, receiverId, weddingId, message, TRUE);
+//                })
+//                 .orElse(createMyLike(senderId, receiverId, weddingId, message, FALSE));
     }
 
     private Likes createMyLike(final Long senderId,
