@@ -1,8 +1,0 @@
-POST {{api}}/api/v1/like
-Content-Type: application/json
-
-{
-  "message": "너가 좋아~",
-  "receiverProfileId": 2,
-  "senderProfileId": 1
-}

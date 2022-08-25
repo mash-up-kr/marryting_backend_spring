@@ -3,7 +3,8 @@ POST {{api}}/api/v1/like
 Content-Type: application/json
 
 {
-  "message": "나두 좋아~",
-  "receiverProfileId": 1,
-  "senderProfileId": 2
+  "message": "좋아해요 ㅎㅎㅎㅎ",
+  "receiverProfileId": 2,
+  "senderProfileId": 1,
+  "weddingId": 2
 }

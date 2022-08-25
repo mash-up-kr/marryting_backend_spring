@@ -20,6 +20,10 @@ public class CreateLikeRequestDTO {
     @NotNull
     private Long receiverProfileId;
 
+    @ApiModelProperty(value = "받는사람 weddingId", example = "1")
+    @NotNull
+    private Long weddingId;
+
     @ApiModelProperty(value = "좋아요 보낼 때 보내는 메세지", example = "너가 좋아~")
     @NotEmpty
     private String message;

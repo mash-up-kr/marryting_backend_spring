@@ -14,7 +14,12 @@ public class LikesApplicationService {
     private final LikesService likesService;
 
     public CreateLikeResponseDTO createLike(CreateLikeRequestDTO requestDTO) {
-        Likes likes = likesService.createLike(requestDTO.getSenderProfileId(), requestDTO.getReceiverProfileId(), requestDTO.getMessage());
+        Likes likes = likesService.createLike(
+                requestDTO.getSenderProfileId(),
+                requestDTO.getReceiverProfileId(),
+                requestDTO.getWeddingId(),
+                requestDTO.getMessage()
+        );
         return CreateLikeResponseDTO.from(likes);
     }
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface LikesRepository extends JpaRepository<Likes, Long>, LikeCustomRepository {
 
-    Optional<Likes> findBySenderIdAndReceiverId(Long senderProfileId, Long receiverProfileId);
+    Likes findBySenderIdAndReceiverId(Long senderProfileId, Long receiverProfileId);
 
     List<Likes> findAllBySender(Profile sender);
 }
