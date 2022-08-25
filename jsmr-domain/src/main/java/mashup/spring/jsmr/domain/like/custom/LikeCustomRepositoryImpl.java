@@ -27,12 +27,10 @@ public class LikeCustomRepositoryImpl extends QuerydslRepositorySupport implemen
     @Override
     public List<Likes> findAllBySenderIdAndIsMatch(Long profileId, Long weddingId, Boolean isMatch) {
         return setReceiverFetchJoinQuery()
-                .innerJoin(weddingChannel)
-                .on(weddingChannel.profile.id.eq(profile.id))
                 .where(
                         likes.sender.id.eq(profileId),
                         likes.isMatch.eq(isMatch),
-                        weddingChannel.wedding.id.eq(weddingId)
+                        likes.wedding.id.eq(weddingId)
                 )
                 .fetch();
     }

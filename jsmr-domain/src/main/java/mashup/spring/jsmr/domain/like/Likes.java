@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.profile.Profile;
+import mashup.spring.jsmr.domain.wedding.Wedding;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,6 +29,10 @@ public class Likes extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
     private Profile receiver;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wedding_id")
+    private Wedding wedding;
 
     private String message;
 
