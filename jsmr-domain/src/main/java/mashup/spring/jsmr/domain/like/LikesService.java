@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -23,17 +20,6 @@ public class LikesService {
 
     private final LikesRepository likesRepository;
     private final ProfileRepository profileRepository;
-
-    public List<Profile> getMyLikesProfile(final Long profileId) {
-        return likesRepository.findAllBySenderIdAndIsMatch(profileId, FALSE).stream()
-                .map(Likes::getReceiver)
-                .collect(Collectors.toList());
-    }
-
-    public Map<Profile, String> getMyMatchingProfiles(final Long profileId) {
-        return likesRepository.findMatchingProfileWithMessage(profileId, TRUE).stream()
-                .collect(Collectors.toMap(Likes::getSender, Likes::getMessage));
-    }
 
     @Transactional
     public Likes createLike(final Long profileId, final Long partnerProfileId, String message) {

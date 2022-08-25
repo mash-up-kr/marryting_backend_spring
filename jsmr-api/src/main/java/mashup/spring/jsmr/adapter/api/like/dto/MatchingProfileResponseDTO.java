@@ -50,9 +50,6 @@ public class MatchingProfileResponseDTO {
     @ApiModelProperty(value = "좋아요 보낼 때 보낸 메세지", example = "너가 좋아~")
     private String message;
 
-    @ApiModelProperty(value = "좋아요 여부", example = "TRUE or FALSE")
-    private Boolean isLike;
-
     @Builder
     public MatchingProfileResponseDTO(
             Long profileId,
@@ -64,7 +61,6 @@ public class MatchingProfileResponseDTO {
             List<AnswerResponseDTO> answers,
             List<KeywordResponseDTO> keywords,
             List<String> pictures,
-            Boolean isLike,
             String message
     ) {
         this.profileId = profileId;
@@ -76,7 +72,6 @@ public class MatchingProfileResponseDTO {
         this.answers = answers;
         this.keywords = keywords;
         this.pictures = pictures;
-        this.isLike = isLike;
         this.message = message;
     }
 
@@ -99,7 +94,6 @@ public class MatchingProfileResponseDTO {
                 .pictures(profile.getPictures().stream()
                         .map(Picture::getProfileUrl)
                         .collect(Collectors.toList()))
-                .isLike(Boolean.TRUE)
                 .message(message)
                 .build();
     }

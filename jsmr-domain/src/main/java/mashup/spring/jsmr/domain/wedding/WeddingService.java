@@ -2,6 +2,8 @@ package mashup.spring.jsmr.domain.wedding;
 
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
+import mashup.spring.jsmr.domain.like.Likes;
+import mashup.spring.jsmr.domain.like.LikesRepository;
 import mashup.spring.jsmr.domain.profile.Profile;
 import mashup.spring.jsmr.domain.profile.ProfileRepository;
 import mashup.spring.jsmr.domain.weddingChannel.WeddingChannel;
@@ -12,7 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -22,6 +28,7 @@ public class WeddingService {
     private final WeddingChannelRepository weddingChannelRepository;
     private final WeddingRepository weddingRepository;
     private final ProfileRepository profileRepository;
+    private final LikesRepository likesRepository;
 
     public List<Wedding> getWeddingParticipateList(Long userId) {
         Profile profile = profileRepository.findByUserIdByQuerydsl(userId)
@@ -54,5 +61,16 @@ public class WeddingService {
     public String createWeddingCode() {
         String generatedCode = RandomStringUtils.randomAlphanumeric(6);
         return generatedCode.toUpperCase();
+    }
+
+    public List<Profile> getMyLikesProfile(final Long profileId, final Long weddingId) {
+        return likesRepository.findAllBySenderIdAndIsMatch(profileId, weddingId, FALSE).stream()
+                .map(Likes::getReceiver)
+                .collect(Collectors.toList());
+    }
+
+    public Map<Profile, String> getMyMatchingProfiles(final Long profileId, final Long weddingId) {
+        return likesRepository.findMatchingProfileWithMessage(profileId, weddingId, TRUE).stream()
+                .collect(Collectors.toMap(Likes::getSender, Likes::getMessage));
     }
 }

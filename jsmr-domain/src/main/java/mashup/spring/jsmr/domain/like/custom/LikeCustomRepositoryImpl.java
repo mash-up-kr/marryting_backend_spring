@@ -5,6 +5,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import mashup.spring.jsmr.domain.like.Likes;
 import mashup.spring.jsmr.domain.like.QLikes;
 import mashup.spring.jsmr.domain.profile.QProfile;
+import mashup.spring.jsmr.domain.weddingChannel.QWeddingChannel;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class LikeCustomRepositoryImpl extends QuerydslRepositorySupport implemen
     private final JPAQueryFactory jpaQueryFactory;
 
     private final QLikes likes = QLikes.likes;
+    private final QWeddingChannel weddingChannel = QWeddingChannel.weddingChannel;
 
     private final QProfile profile = QProfile.profile;
 
@@ -23,21 +25,27 @@ public class LikeCustomRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public List<Likes> findAllBySenderIdAndIsMatch(Long profileId, Boolean isMatch) {
+    public List<Likes> findAllBySenderIdAndIsMatch(Long profileId, Long weddingId, Boolean isMatch) {
         return setReceiverFetchJoinQuery()
+                .innerJoin(weddingChannel)
+                .on(weddingChannel.profile.id.eq(profile.id))
                 .where(
                         likes.sender.id.eq(profileId),
-                        likes.isMatch.eq(isMatch)
+                        likes.isMatch.eq(isMatch),
+                        weddingChannel.wedding.id.eq(weddingId)
                 )
                 .fetch();
     }
 
     @Override
-    public List<Likes> findMatchingProfileWithMessage(Long profileId, Boolean isMatch) {
+    public List<Likes> findMatchingProfileWithMessage(Long profileId, Long weddingId, Boolean isMatch) {
         return setSenderFetchJoinQuery()
+                .innerJoin(weddingChannel)
+                .on(weddingChannel.profile.id.eq(profile.id))
                 .where(
                         likes.receiver.id.eq(profileId),
-                        likes.isMatch.eq(isMatch)
+                        likes.isMatch.eq(isMatch),
+                        weddingChannel.wedding.id.eq(weddingId)
                 )
                 .fetch();
     }
