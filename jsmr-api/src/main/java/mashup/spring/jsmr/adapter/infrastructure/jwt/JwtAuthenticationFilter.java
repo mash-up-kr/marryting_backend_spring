@@ -40,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(String.valueOf(jwtProvider.getAccessTokenPayload(accessToken)));
                 SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userDetails.getUsername(), "", userDetails.getAuthorities()));
-            } catch (UsernameNotFoundException e) {
+            } catch (Exception e) {
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 objectMapper.writeValue(

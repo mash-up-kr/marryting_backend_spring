@@ -20,6 +20,7 @@ public class LikesApplicationService {
 
     private final LikesService likesService;
     private final ProfileService profileService;
+
     public List<LikeProfilesResponseDTO> getLikesProfiles(final Long userId) {
         Long profileId = profileService.getProfile(userId).getId();
 
