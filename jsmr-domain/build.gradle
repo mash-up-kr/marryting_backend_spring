@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
     implementation "mysql:mysql-connector-java:$mysqlVersion"
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:$jasyptVersion"
     implementation "com.querydsl:querydsl-apt:$querydslVersion"
     implementation "com.querydsl:querydsl-jpa:$querydslVersion"

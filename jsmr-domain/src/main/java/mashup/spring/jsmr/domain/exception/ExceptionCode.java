@@ -20,7 +20,9 @@ public enum ExceptionCode {
     JWT_EXCEPTION(HttpStatus.FORBIDDEN, "S003", "JWT에 문제가 있습니다."),
 
     // Duplicated Entity
-    EXIST_ENTITY(HttpStatus.BAD_REQUEST, "D001", "Already Exist Entity");
+    EXIST_ENTITY(HttpStatus.BAD_REQUEST, "D001", "Already Exist Entity"),
+
+    SOCIAL_LOGIN_FAIL(HttpStatus.BAD_REQUEST, "D002", "Social Login Fail");
 
     private final HttpStatus status;
     private final String code;

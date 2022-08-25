@@ -6,6 +6,7 @@ import mashup.spring.jsmr.domain.auth.OAuthService;
 import mashup.spring.jsmr.domain.exception.BusinessException;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.exception.ExceptionCode;
+import mashup.spring.jsmr.domain.exception.SocialLoginException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,39 +20,43 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User login(String socialType, String thirdPartyToken) {
-        if (socialType.equals(SocialType.KAKAO.name())) {
-            String kakaoId = authService.verifyKakao(thirdPartyToken);
-            return userRepository.findUserBySocialIdAndSocialType(kakaoId, SocialType.KAKAO)
-                    .orElseThrow(EntityNotFoundException::new);
-        } else if (socialType.equals(SocialType.APPLE.name())) {
-            String appleId = authService.verifyApple(thirdPartyToken);
-            return userRepository.findUserBySocialIdAndSocialType(appleId, SocialType.APPLE)
-                    .orElseThrow(EntityNotFoundException::new);
+        try {
+            if (socialType.equals(SocialType.KAKAO.name())) {
+                String kakaoId = authService.verifyKakao(thirdPartyToken);
+                return userRepository.findUserBySocialIdAndSocialType(kakaoId, SocialType.KAKAO)
+                        .orElseThrow(EntityNotFoundException::new);
+            } else if (socialType.equals(SocialType.APPLE.name())) {
+                String appleId = authService.verifyApple(thirdPartyToken);
+                return userRepository.findUserBySocialIdAndSocialType(appleId, SocialType.APPLE)
+                        .orElseThrow(EntityNotFoundException::new);
+            }
+            throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
+        } catch (Exception e) {
+            throw new SocialLoginException();
         }
-        throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
     }
 
     @Transactional
     public User signup(String socialType, String thirdPartyToken) {
-        if (socialType.equals(SocialType.KAKAO.name())) {
-            String kakaoId = authService.verifyKakao(thirdPartyToken);
-            userRepository.findUserBySocialIdAndSocialType(kakaoId, SocialType.KAKAO)
-                    .ifPresent(user -> {
-                        throw new BusinessException(ExceptionCode.EXIST_ENTITY);
-                    });
-            return userRepository.save(User.createKakaoUser(kakaoId));
-        } else if (socialType.equals(SocialType.APPLE.name())) {
-            String appleId = authService.verifyApple(thirdPartyToken);
-            userRepository.findUserBySocialIdAndSocialType(appleId, SocialType.APPLE)
-                    .ifPresent(user -> {
-                        throw new BusinessException(ExceptionCode.EXIST_ENTITY);
-                    });
-            return userRepository.save(User.createAppleUser(appleId));
+        try {
+            if (socialType.equals(SocialType.KAKAO.name())) {
+                String kakaoId = authService.verifyKakao(thirdPartyToken);
+                userRepository.findUserBySocialIdAndSocialType(kakaoId, SocialType.KAKAO)
+                        .ifPresent(user -> {
+                            throw new BusinessException(ExceptionCode.EXIST_ENTITY);
+                        });
+                return userRepository.save(User.createKakaoUser(kakaoId));
+            } else if (socialType.equals(SocialType.APPLE.name())) {
+                String appleId = authService.verifyApple(thirdPartyToken);
+                userRepository.findUserBySocialIdAndSocialType(appleId, SocialType.APPLE)
+                        .ifPresent(user -> {
+                            throw new BusinessException(ExceptionCode.EXIST_ENTITY);
+                        });
+                return userRepository.save(User.createAppleUser(appleId));
+            }
+            throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
+        } catch (Exception e) {
+            throw new SocialLoginException();
         }
-        throw new BusinessException(ExceptionCode.INVALID_INPUT_VALUE);
-    }
-
-    public User findById(final Long userId) {
-        return userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
     }
 }
