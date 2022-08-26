@@ -31,7 +31,7 @@ public class LikesService {
                             final String message) {
 
         // 중복된 좋아요 여부 체크
-        if (likesRepository.existsBySenderAndReceiver(senderId, receiverId)){
+        if (likesRepository.existsBySenderAndReceiver(senderId, receiverId)) {
             throw new DuplicatedException();
         }
 
@@ -42,13 +42,6 @@ public class LikesService {
 
         likes.toMatch();
         return createMyLike(senderId, receiverId, weddingId, message, TRUE);
-//
-//        return likesRepository.findBySenderIdAndReceiverId(receiverId, senderId)
-//                .map(likes -> {
-//                    likes.toMatch();
-//                    return createMyLike(senderId, receiverId, weddingId, message, TRUE);
-//                })
-//                 .orElse(createMyLike(senderId, receiverId, weddingId, message, FALSE));
     }
 
     private Likes createMyLike(final Long senderId,
