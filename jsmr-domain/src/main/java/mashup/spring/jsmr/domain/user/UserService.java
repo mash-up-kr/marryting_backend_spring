@@ -59,4 +59,10 @@ public class UserService {
             throw new SocialLoginException();
         }
     }
+
+    @Transactional
+    public void deleteUser(Long userId) {
+        userRepository.delete(userRepository.findById(userId)
+                .orElseThrow(EntityNotFoundException::new));
+    }
 }

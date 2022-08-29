@@ -37,4 +37,8 @@ public class UserApplicationService {
                 profile
         );
     }
+
+    public void deleteUser(Long userId) {
+        userService.deleteUser(userId);
+    }
 }

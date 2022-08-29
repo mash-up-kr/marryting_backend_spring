@@ -1,5 +1,6 @@
 package mashup.spring.jsmr.adapter.api.user;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import mashup.spring.jsmr.adapter.api.ApiResponse;
@@ -9,6 +10,8 @@ import mashup.spring.jsmr.adapter.api.user.dto.LoginRequestDTO;
 import mashup.spring.jsmr.adapter.api.user.dto.LoginResponseDTO;
 import mashup.spring.jsmr.application.user.UserApplicationService;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,4 +41,12 @@ public class UserController {
                 userApplicationService.signup(request)
         );
     }
+
+    @ApiOperation("유저 삭제")
+    @DeleteMapping("/{userId}")
+    public ApiResponse<Void> deleteUser(@PathVariable Long userId) {
+        userApplicationService.deleteUser(userId);
+        return ApiResponse.success(HttpStatus.NO_CONTENT);
+    }
+
 }
