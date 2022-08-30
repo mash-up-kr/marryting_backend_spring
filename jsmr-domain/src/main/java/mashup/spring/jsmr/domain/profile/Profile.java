@@ -11,6 +11,7 @@ import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.user.User;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -44,14 +45,14 @@ public class Profile extends BaseEntity {
     private User user;
 
     @Builder.Default
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<Answer> answers = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<ProfileKeyword> profileKeywords = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<Picture> pictures = new ArrayList<>();
 }

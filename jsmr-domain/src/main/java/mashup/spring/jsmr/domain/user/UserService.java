@@ -7,6 +7,7 @@ import mashup.spring.jsmr.domain.exception.BusinessException;
 import mashup.spring.jsmr.domain.exception.EntityNotFoundException;
 import mashup.spring.jsmr.domain.exception.ExceptionCode;
 import mashup.spring.jsmr.domain.exception.SocialLoginException;
+import mashup.spring.jsmr.domain.profile.ProfileRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ public class UserService {
 
     private final OAuthService authService;
     private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
 
     public User login(String socialType, String thirdPartyToken) {
         try {
@@ -62,7 +64,9 @@ public class UserService {
 
     @Transactional
     public void deleteUser(Long userId) {
-        userRepository.delete(userRepository.findById(userId)
-                .orElseThrow(EntityNotFoundException::new));
+        User user = userRepository.findById(userId)
+                .orElseThrow(EntityNotFoundException::new);
+        profileRepository.deleteByUser(user);
+        userRepository.delete(user);
     }
 }
