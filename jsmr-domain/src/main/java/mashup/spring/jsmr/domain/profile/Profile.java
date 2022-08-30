@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mashup.spring.jsmr.domain.BaseEntity;
 import mashup.spring.jsmr.domain.answer.Answer;
+import mashup.spring.jsmr.domain.like.Likes;
 import mashup.spring.jsmr.domain.picture.Picture;
 import mashup.spring.jsmr.domain.profileKeyword.ProfileKeyword;
 import mashup.spring.jsmr.domain.user.User;
@@ -55,4 +56,12 @@ public class Profile extends BaseEntity {
     @Builder.Default
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     private List<Picture> pictures = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private List<Likes> sender = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<Likes> receiver = new ArrayList<>();
 }
